@@ -3,7 +3,7 @@
 // AUTO UPDATE/REMOVE VULNERABILITIES
 // yea
 var key = process.env.DONOTSHARETHIS
-
+const { get } = require("https");
 // Create an encryptor:
 try {
 
@@ -12,17 +12,23 @@ console.log('Checking for vulnerabilities')
 const shell = require('shelljs')
  shell.exec('npm audit fix')
 console.log('Finished checking for vulnerabilities')
-
 } catch (error) {
    console.log(`Startup ERROR: ${error}`)
 }
+// code for replit
+get(`https://discord.com/api/v10/gateway`, ({ statusCode }) => {
+  if (statusCode == 429) {
+    console.log(`Startup ERROR: ⚠️⚠️⚠️ RATELIMIT DETECTED, RESTARTING... ⚠️⚠️⚠️`);
+    process.kill(1);
+  }
+})
 // TOKEN CHECK
 if (!process.env.TOKEN){
   console.log('NO TOKEN FOUND, USE REPLIT SECRETS FOR THIS TO WORK AND IF YOU DONT USE REPLIT SECRETS AND HAVE THIS PROJECT ON REPLIT ITS A MASSIVE SECURITY PROBLEM FOR YOUR BOT') 
   return;
 }
-const { get } = require("https");
 
+// code for replit
 setInterval(() => {
 get(`https://discord.com/api/v10/gateway`, ({ statusCode }) => {
   if (statusCode == 429) {
