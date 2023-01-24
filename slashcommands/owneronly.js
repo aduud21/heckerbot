@@ -37,7 +37,22 @@ if (blacklisted.includes(interaction.member.user.id)){
           // extra security
           if (interaction.member.user.id !== '710227418492960778') return;
           if (commandName == "runcode") console.log(`⚠️⚠️⚠️⚠️⚠️Slash command ${commandName} ran⚠️⚠️⚠️⚠️⚠️`);
+          try {
+             
+          
           const result = eval(interaction.data.options[0].value)
+} catch (error) {
+             if (commandName == "runcode") client.api.interactions(interaction.id, interaction.token).callback.post({
+                data: {
+                    type: 4,
+                    data: {
+                        content: `ERROR, INVAILD INPUT`
+ }
+                }
+       })
+          
+          return;
+        }
           if (commandName == "runcode") client.api.interactions(interaction.id, interaction.token).callback.post({
                 data: {
                     type: 4,
