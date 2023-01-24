@@ -1,0 +1,33 @@
+{
+  "name": "Synth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@discordjs/rest": "^1.3.0",
+    "ascii-table": "0.0.9",
+    "axios": "^1.1.3",
+    "bloxlink-sdk": "^3.0.3",
+    "discord-api-types": "^0.37.18",
+    "discord.js": "^13.12.0",
+    "express": "^4.18.2",
+    "fs": "0.0.1-security",
+    "geoip-lite": "^1.4.6",
+    "helmet": "^6.0.1",
+    "ms": "^2.1.3",
+    "node-virustotal": "^3.35.0",
+    "shelljs": "^0.8.5",
+    "simple-encryptor": "^4.0.0",
+    "util": "^0.12.3",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "node": "^17.9.1"
+  },
+  "keywords": []
+}

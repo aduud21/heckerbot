@@ -1,0 +1,87 @@
+[
+	{
+		"question": "Game question: What year was among us made? (Medium)",
+		"answers": ["2018"]
+  },
+  	{
+		"question": "Security question: What is a thing that you should NERVER share with anybody at all time about your account as of 2022? [Say the one you think it is: password, email, 2fa, token] (Medium)",
+		"answers": ["Account token"]
+  },
+  	{
+		"question": "Security question: Which one is more safe? http or https (Medium)",
+		"answers": ["https"]
+  },
+  {
+  		"question": "Normal question: How many letters are there in the english alphabet? (Medium)",
+		"answers": ["26!"]
+    },
+          {
+  		"question": "Game question: What year was Classic: Crossroads made by Roblox? (Medium)",
+		"answers": ["2007"]
+    },
+    {
+    		"question": "Dev question: Who is the creator of this bot? (A bit easy)",
+		"answers": ["adudu21", "Hecker",  "Hecker#1844"]
+    }, 
+    {
+    		"question": "Dev question: What year was this bot made? (Medium)",
+		"answers": ["2022"]
+        },
+    {
+    		"question": "Game question: What year was Friday Night Funkin made? (Medium)",
+		"answers": ["2020"]
+        },
+     {
+         		"question": "Youtube question: What year was the channel of MrBeast Made? (Medium)",
+		"answers": ["2012"]
+     },
+          {
+         		"question": "Game question: Who made FE2/Flood escape 2 on roblox? (Medium)",
+		"answers": ["Crazyblox"]
+     },
+    
+                {
+         		"question": "Normal question: Are cats bigger than humans normaly? (Normal)",
+		"answers": ["no!"]
+     },
+                     {
+         		"question": "Youtube question: Does mrbeast have over 2+ channels? (Normal)",
+		"answers": ["yes"]
+     },
+                     {
+         		"question": "internet question: Does google collect data? (Easy)",
+		"answers": ["yes"]
+     },
+                     {
+         		"question": "Game question: On roblox are you able to see your moderation history?",
+		"answers": ["yes"]
+     },
+                     {
+         		"question": "Normal question: Are dogs bigger than humans normaly?",
+		"answers": ["no!"]
+     },
+     {
+          		"question": "Game question: What is the name of the first ever roblox group? (Medium)",
+		"answers": ["RobloHunks"]
+    },
+    {
+    		"question": "Game question: Who is the CEO of roblox in 2022? (Medium)",
+		"answers": ["David Baszucki"]
+            },
+            {
+                		"question": "Game question: Was there a beta version of roblox, if so then what was the name? (Medium)",
+		"answers": ["DynaBlocks"]
+            },
+     {
+    		"question": "Discord question: What was the most popular server on discord in 2022? (Medium)",
+		"answers": ["mid journey"]
+  },
+       {
+    		"question": "Math question: What is 2039x3x0? (Easy)",
+		"answers": ["0"]
+  },
+{
+    		"question": "Math question: What is 5x5? (Easy)",
+		"answers": ["25!"]
+}
+]

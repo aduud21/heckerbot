@@ -1,0 +1,18 @@
+[
+	{
+		"question": "https://tenor.com/view/ben-yes-yes-fthememer-phone-call-yes-call-yes-gif-24938145",
+		"answers": ["yes", "no"]
+  },
+  {
+		"question": "https://tenor.com/view/dog-saying-no-no-ben-no-phone-call-no-call-no-gif-24938149",
+		"answers": ["yes", "no"]
+    },
+    {
+		"question": "https://tenor.com/view/ben-laughs-ben-laughing-ben-meme-fthememer-ben-phone-call-gif-24938219",
+		"answers": ["yes", "no"]
+    },
+    {
+		"question": "https://tenor.com/view/dog-hang-up-the-call-ben-hang-up-ben-hangsup-ben-call-meme-ben-phone-call-meme-gif-24938152",
+		"answers": ["yes", "no"]
+        }
+]
