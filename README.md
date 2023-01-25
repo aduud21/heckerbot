@@ -1,4 +1,4 @@
-[GitHub license](https://github.com/aduud21/heckerbot/blob/main/LICENSE)
+[GitHub license](https://github.com/aduud21/heckerbot/blob/main/LICENSE) [Discord Support Server](https://discord.gg/GbjgmffUKj)
 
 ***This project is hosted on replit (https://replit.com:/@AGuyThatLikesFurrys/Hecker-Discord-bot?s=app), The code of this bot is on replit and github (https://github.com/aduud21/heckerbot)***
 
