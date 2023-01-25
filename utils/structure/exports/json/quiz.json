@@ -5,7 +5,7 @@
   },
   	{
 		"question": "Security question: What is a thing that you should NERVER share with anybody at all time about your account as of 2022? [Say the one you think it is: password, email, 2fa, token] (Medium)",
-		"answers": ["Account token"]
+		"answers": ["token"]
   },
   	{
 		"question": "Security question: Which one is more safe? http or https (Medium)",
