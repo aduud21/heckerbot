@@ -21,7 +21,6 @@ IF YOU DONT USE SECRETS FOR THIS REPLIT LIKE YOU JUST PASTE IN YOUR TOKEN THEN A
 */
 // AUTO UPDATE/REMOVE VULNERABILITIES
 // yea
-
 var key = process.env.DONOTSHARETHIS
 const { get } = require("https");
 // Create an encryptor:
