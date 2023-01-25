@@ -7,7 +7,7 @@ const { Client, ClientUser, MessageEmbed, Intents } = require('discord.js')
 const { blacklisted } = require('../config/bot.json')
 module.exports = async(client) => {
 console.log('Making global command: patreon')
-client.api.applications('947733660432490506').commands.post({
+client.api.applications(`947733660432490506`).commands.post({
         data: {
             name: "patreon",
             description: "Want to support the developer/creator of this discord bot?"

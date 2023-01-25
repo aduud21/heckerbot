@@ -7,7 +7,7 @@ const { Client, ClientUser, MessageEmbed, Intents } = require('discord.js');
 const { owners, blacklisted } = require('../config/bot.json')
 module.exports = async(client) => {
 console.log('Making global command: runcode')
-client.api.applications('947733660432490506').guilds('947968591444205568').commands.post({
+client.api.applications(`947733660432490506`).guilds('947968591444205568').commands.post({
         data: {
             name: "runcode",
             description: "ONLY THE CREATOR CAN RUN THIS COMMAND",

@@ -7,7 +7,7 @@ const { Client, ClientUser, MessageEmbed, Intents } = require('discord.js')
 const { blacklisted } = require('../config/bot.json')
 module.exports = async(client) => {
 console.log('Making global command: deldata')
-client.api.applications('947733660432490506').commands.post({
+client.api.applications(`947733660432490506`).commands.post({
         data: {
             name: "deldata",
             description: " This will tell you how to delete all the data that the bot has collected about your server"

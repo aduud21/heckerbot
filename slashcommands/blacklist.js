@@ -8,7 +8,7 @@ const { blacklisted, owners, prefix, botperms } = require('../config/bot.json')
 const fs = require("fs")
 module.exports = async(client) => {
 console.log('Making global command: blacklist')
-client.api.applications('947733660432490506').guilds('947968591444205568').commands.post({
+client.api.applications(`947733660432490506`).guilds('947968591444205568').commands.post({
         data: {
             name: "blacklist",
             description: "ONLY THE CREATOR CAN RUN THIS COMMAND",

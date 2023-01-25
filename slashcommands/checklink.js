@@ -9,7 +9,7 @@ const { blacklisted } = require('../config/bot.json')
 const axios = require('axios')
 module.exports = async(client) => {
 console.log('Making global command: checklink')
-client.api.applications('947733660432490506').commands.post({
+client.api.applications(`947733660432490506`).commands.post({
         data: {
             name: "checklink",
             description: "Check a link if its malicious, please wait up to 1 minute",

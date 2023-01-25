@@ -7,7 +7,7 @@ const { Client, ClientUser, MessageEmbed, Intents } = require('discord.js')
 const { blacklisted } = require('../config/bot.json')
 module.exports = async(client) => {
 console.log('Making global command: emergencymeeting')
-client.api.applications('947733660432490506').commands.post({
+client.api.applications(`947733660432490506`).commands.post({
         data: {
             name: "emergencymeeting",
             description: "Among us emergency meeting"

@@ -7,8 +7,13 @@ if (!fs.existsSync('./LICENSE')) {
 module.exports = async(client) => {
       console.log(`☑️ -> [LOGIN] Logged into token as user ${client.user.tag}`)
 client.user.setActivity(`h!help | ${client.guilds.cache.size} servers`, { type: "LISTENING"})
+  try {
 const channel = client.channels.cache.get('957439649142407248')
 channel.send(`🔃 Bot restarted 🔃`)
+  } catch (error) {
+console.log("Could not send restart message in selected channel, ready.js in events folder")
+    return;
+  }
    async function checkbotalivedayslol() {
   client.user.setActivity(`h!help | ${client.guilds.cache.size} servers`, { type: "LISTENING"})
 }
