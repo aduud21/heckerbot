@@ -5,11 +5,63 @@
   },
   	{
 		"question": "Security question: What is a thing that you should NERVER share with anybody at all time about your account as of 2022? [Say the one you think it is: password, email, 2fa, token] (Medium)",
-		"answers": ["token"]
+		"answers": ["mainly token but as well password and email/2fa"]
   },
   	{
 		"question": "Security question: Which one is more safe? http or https (Medium)",
 		"answers": ["https"]
+  },
+    	{
+		"question": "Web question: In a website browser address bar, what does “www” stand for? (Medium)",
+		"answers": ["World Wide Web"]
+  },
+  	{
+		"question": "Food question: What is sushi traditionally wrapped in? (Kinda Easy)",
+		"answers": ["Edible seaweed"]
+  },
+  	{
+		"question": "IRL question: In which European city would you find Orly airport? (Might be Hard)",
+		"answers": ["Paris"]
+  },
+  	{
+		"question": "IRL question: What color eyes do most humans have as of 2022? (Kinda easy)",
+		"answers": ["Brown"]
+  },
+  	{
+		"question": "IRL question: What is the lowest army rank of a US soldier? (Maybe hard)",
+		"answers": ["Private"]
+  },
+  	{
+		"question": "IRL question: How many hearts does an octopus have? (Might be a bit hard)",
+		"answers": ["3"]
+  },
+  	{
+		"question": "IRL question: How many eyes does a bee have? (Might be hard)",
+		"answers": ["5"]
+  },
+  	{
+		"question": "IRL question: Which country was the Caesar salad invented in? (Might be hard)",
+		"answers": ["Mexico"]
+  },
+  	{
+		"question": "Online question: What is the Twitter bird’s official? (Kinda easy)",
+		"answers": ["Larry"]
+  },
+  	{
+		"question": "IRL question: What is a community of ants called? (Medium)",
+		"answers": ["A colony"]
+  },
+  	{
+		"question": "Special question: What does it mean for somebody to be a furry? (Easy/Medium)",
+		"answers": ["it normally means that the person is interested in Anthropomorphic animals (human like animals), Thats literally it, no joke"]
+  },
+  	{
+		"question": "Carrots are a good source of which vitamin? (Should be easy)",
+		"answers": ["Vitamin A"]
+  },
+  	{
+		"question": "What has a gravitational pull so strong that even light cannot escape it? (Should be a bit easy)",
+		"answers": ["Black Hole"]
   },
   {
   		"question": "Normal question: How many letters are there in the english alphabet? (Medium)",
