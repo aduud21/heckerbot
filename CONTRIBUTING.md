@@ -14,7 +14,7 @@ This project is about a discord bot that I made
 - [Collaborating with pull requests](https://docs.github.com/en/github/collaborating-with-pull-requests)
 
 ### Before requesting your changes to the main project, be sure to review your code and make sure it works!
-#### Be sure its formatted well (not ugly code, ugly code is basically unnecessary extra things in the code, for example you add a lot of unnecessary lines in the code, that would be like this:
+#### Be sure its formatted well and not ugly code, ugly code is basically unnecessary extra things in the code, for example you add a lot of unnecessary lines in the code, that would be like this:
 
 ```js
 const look = require("thisisjustaexample")
