@@ -11,6 +11,10 @@
 		"question": "Security question: Which one is more safe? http or https (Medium)",
 		"answers": ["https"]
   },
+  	{
+		"question": "it is needed to go to school to get money in the future? (Medium)",
+		"answers": ["in reality, you actually dont have to go to school to get moneny in the future, the only most important part of school for most people is just the simple math (+, ×, ÷, -),  you can do homeschooling and more, Learning what you want to do in the future is the best, such as programming, being a good content creator (this counts being a youtuber and more), for youtube, you gonna have to make good quality videos and Youtube shorts and as well livestreams, for anything on youtube or a video website excluding livestreaming, it is highly highly recommended to use a great video editer, a nice video editer i use is DaVinci Resolve Free version, its a good idea to make videos on a computer"]
+  },
     	{
 		"question": "Web question: In a website browser address bar, what does “www” stand for? (Medium)",
 		"answers": ["World Wide Web"]
