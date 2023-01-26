@@ -1,8 +1,9 @@
 # Hello 👋 
 Thank you for being interested in contributing to my project
 
-Be sure to read my [Code of Conduct](./CODE_OF_CONDUCT.md)
+Be sure to read the [Code of Conduct](./CODE_OF_CONDUCT.md)
 
+Be sure to read [extra information](./README.md)
 # New contributor guide
 
 This project is about a discord bot that I made
