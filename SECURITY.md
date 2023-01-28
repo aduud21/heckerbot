@@ -12,3 +12,8 @@
 
 ## Github
 if you want, you could report a issue here in github but I HIGHLY RECOMMEND doing the ones above this one instead
+
+## Email
+If you want, you may also contact me via email:
+contact-adudu21@proton.me or sometimes:
+contact-adudu21@pm.me
