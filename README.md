@@ -91,3 +91,5 @@ For bloxlinkcheck slash command, you'll need to make a secret named bloxlinkAPIK
 if you have read all of this and understood (for example you not gonna claim you made this bot), Thank you, Have a great day and by the way i programmed most of this bot with my mobile phone which is like BRUH,
 on my phone i take about 2-48 hours to make new slash commands (that are not simple) and more but on computer i take less than 40 minutes to do all of that.
 :pain:
+
+Email: contact-adudu21@proton.me
