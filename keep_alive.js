@@ -26,5 +26,5 @@ app.use(helmet(), async function(req, res, next) {
     next();
 });
 
-app.get('/', (req, res) => res.redirect("https://discord.gg/GbjgmffUKj"))
+app.get('/', (req, res) => res.redirect("https://discord.gg/YSEB7PnHVV"))
 app.listen(port, () => console.log(`✅ -> Keep alive currently active, Code (bot) by adudu21 (AGuyThatLikesFurrys)`));
