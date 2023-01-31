@@ -51,7 +51,13 @@ This bot runs on replit (hosted there) so you could run it there if you wish.
 
 ## How to run the bot on replit
 
-First of all you'll need your bot token.
+First of all install node@17 (the bot currently runs on node@17.9.1), Run 
+```
+npm install node@17 
+```
+in shell.
+
+You'll need your bot token.
  
 Export this project to replit (download latest version and put the code in your replit) OR fork https://replit.com:/@AGuyThatLikesFurrys/Hecker-Discord-bot?s=app directly in replit (Note: this way may break somethings) .
  
