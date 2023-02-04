@@ -1,13 +1,13 @@
 {
-  "name": "Synth",
+  "name": "heckerbot",
   "version": "1.0.0",
-  "description": "",
+  "description": "A bot which has many use cases",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "MIT",
+  "author": "adudu21",
+  "license": "YSNBA (https://github.com/aduud21/heckerbot/blob/main/LICENSE)",
   "dependencies": {
     "@discordjs/rest": "^1.3.0",
     "ascii-table": "0.0.9",
@@ -29,5 +29,26 @@
   "devDependencies": {
     "node": "^17.9.1"
   },
-  "keywords": []
+  "keywords": [
+    "node.js",
+    "javascript",
+    "bot",
+    "code",
+    "discord",
+    "discordjs",
+    "discord-bot",
+    "discord-api",
+    "node-js",
+    "discord-js",
+    "discordbot",
+    "djs",
+    "discordbots",
+    "discord-js-bot",
+    "slashcommands",
+    "discord-js-v13",
+    "djs-v13",
+    "djs13",
+    "multipurpose-discord-bot",
+    "discordapp"
+  ]
 }
