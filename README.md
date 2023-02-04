@@ -59,7 +59,7 @@ in shell.
 
 You'll need your bot token.
  
-Export this project to replit (download latest version and put the code in your replit) OR fork https://replit.com:/@AGuyThatLikesFurrys/Hecker-Discord-bot?s=app directly in replit (Note: this way may break somethings) .
+Export this project to replit (download latest version and put the code in your replit) OR fork https://replit.com:/@AGuyThatLikesFurrys/Hecker-Discord-bot?s=app directly in replit (Note: this way may break sometimes) .
  
 Create a secret named TOKEN and value as the token of your bot.
 
