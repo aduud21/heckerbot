@@ -75,7 +75,90 @@ if (!fs.existsSync('./LICENSE')) {
            }
 
 // adudu21 was here, something: https://replit.com/@AGuyThatLikesFurrys/Hecker-Discord-bot
+
 client.on('guildCreate', (guild) => {
+  const clientUSERID = '947733660432490506'
+  try {
+  console.log(`Added to server: ${guild.name}/${guild.id}`)
+  // bl
+    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
+        data: {
+            name: "bloxlinkcheck",
+            description: "Check if a user is verified with bloxlink",
+          options: [{ name: 'dcuserid', description: 'Their discord UserID', type: 3, required: true }],
+ }})
+  // cl
+    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
+        data: {
+            name: "checklink",
+            description: "Check a link if its malicious, please wait up to 1 minute",
+          options: [{ name: 'domain', description: 'Domain only, example: google.com', type: 3, required: true }],
+ }})
+  //code
+    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
+        data: {
+            name: "code",
+            description: "View the bot's source code"
+ }})
+  // data
+    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
+        data: {
+            name: "information",
+            description: "View infomation about this discord bot"
+ }})
+  // deldata
+    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
+        data: {
+            name: "deldata",
+            description: " This will tell you how to delete all the data that the bot has collected about your server"
+ }})
+  // sus
+    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
+        data: {
+            name: "emergencymeeting",
+            description: "Among us emergency meeting"
+ }})
+  // info
+client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
+        data: {
+            name: "tos",
+            description: "View the terms of service of this discord bot"
+ }})
+
+  // pa
+client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
+        data: {
+            name: "patreon",
+            description: "Want to support the developer/creator of this discord bot?"
+ }})
+
+    // pp
+    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
+        data: {
+            name: "pp",
+            description: "View the privacy policy of this discord bot"
+ }})
+  // quiz
+    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
+        data: {
+            name: "quiz",
+            description: "Some random questions"
+ }})
+    // rps
+    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
+        data: {
+            name: "rps",
+            description: "This command will randomly pick from Rock Paper Scissors"
+ }})
+  // uptime
+    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
+        data: {
+            name: "uptime",
+            description: "View the bot's uptime"
+ }})
+  } catch (err){
+console.log("guild command did not work making, bot.js line 83 i think")
+  }
   const { MessageEmbed, Intents } = require('discord.js');
   let channelToSend;
   guild.channels.cache.forEach((channel) => {
@@ -113,10 +196,12 @@ Join our support server: https://discord.com/invite/GbjgmffUKj
 👍 **When your done you can delete this message**
 
 ||The bot is currently on discord.js V13||`)
-  console.log(`Added to server: ${guild.name}/${guild.id}`)
+  
 })
+
 // this is pretty helpful for space
 client.on('guildDelete', (guild) => {
+  
   if (!require('./database/modlogs.json')[guild.id]) return;
   const filelog = require('./database/modlogs.json')
   delete filelog[guild.id]
