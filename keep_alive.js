@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const helmet = require('helmet');
 const port = 3000;
-let ddosProtection = require('./ddosProtection.js'); //DDoS protection.
+let ddosProtection = require('./ddosProtection.js'); //DDoS protection? oh hell nah
 let protect_urls = ["/", "/error"]; 
 let ddos_log = false;
 app.use(helmet(), async function(req, res, next) {
