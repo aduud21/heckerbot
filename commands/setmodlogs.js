@@ -46,6 +46,6 @@ message.reply(`${client.success} Set modlogs/log channel to ${channel.name}`)
 
 
     
-                  console.log(`[COMMAND LOG] setmodlogs channel command ran on: ${message.guild.name} ID: ${message.guild.id}`)
+                  
 
 };

@@ -7,12 +7,16 @@ const { Client, ClientUser, MessageEmbed, Intents } = require('discord.js');
 const { owners, blacklisted } = require('../config/bot.json')
 module.exports = async(client) => {
 console.log('Making global command: runcode')
+  try {
 client.api.applications(`947733660432490506`).guilds('947968591444205568').commands.post({
         data: {
             name: "runcode",
             description: "ONLY THE CREATOR CAN RUN THIS COMMAND",
           options: [{ name: 'code', description: 'What code do you wish to run', type: 3, required: true }],
- }})
+ }})} catch {
+    console.log("runcode invaild creation")
+    return;
+ }
   console.log('Created global command: runcode')
     client.ws.on("INTERACTION_CREATE", async(interaction) => {
       
