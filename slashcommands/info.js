@@ -6,14 +6,6 @@ require('events').defaultMaxListeners = REALLYMAXHEARINGREALLY1234REAL;
 const { Client, ClientUser, MessageEmbed, Intents } = require('discord.js')
 const { blacklisted } = require('../config/bot.json')
 module.exports = async(client) => {
-console.log('Making global command: tos')
-  
-client.api.applications(`947733660432490506`).commands.post({
-        data: {
-            name: "tos",
-            description: "View the terms of service of this discord bot"
- }})
-  console.log('Created global command: tos')
     client.ws.on("INTERACTION_CREATE", (interaction) => {
         const commandId = interaction.data.id;
         const commandName = interaction.data.name;

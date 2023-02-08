@@ -7,18 +7,6 @@ const { Client, ClientUser, MessageEmbed, Intents } = require('discord.js');
 const { blacklisted, owners, prefix, botperms } = require('../config/bot.json')
 const fs = require("fs")
 module.exports = async(client) => {
-console.log('Making global command: blacklist')
-  try {
-client.api.applications(`947733660432490506`).guilds('947968591444205568').commands.post({
-        data: {
-            name: "blacklist",
-            description: "ONLY THE CREATOR CAN RUN THIS COMMAND",
-          options: [{ name: 'userid', description: 'Who do you wish to blacklist, HAS TO BE USERID OR ELSE WONT WORK', type: 3, required: true }],
- }})} catch {
-    consile.log("blacklist invaild creation")
-    return;
-  }
-  console.log('Created global command: blacklist')
     client.ws.on("INTERACTION_CREATE", async(interaction) => {
       
         const commandId = interaction.data.id;

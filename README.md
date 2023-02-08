@@ -77,7 +77,7 @@ Check the output (via console),
 then copy what it encrypted,
 Head back to secrets and replace your token with the encrypted one
 
-Not done yet, in every slashcommand via slashcommands folder you must replace 947733660432490506 to your bot's userID/APPLICATION ID, I tried making it fetch the client user ID and application ID but it didn't work however if you know how please tell me.
+Not done yet, for some slashcommands via bot.js after line 80 you must replace 947733660432490506 to your bot's userID/APPLICATION ID.
 
 After doing this, in events folder (ready.js) you can turn off/on start_up_message (by default it is on), if you want start up messages then:
 

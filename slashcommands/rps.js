@@ -6,13 +6,6 @@ require('events').defaultMaxListeners = REALLYMAXHEARINGREALLY1234REAL;
 const { Client, ClientUser, MessageEmbed, Intents } = require('discord.js')
 const { blacklisted } = require('../config/bot.json')
 module.exports = async(client) => {
-console.log('Making global command: rps')
-client.api.applications(`947733660432490506`).commands.post({
-        data: {
-            name: "rps",
-            description: "This command will randomly pick from Rock Paper Scissors"
- }})
-  console.log('Created global command: rps')
     client.ws.on("INTERACTION_CREATE", (interaction) => {
         const commandId = interaction.data.id;
         const commandName = interaction.data.name;

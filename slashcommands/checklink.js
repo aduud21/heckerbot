@@ -8,16 +8,6 @@ const { Client, ClientUser, MessageEmbed, Intents } = require('discord.js');
 const { blacklisted } = require('../config/bot.json')
 const axios = require('axios')
 module.exports = async(client) => {
-console.log('Making global command: checklink')
-client.api.applications(`947733660432490506`).commands.post({
-        data: {
-            name: "checklink",
-            description: "Check a link if its malicious, please wait up to 1 minute",
-          options: [{ name: 'domain', description: 'Domain only, example: google.com', type: 3, required: true }],
- }})
-  // the above code creates slash commands (works on discord.js v12 and v13)
-  console.log('Created global command: checklink')
-
      client.ws.on("INTERACTION_CREATE", async(interaction) => {
       
         const commandId = interaction.data.id;

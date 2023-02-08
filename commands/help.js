@@ -48,7 +48,9 @@ Type \n${client.prefix}help [command]\ for help with a command \n\n ${client.pre
 
 ${message.author.tag} used this command
 
-Note: A lot of prefix commands have became Slash commands
+Note: A lot of prefix commands have became Slash commands,
+
+Run h!cscicitd incase there are no slash commands in your server after a couple minutes
 
 `)
     };

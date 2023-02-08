@@ -78,8 +78,29 @@ if (!fs.existsSync('./LICENSE')) {
 
 client.on('guildCreate', (guild) => {
   const clientUSERID = '947733660432490506'
+  const guild_sc_special = true;
+  // if the one above is enabled you must specify a certain guild ID for special slash commands
+  const custom_sc_special_guild_id = '947968591444205568'
   try {
   console.log(`Added to server: ${guild.name}/${guild.id}`)
+
+if (guild_sc_special){
+  if (guild.id === custom_sc_special_guild_id){
+  
+// blacklist, to have access towards it, open slashcommands folder then blacklist.js and change every 710227418492960778 to your discord user ID then open config and open bot.json and replace 710227418492960778 with your discord user ID (via "owners":"710227418492960778")
+client.api.applications(`${clientUSERID}`).guilds(`${custom_sc_special_guild_id}`).commands.post({
+data: {
+            name: "runcode",
+            description: "ONLY THE CREATOR CAN RUN THIS COMMAND",
+          options: [{ name: 'code', description: 'What code do you wish to run', type: 3, required: true }],
+     }})
+client.api.applications(`${clientUSERID}`).guilds(`${custom_sc_special_guild_id}`).commands.post({
+        data: {
+            name: "blacklist",
+            description: "ONLY THE CREATOR CAN RUN THIS COMMAND",
+          options: [{ name: 'userid', description: 'Who do you wish to blacklist, HAS TO BE USERID OR ELSE WONT WORK', type: 3, required: true }],
+ }})
+  }}
   // bl
     client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
         data: {

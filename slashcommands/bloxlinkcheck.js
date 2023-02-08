@@ -9,16 +9,6 @@ const { Client, ClientUser, MessageEmbed, Intents } = require('discord.js');
 const { blacklisted } = require('../config/bot.json')
 const axios = require('axios')
 module.exports = async(client) => {
-console.log('Making global command: bloxlinkcheck')
-client.api.applications(`947733660432490506`).commands.post({
-        data: {
-            name: "bloxlinkcheck",
-            description: "Check if a user is verified with bloxlink",
-          options: [{ name: 'dcuserid', description: 'Their discord UserID', type: 3, required: true }],
- }})
-  // the above code creates slash commands (works on discord.js v12 and v13)
-  console.log('Created global command: bloxlinkcheck')
-
      client.ws.on("INTERACTION_CREATE", async(interaction) => {
       
         const commandId = interaction.data.id;
