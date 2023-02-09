@@ -38,8 +38,11 @@ try {
 var encryptor = require('simple-encryptor')(key);
 console.log('Checking for vulnerabilities')
 const shell = require('shelljs')
- shell.exec('npm audit fix')
+ shell.exec('npm audit fix') // any possible fixable vulnerabilities? if so fix them, that's what this part of the code does
 console.log('Finished checking for vulnerabilities')
+/*
+catch basically catches any error that occurs when you use it correctly, can be very helpful
+*/
 } catch (error) {
    console.log(`Startup ERROR: ${error}`)
 }
@@ -64,8 +67,8 @@ get(`https://discord.com/api/v10/gateway`, ({ statusCode }) => {
     process.kill(1);
   }
 });
-}, 10000);
-// PLEASE DO NOT DELETE THE LICENSE FILE
+}, 10000); // this is in milliseconds, 1000 milliseconds = 1 second, this uses 10000 milliseconds so every 10 seconds it repeats a thing to do
+// PLEASE DO NOT DELETE THE LICENSE FILE, and do not claim you made this bot
 const { ShardingManager } = require('discord.js');
 
 const manager = new ShardingManager('./bot.js', { token: encryptor.decrypt(process.env.TOKEN) }); /*
