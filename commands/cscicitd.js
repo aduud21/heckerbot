@@ -16,6 +16,14 @@ const guild = message.guild
   try {
     client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.set([])
   msg.edit('⏳ -> Creating slash commands...')
+
+    // cl
+    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
+        data: {
+            name: "deldata",
+            description: "Clear all the data that bot has collected from your server, ADMINISTRATOR perm needed"
+ }})
+  //code
 client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
         data: {
             name: "bloxlinkcheck",
