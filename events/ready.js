@@ -1,4 +1,4 @@
-const start_up_message = true; // Possible values: true, false
+const start_up_message = false; // Possible values: true, false
 
 const { Client, ClientUser, MessageEmbed, Intents } = require('discord.js')
 console.log('⏳ -> [LOGIN] Trying to login with provided token, if this takes longer than 5 minutes it might be cause you provided a invaild token')
