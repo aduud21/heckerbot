@@ -117,7 +117,11 @@ return;
  }
                 var malicious = counts        
   if (malicious > 1) var chance = "possibly"                                                                  
-   if (malicious > 2) var chance =  "likely"
+   if (malicious > 4) var chance =  "likely"
+
+  if (malicious > 10) var chance =  "highly likely"
+
+  if (malicious > 25) var chance =  "very highly likely"
    
 if (malicious > 1){
   try {
