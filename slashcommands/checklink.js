@@ -16,12 +16,13 @@ module.exports = async(client) => {
 if (blacklisted.includes(interaction.member.user.id)){
   return;
           }
+            
                 if (commandName == "checklink") client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
             type: 5
         }
     })
-};
+}; // de
         const editInteraction = async (client, interaction, response) => {
     const data = typeof response === 'object' ? { embeds: [ response ] } : { content: response };
     const channel = await client.channels.resolve(interaction.channel_id);
@@ -40,7 +41,6 @@ var isratelmitnvt = 0
 
 if (commandName == "checklink") var isratelmitnvt = isratelmitnvt +1
 
-     if (commandName == "checklink") console.log(isratelmitnvt)
      if (commandName == "checklink") if (isratelmitnvt == 4){
         console.log(`Possible ratelimit detected for virus total api`);
        try {
@@ -70,9 +70,6 @@ setTimeout(() => {
 
 try {
       editInteraction(client, interaction, `An error occurred while trying to connect`)
-
-   
-
  
 } catch (error) {
 console.log(`Discord is annoying another time, error: ${error}`)
@@ -87,11 +84,7 @@ const request = nvt.makeAPI().setKey(process.env.api);
           if (commandName == "checklink") console.log(`Virustotal API did not work because: ${err}`);
       if (commandName == "checklink"){
 try {
-   
-
-   
-
-
+      
               if (commandName == "checklink") editInteraction(client, interaction, `Virustotal API did not work because: ${err}`)
 
 } catch (error) {
@@ -103,36 +96,44 @@ console.log(`Discord is annoying another time, error: ${error}`)
       }
 return;
     }
-    var road = JSON.parse(res);
-   var actualresult = '0'
-    if (road.data.attributes.last_analysis_results.Kaspersky.result != "clean") {
-        var actualresult = '1'
-      console.log('Kaspersky Flagged')
-    }
-   if (road.data.attributes.last_analysis_results.URLQuery.result != "clean") {
-        var actualresult = '1'
-     console.log('URLQuery Flagged')
-               }
-    if (road.data.attributes.last_analysis_results.BitDefender.result != "clean") {
-        var actualresult = '1'
-      console.log('BitDefender Flagged')
-    }
-   if (actualresult == '0') {
-        var actualresult = `The link is safe OR too new to tell`;
-   }
-   else{
-     var actualresult = `The link could be malicious or unsafe`
-   }
-console.log(actualresult) 
+   var road = JSON.parse(res);
    
-    if (commandName == "checklink") {
-    try {
-    
-    if (commandName == "checklink") editInteraction(client, interaction, `${actualresult}`)
+ var datasforlinks = road.data.attributes.last_analysis_results
+
+   counts = 0
+                            
+ for (key of Object.keys(datasforlinks)) { 
+  list = datasforlinks[key]["result"]
+   
+   if (list === 'clean'){
+     
+   }
+   if (list === 'phishing'){
+    counts = counts +1
+   }
+     if (list === 'malicious'){
+   counts = counts +2
+  }
+ }
+                var malicious = counts        
+  if (malicious > 1) var chance = "possibly"                                                                  
+   if (malicious > 2) var chance =  "likely"
+   
+if (malicious > 1){
+  try {
+    if (commandName == "checklink") editInteraction(client, interaction, `${interaction.data.options[0].value} is ${chance} malicious. ${malicious} engines flagged it as malicious`)  
       } catch (error) {
        console.log(`Discord is annoying another time, error: ${error}`)
-      
-        }
+  }
+}
+   else{
+     try {
+    if (commandName == "checklink") editInteraction(client, interaction, `The link is safe OR too new to tell`)  
+      } catch (error) {
+       console.log(`Discord is annoying another time, error: ${error}`)
+     }
+   }
+  if (commandName == "checklink") {      
           console.log(`Slash command ${commandName} ran`);
           
     };
