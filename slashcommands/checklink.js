@@ -1,5 +1,5 @@
 // CHANGING THE CODE BELOW CAN RESULT IN THE BOT NOT WORKING
-// latest discord api version https://discord.com/developers/docs/reference
+// latest discord api version https://discord.com/developers/docs/reference, thanks https://github.com/RixInGithub
 const REALLYMAXHEARINGREALLY1234REAL = 100
 require('events').EventEmitter.prototype._maxListeners = REALLYMAXHEARINGREALLY1234REAL;
 require('events').defaultMaxListeners = REALLYMAXHEARINGREALLY1234REAL;
