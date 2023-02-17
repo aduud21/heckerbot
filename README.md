@@ -2,6 +2,8 @@
 [Discord Support Server](https://discord.gg/YSEB7PnHVV),
 [Website for this discord bot](https://hecker-discord-bot-website.aguythatlikesfurrys.repl.co)
 
+[![CodeFactor](https://www.codefactor.io/repository/github/aduud21/heckerbot/badge)](https://www.codefactor.io/repository/github/aduud21/heckerbot)
+
 ***This project is hosted on replit (https://replit.com:/@AGuyThatLikesFurrys/Hecker-Discord-bot?s=app), The code of this bot is on replit and github (https://github.com/aduud21/heckerbot).***
 
 **</> Hecker discord bot, On Discord.js V13 as of 13/1/2023 </>**
