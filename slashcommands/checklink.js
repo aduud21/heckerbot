@@ -23,6 +23,7 @@ if (blacklisted.includes(interaction.member.user.id)){
         }
     })
 }; // de
+       try {
         const editInteraction = async (client, interaction, response) => {
     const data = typeof response === 'object' ? { embeds: [ response ] } : { content: response };
     const channel = await client.channels.resolve(interaction.channel_id);
@@ -32,7 +33,10 @@ if (blacklisted.includes(interaction.member.user.id)){
             return channel.messages.fetch(answer.data.id)
         })
 };
-
+                  } catch (err) {
+       console.log(err)
+         return;
+                  }
 
 
  if (commandName == "checklink") if (!isratelmitnvt){    
