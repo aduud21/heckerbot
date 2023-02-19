@@ -23,21 +23,24 @@ if (blacklisted.includes(interaction.member.user.id)){
         }
     })
 }; // de
-       try {
+       
         const editInteraction = async (client, interaction, response) => {
+          
     const data = typeof response === 'object' ? { embeds: [ response ] } : { content: response };
-    const channel = await client.channels.resolve(interaction.channel_id);
+    const channel = await client.channels.resolve(interaction.channel_id);          
     return axios
         .patch(`https://discord.com/api/v10/webhooks/${client.user.id}/${interaction.token}/messages/@original`, data)
         .then((answer) => {
+          try {
             return channel.messages.fetch(answer.data.id)
-        })
-};
-                  } catch (err) {
+                } catch (err) {
        console.log(err)
          return;
                   }
 
+        })
+};
+              
 
  if (commandName == "checklink") if (!isratelmitnvt){    
 var isratelmitnvt = 0
