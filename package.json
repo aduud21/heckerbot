@@ -11,7 +11,7 @@
   "dependencies": {
     "@discordjs/rest": "^1.5.0",
     "ascii-table": "0.0.9",
-    "axios": "^1.2.5",
+    "axios": "^1.2.6",
     "bloxlink-sdk": "^3.0.3",
     "discord-api-types": "^0.37.30",
     "discord.js": "^13.12.0",
