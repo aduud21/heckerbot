@@ -139,7 +139,7 @@ if (malicious > 1){
 }
    else{
      try {
-    if (commandName == "checklink") editInteraction(client, interaction, `The link is safe OR too new to tell`)  
+    if (commandName == "checklink") editInteraction(client, interaction, `${interaction.data.options[0].value} is safe OR too new to be flagged`)  
       } catch (error) {
        console.log(`Discord is annoying another time, error: ${error}`)
      }
