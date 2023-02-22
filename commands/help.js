@@ -42,87 +42,16 @@ ${pu.config.name ? `**Name:** ${pu.config.name}` : ""}${pu.config.description ? 
     if (!args[0]) {
         
           message.reply(`
-****You can use the following commands below to check what commands you can use:****
-
-Type \n${client.prefix}help [command]\ for help with a command \n\n ${client.prefix}help moderation - **Moderation related commands** \n ${client.prefix}help fun - **Fun commands, This may include some games and more** \n ${client.prefix}help management - **Management Commands**  \n${client.prefix}help misc - **View all misc Commands** \n ${client.prefix}help info - **View all information commands**  \n ${client.prefix}help config - **View all configuration setting commands**
-
-${message.author.tag} used this command
-
-Note: A lot of prefix commands have became Slash commands,
+All prefix commands were removed execpt the following>
+${client.prefix}help
+${client.prefix}removeserverdata
+${client.prefix}cscicitd
+${client.prefix}anh
+${client.prefix}setmodlogs
 
 Run h!cscicitd incase there are no slash commands in your server after a couple minutes
 
 `)
     };
-
-     if (args[0] === 'fun') {
-        let fun = [];
-        client.commands.forEach((command) => {
-            if (command.config.group === 'fun') fun.push(`\`${command.config.name}\` - ${command.config.description}`);
-        })
-        message.reply(`**_Fun commands_** \n\n ${fun.join('\n')}`)
-
-        
-     };
-
-     if (args[0] === 'misc') {
-         let misc = [];
-
-         client.commands.forEach((command) => {
-            if (command.config.group === 'misc') misc.push(`\`${command.config.name}\` - ${command.config.description}`);
-        })
-        message.reply(`**_Misc commands_** \n\n ${misc.join('\n')}`)
-
-        
-
-     }
-
-     if (args[0] === 'management') {
-        let mnge = [];
-     
-        client.commands.forEach((command) => {
-           if (command.config.group === 'management') mnge.push(`\`${command.config.name}\` - ${command.config.description}`);
-       })
-
-       message.reply(`**_Management commands_** \n\n ${mnge.join('\n')}`)
-
-       
-     }
-
-
-     if (args[0] === 'config') {
-         let configuration = [];
-     
-         client.commands.forEach((command) => {
-            if (command.config.group === 'config') configuration.push(`\`${command.config.name}\` - ${command.config.description}`);
-        })
-
-        message.reply(`**_Configuration commands_** \n\n ${configuration.join('\n')}`)
-
-        
-
-        }
-
-    if (args[0] === 'info' || args[0] === 'information') {
-        let infoo = [];
-        client.commands.forEach((command) => {
-            if (command.config.group === 'info') infoo.push(`\`${command.config.name}\` - ${command.config.description}`);
-        })
-        message.reply(`**_Info commands_** \n\n ${infoo.join('\n')}`)
-
-        
-    }
-    if (args[0] === 'moderation') {
-        let mod = [];
-        client.commands.forEach((command) => {
-            if (command.config.group === 'moderation') {
-                mod.push(`\`${command.config.name}\` - ${command.config.description}`);
-            }
-            });
-
-        message.reply(`**_Moderation commands_** \n\n ${mod.join('\n')}`)
-
-        
-    }
 }
 // adudu21 was here
