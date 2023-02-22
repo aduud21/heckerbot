@@ -1,6 +1,13 @@
-[GitHub license](https://github.com/aduud21/heckerbot/blob/main/LICENSE),
-[Discord Support Server](https://discord.gg/YSEB7PnHVV),
 [Website for this discord bot](https://hecker-discord-bot-website.aguythatlikesfurrys.repl.co)
+
+
+[![GitHub release](https://img.shields.io/github/release/aduud21/heckerbot?include_prereleases=&sort=semver)](https://github.com/aduud21/heckerbot/releases/)
+[![issues - heckerbot](https://img.shields.io/github/issues/aduud21/heckerbot)](https://github.com/aduud21/heckerbot/issues)
+
+[![stars - heckerbot](https://img.shields.io/github/stars/aduud21/heckerbot?style=social)](https://github.com/aduud21/heckerbot)
+[![forks - heckerbot](https://img.shields.io/github/forks/aduud21/heckerbot?style=social)](https://github.com/aduud21/heckerbot)
+[![Discord Support Server](https://img.shields.io/badge/Discord_Support_Server-black?logo=discord)](https://discord.gg/YSEB7PnHVV)
+[![CodeFactor](https://www.codefactor.io/repository/github/aduud21/heckerbot/badge)](https://www.codefactor.io/repository/github/aduud21/heckerbot)
 
 ***This project is hosted on replit (https://replit.com:/@AGuyThatLikesFurrys/Hecker-Discord-bot?s=app), The code of this bot is on replit and github (https://github.com/aduud21/heckerbot).***
 
@@ -8,7 +15,7 @@
 
 ***<!>Copyright Notice<!>:***
 
-**When taking the code for the bot you agree to the copyright license.**
+**When taking the code for the bot you agree to the [copyright license](/LICENSE).**
 
 *Discord bot:*
 
