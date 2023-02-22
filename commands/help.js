@@ -48,6 +48,7 @@ ${client.prefix}removeserverdata
 ${client.prefix}cscicitd
 ${client.prefix}anh
 ${client.prefix}setmodlogs
+${client.prefix}settings
 
 Run h!cscicitd incase there are no slash commands in your server after a couple minutes
 
