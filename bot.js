@@ -57,7 +57,6 @@ require('./slashcommands/rps')(client);
 require('./slashcommands/checklink')(client);
 require('./slashcommands/bloxlinkcheck')(client);
 require('./slashcommands/quiz')(client);
-require('./slashcommands/deldatareal')(client);
 const message = 'messageCreate'
 client.on('messageCreate', async(message) => {
 message.channel.messages.fetch()
