@@ -19,7 +19,8 @@ if (blacklisted.includes(interaction.member.user.id)){
             
                 if (commandName == "checklink") client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
-            type: 5
+            type: 5,
+          flags: 64,
         }
     })
 }; // de
@@ -126,9 +127,9 @@ return;
   if (malicious > 1) var chance = "possibly"                                                                  
    if (malicious > 4) var chance =  "likely"
 
-  if (malicious > 10) var chance =  "highly likely"
+  if (malicious > 8) var chance =  "highly likely"
 
-  if (malicious > 25) var chance =  "very highly likely"
+  if (malicious > 12) var chance =  "very highly likely"
    
 if (malicious > 1){
   try {
