@@ -46,7 +46,6 @@ All prefix commands were removed execpt the following>
 ${client.prefix}help
 ${client.prefix}removeserverdata
 ${client.prefix}cscicitd
-${client.prefix}anh
 ${client.prefix}setmodlogs
 ${client.prefix}settings
 

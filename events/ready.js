@@ -12,7 +12,7 @@ client.user.setActivity(`h!help | ${client.guilds.cache.size} servers`, { type: 
   try {
     if  (start_up_message){
 const channel = client.channels.cache.get('957439649142407248')
-channel.send(`🔃 Bot restarted 🔃`)
+channel.send(`<:xd:1073736745872535603> Bot restarted <:xd:1073736745872535603>`)
   }
   } catch (error) {
 console.log("Could not send restart message in selected channel, ready.js in events folder")

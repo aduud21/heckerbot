@@ -55,6 +55,7 @@ require('./slashcommands/patreon')(client);
 require('./slashcommands/uptime')(client);
 require('./slashcommands/rps')(client);
 require('./slashcommands/checklink')(client);
+require('./ed')(client);
 require('./slashcommands/bloxlinkcheck')(client);
 require('./slashcommands/quiz')(client);
 const message = 'messageCreate'
