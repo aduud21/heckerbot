@@ -7,7 +7,15 @@ client.on('messageUpdate', async(oldMessage, newMessage) => {
           if (newMessage.channel.type === 'dm') return;
         if (!require('./database/modlogs.json')[newMessage.guild.id]) return;
         let modLogsID  = require('./database/modlogs.json')[newMessage.guild.id].channel;
-        await newMessage.guild.channels.cache.get(modLogsID).send(`
+         var ma = newMessage.content.match(/^(http:|https:)/);
+  if (ma) {
+return;   
+  }
+         var mao = oldMessage.content.match(/^(http:|https:)/);
+  if (mao) {
+return;   
+  }
+      await newMessage.guild.channels.cache.get(modLogsID).send(`
 ****Message log****
 
 Message by <@${newMessage.author.id}>,
