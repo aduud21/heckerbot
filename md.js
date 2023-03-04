@@ -1,4 +1,5 @@
 module.exports = async(client, messageDelete) => {
+  if (messageDelete.author.bot) return;
     try {
        if (messageDelete.content.length < 1826){
           if (messageDelete.channel.type === 'dm') return;

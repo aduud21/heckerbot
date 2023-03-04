@@ -1,20 +1,15 @@
 module.exports = async(client) => {
   const { Client, ClientUser, MessageEmbed, Intents } = require('discord.js');
 client.on('messageUpdate', async(oldMessage, newMessage) => {
+  if (newMessage.author.bot) return;
+  if (newMessage.content === oldMessage.content) return;
     try {
       var flyMessage = `${oldMessage.content}${newMessage.content}`
        if (flyMessage.length < 1816){
           if (newMessage.channel.type === 'dm') return;
         if (!require('./database/modlogs.json')[newMessage.guild.id]) return;
         let modLogsID  = require('./database/modlogs.json')[newMessage.guild.id].channel;
-         var ma = newMessage.content.match(/^(http:|https:)/);
-  if (ma) {
-return;   
-  }
-         var mao = oldMessage.content.match(/^(http:|https:)/);
-  if (mao) {
-return;   
-  }
+         
       await newMessage.guild.channels.cache.get(modLogsID).send(`
 ****Message log****
 
