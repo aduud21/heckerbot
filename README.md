@@ -56,7 +56,7 @@ This bot runs on node.js. You will need at least node 16.
 
 This bot runs on replit (hosted there) so you could run it there if you wish. 
 
-NOTE: IF THERES AN ERROR IN YOUR CODE OR SUCH, PLEASE REVIEW YOURSELF AND IF YOU SEE ANY throw new error PAY ATTENTION TO THAT AND SEE THE REASON, MOST COMMON ERROR AS OF 2023/3/5:
+NOTE: IF THERES A ERROR IN YOUR CODE OR SUCH, PLEASE REVIEW YOURSELF AND IF YOU SEE ANY throw new error PAY ATTENTION TO THAT AND SEE THE REASON, MOST COMMON ERROR AS OF 2023/3/5:
 ```js
 throw new Error('key must be at least ' + MIN_KEY_LENGTH + ' characters long');
     ^
