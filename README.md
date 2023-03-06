@@ -56,6 +56,8 @@ This bot runs on node.js. You will need at least node 16.
 
 This bot runs on replit (hosted there) so you could run it there if you wish. 
 
+NOTE: IF THERES AN ERROR IN YOUR CODE OR SUCH, PLEASE REVIEW YOURSELF AND IF YOU SEE ANY throw new error PAY ATTENTION TO THAT AND SEE THE REASON
+
 ## How to run the bot on replit
 
 First of all install node@17 (the bot currently runs on node@17.9.1), Run 
@@ -70,7 +72,7 @@ Export this project to replit (download latest version and put the code in your 
  
 Create a secret named TOKEN and value as the token of your bot.
 
-Create a secret named DONOTSHARETHIS and the value should be something long, this will be used for encrypting the token and decrypting too.
+Create a secret named DONOTSHARETHIS and the value should be something long (more than 50 characters, 16 is minimum), this will be used for encrypting the token and decrypting too.
 
 For additional security, this bot encrypts the token and decrypts the token when needed so for that:
 In index.js add the following code to the top (line 1):
