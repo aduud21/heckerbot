@@ -41,7 +41,6 @@ client.login(encryptor.decrypt(process.env.TOKEN));
 console.log('⌛-> [LOGINDATA] Data found, program will try to use it!')
 const { keep_alive } = require('./keep_alive');
 require('./utils/defines')(client);
-require('./utils/structure/registery')(client);
 require('./utils/handlers/commands')(client);
 require('./utils/handlers/events')(client);
 require('./slashcommands/info')(client);
@@ -56,6 +55,7 @@ require('./slashcommands/patreon')(client);
 require('./slashcommands/uptime')(client);
 require('./slashcommands/rps')(client);
 require('./slashcommands/checklink')(client);
+require('./ed')(client);
 require('./slashcommands/bloxlinkcheck')(client);
 require('./slashcommands/quiz')(client);
 const message = 'messageCreate'

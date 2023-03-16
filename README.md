@@ -1,6 +1,13 @@
-[GitHub license](https://github.com/aduud21/heckerbot/blob/main/LICENSE),
-[Discord Support Server](https://discord.gg/YSEB7PnHVV),
 [Website for this discord bot](https://hecker-discord-bot-website.aguythatlikesfurrys.repl.co)
+
+
+[![GitHub release](https://img.shields.io/github/release/aduud21/heckerbot?include_prereleases=&sort=semver)](https://github.com/aduud21/heckerbot/releases/)
+[![issues - heckerbot](https://img.shields.io/github/issues/aduud21/heckerbot)](https://github.com/aduud21/heckerbot/issues)
+
+[![stars - heckerbot](https://img.shields.io/github/stars/aduud21/heckerbot?style=social)](https://github.com/aduud21/heckerbot)
+[![forks - heckerbot](https://img.shields.io/github/forks/aduud21/heckerbot?style=social)](https://github.com/aduud21/heckerbot)
+[![Discord Support Server](https://img.shields.io/badge/Discord_Support_Server-black?logo=discord)](https://discord.gg/YSEB7PnHVV)
+[![CodeFactor](https://www.codefactor.io/repository/github/aduud21/heckerbot/badge)](https://www.codefactor.io/repository/github/aduud21/heckerbot)
 
 ***This project is hosted on replit (https://replit.com:/@AGuyThatLikesFurrys/Hecker-Discord-bot?s=app), The code of this bot is on replit and github (https://github.com/aduud21/heckerbot).***
 
@@ -8,7 +15,7 @@
 
 ***<!>Copyright Notice<!>:***
 
-**When taking the code for the bot you agree to the copyright license.**
+**When taking the code for the bot you agree to the [copyright license](/LICENSE).**
 
 *Discord bot:*
 
@@ -49,6 +56,14 @@ This bot runs on node.js. You will need at least node 16.
 
 This bot runs on replit (hosted there) so you could run it there if you wish. 
 
+NOTE: IF THERES A ERROR IN YOUR CODE OR SUCH, PLEASE REVIEW YOURSELF AND IF YOU SEE ANY throw new error PAY ATTENTION TO THAT AND SEE THE REASON, MOST COMMON ERROR AS OF 2023/3/5:
+```js
+throw new Error('key must be at least ' + MIN_KEY_LENGTH + ' characters long');
+    ^
+
+Error: key must be at least 16 characters long
+```
+
 ## How to run the bot on replit
 
 First of all install node@17 (the bot currently runs on node@17.9.1), Run 
@@ -63,7 +78,7 @@ Export this project to replit (download latest version and put the code in your 
  
 Create a secret named TOKEN and value as the token of your bot.
 
-Create a secret named DONOTSHARETHIS and the value should be something long, this will be used for encrypting the token and decrypting too.
+Create a secret named DONOTSHARETHIS and the value should be something long (more than 50 characters, 16 is minimum), this will be used for encrypting the token and decrypting too.
 
 For additional security, this bot encrypts the token and decrypts the token when needed so for that:
 In index.js add the following code to the top (line 1):

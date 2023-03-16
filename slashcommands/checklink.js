@@ -19,21 +19,29 @@ if (blacklisted.includes(interaction.member.user.id)){
             
                 if (commandName == "checklink") client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
-            type: 5
+            type: 5,
+          flags: 64,
         }
     })
 }; // de
+       
         const editInteraction = async (client, interaction, response) => {
+          
     const data = typeof response === 'object' ? { embeds: [ response ] } : { content: response };
-    const channel = await client.channels.resolve(interaction.channel_id);
+    const channel = await client.channels.resolve(interaction.channel_id);          
     return axios
         .patch(`https://discord.com/api/v10/webhooks/${client.user.id}/${interaction.token}/messages/@original`, data)
         .then((answer) => {
+          try {
             return channel.messages.fetch(answer.data.id)
+                } catch (err) {
+       console.log(err)
+         return;
+                  }
+
         })
 };
-
-
+              
 
  if (commandName == "checklink") if (!isratelmitnvt){    
 var isratelmitnvt = 0
@@ -119,9 +127,9 @@ return;
   if (malicious > 1) var chance = "possibly"                                                                  
    if (malicious > 4) var chance =  "likely"
 
-  if (malicious > 10) var chance =  "highly likely"
+  if (malicious > 8) var chance =  "highly likely"
 
-  if (malicious > 25) var chance =  "very highly likely"
+  if (malicious > 12) var chance =  "very highly likely"
    
 if (malicious > 1){
   try {
@@ -132,7 +140,7 @@ if (malicious > 1){
 }
    else{
      try {
-    if (commandName == "checklink") editInteraction(client, interaction, `The link is safe OR too new to tell`)  
+    if (commandName == "checklink") editInteraction(client, interaction, `${interaction.data.options[0].value} is safe OR too new to be flagged`)  
       } catch (error) {
        console.log(`Discord is annoying another time, error: ${error}`)
      }

@@ -1,4 +1,5 @@
 module.exports = async(client, messageDelete) => {
+  if (messageDelete.author.bot) return;
     try {
        if (messageDelete.content.length < 1826){
           if (messageDelete.channel.type === 'dm') return;
@@ -20,7 +21,7 @@ UserID: ${messageDelete.author.id} | Message ID: ${messageDelete.id}`)      }
 
 Message sent by <@${messageDelete.author.id}>,
 Message deleted in <#${messageDelete.channel.id}> 
-Message: <Message is too long to show...>
+Message: <Message is too long to show>
 UserID: ${messageDelete.author.id} | Message ID: ${messageDelete.id}`);
       }
     } catch (error) {
