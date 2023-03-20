@@ -1,143 +1,167 @@
 [
 	{
-		"question": "Game question: What year was among us made? (Medium)",
-		"answers": ["2018"]
-  },
-  	{
-		"question": "Security question: What is a thing that you should NERVER share with anybody at all time about your account as of 2022? [Say the one you think it is: password, email, 2fa, token] (Medium)",
-		"answers": ["mainly token but as well password and email/2fa"]
-  },
-  	{
-		"question": "Security question: Which one is more safe? http or https (Medium)",
-		"answers": ["https"]
-  },
-  	{
-		"question": "it is needed to go to school to get money in the future? (Medium)",
-		"answers": ["in reality, you actually dont have to go to school to get moneny in the future, the only most important part of school for most people is just the simple math (+, ×, ÷, -),  you can do homeschooling and more, Learning what you want to do in the future is the best, such as programming, being a good content creator (this counts being a youtuber and more), for youtube, you gonna have to make good quality videos and Youtube shorts and as well livestreams, for anything on youtube or a video website excluding livestreaming, it is highly highly recommended to use a great video editer, a nice video editer i use is DaVinci Resolve Free version, its a good idea to make videos on a computer"]
-  },
-    	{
-		"question": "Web question: In a website browser address bar, what does “www” stand for? (Medium)",
-		"answers": ["World Wide Web"]
-  },
-  	{
-		"question": "Food question: What is sushi traditionally wrapped in? (Kinda Easy)",
-		"answers": ["Edible seaweed"]
-  },
-  	{
-		"question": "IRL question: In which European city would you find Orly airport? (Might be Hard)",
-		"answers": ["Paris"]
-  },
-  	{
-		"question": "IRL question: What color eyes do most humans have as of 2022? (Kinda easy)",
-		"answers": ["Brown"]
-  },
-  	{
-		"question": "IRL question: What is the lowest army rank of a US soldier? (Maybe hard)",
-		"answers": ["Private"]
-  },
-  	{
-		"question": "IRL question: How many hearts does an octopus have? (Might be a bit hard)",
-		"answers": ["3"]
-  },
-  	{
-		"question": "IRL question: How many eyes does a bee have? (Might be hard)",
-		"answers": ["5"]
-  },
-  	{
-		"question": "IRL question: Which country was the Caesar salad invented in? (Might be hard)",
-		"answers": ["Mexico"]
-  },
-  	{
-		"question": "Online question: What is the Twitter bird’s official? (Kinda easy)",
-		"answers": ["Larry"]
-  },
-  	{
-		"question": "IRL question: What is a community of ants called? (Medium)",
-		"answers": ["A colony"]
-  },
-  	{
-		"question": "Special question: What does it mean for somebody to be a furry? (Easy/Medium)",
-		"answers": ["it normally means that the person is interested in Anthropomorphic animals (human like animals), Thats literally it, no joke"]
-  },
-  	{
-		"question": "Carrots are a good source of which vitamin? (Should be easy)",
-		"answers": ["Vitamin A"]
-  },
-  	{
-		"question": "What has a gravitational pull so strong that even light cannot escape it? (Should be a bit easy)",
-		"answers": ["Black Hole"]
-  },
-  {
-  		"question": "Normal question: How many letters are there in the english alphabet? (Medium)",
-		"answers": ["26!"]
-    },
-          {
-  		"question": "Game question: What year was Classic: Crossroads made by Roblox? (Medium)",
-		"answers": ["2007"]
-    },
-    {
-    		"question": "Dev question: Who is the creator of this bot? (A bit easy)",
-		"answers": ["adudu21", "Hecker",  "Hecker#1844"]
-    }, 
-    {
-    		"question": "Dev question: What year was this bot made? (Medium)",
-		"answers": ["2022"]
-        },
-    {
-    		"question": "Game question: What year was Friday Night Funkin made? (Medium)",
-		"answers": ["2020"]
-        },
-     {
-         		"question": "Youtube question: What year was the channel of MrBeast Made? (Medium)",
-		"answers": ["2012"]
-     },
-          {
-         		"question": "Game question: Who made FE2/Flood escape 2 on roblox? (Medium)",
-		"answers": ["Crazyblox"]
-     },
-    
-                {
-         		"question": "Normal question: Are cats bigger than humans normaly? (Normal)",
-		"answers": ["no!"]
-     },
-                     {
-         		"question": "Youtube question: Does mrbeast have over 2+ channels? (Normal)",
-		"answers": ["yes"]
-     },
-                     {
-         		"question": "internet question: Does google collect data? (Easy)",
-		"answers": ["yes"]
-     },
-                     {
-         		"question": "Game question: On roblox are you able to see your moderation history?",
-		"answers": ["yes"]
-     },
-                     {
-         		"question": "Normal question: Are dogs bigger than humans normaly?",
-		"answers": ["no!"]
-     },
-     {
-          		"question": "Game question: What is the name of the first ever roblox group? (Medium)",
-		"answers": ["RobloHunks"]
-    },
-    {
-    		"question": "Game question: Who is the CEO of roblox in 2022? (Medium)",
-		"answers": ["David Baszucki"]
-            },
-            {
-                		"question": "Game question: Was there a beta version of roblox, if so then what was the name? (Medium)",
-		"answers": ["DynaBlocks"]
-            },
-     {
-    		"question": "Discord question: What was the most popular server on discord in 2022? (Medium)",
-		"answers": ["mid journey"]
-  },
-       {
-    		"question": "Math question: What is 2039x3x0? (Easy)",
-		"answers": ["0"]
-  },
-{
-    		"question": "Math question: What is 5x5? (Easy)",
-		"answers": ["25!"]
-}
-]
+		question: 'Game question: What year was among us made? (Medium)',
+		answers: ['2018']
+	},
+	{
+		question:
+			'Security question: What is a thing that you should NERVER share with anybody at all time about your account as of 2022? [Say the one you think it is: password, email, 2fa, token] (Medium)',
+		answers: ['mainly token but as well password and email/2fa']
+	},
+	{
+		question:
+			'Security question: Which one is more safe? http or https (Medium)',
+		answers: ['https']
+	},
+	{
+		question:
+			'it is needed to go to school to get money in the future? (Medium)',
+		answers: [
+			'in reality, you actually dont have to go to school to get moneny in the future, the only most important part of school for most people is just the simple math (+, ×, ÷, -),  you can do homeschooling and more, Learning what you want to do in the future is the best, such as programming, being a good content creator (this counts being a youtuber and more), for youtube, you gonna have to make good quality videos and Youtube shorts and as well livestreams, for anything on youtube or a video website excluding livestreaming, it is highly highly recommended to use a great video editer, a nice video editer i use is DaVinci Resolve Free version, its a good idea to make videos on a computer'
+		]
+	},
+	{
+		question:
+			'Web question: In a website browser address bar, what does “www” stand for? (Medium)',
+		answers: ['World Wide Web']
+	},
+	{
+		question:
+			'Food question: What is sushi traditionally wrapped in? (Kinda Easy)',
+		answers: ['Edible seaweed']
+	},
+	{
+		question:
+			'IRL question: In which European city would you find Orly airport? (Might be Hard)',
+		answers: ['Paris']
+	},
+	{
+		question:
+			'IRL question: What color eyes do most humans have as of 2022? (Kinda easy)',
+		answers: ['Brown']
+	},
+	{
+		question:
+			'IRL question: What is the lowest army rank of a US soldier? (Maybe hard)',
+		answers: ['Private']
+	},
+	{
+		question:
+			'IRL question: How many hearts does an octopus have? (Might be a bit hard)',
+		answers: ['3']
+	},
+	{
+		question: 'IRL question: How many eyes does a bee have? (Might be hard)',
+		answers: ['5']
+	},
+	{
+		question:
+			'IRL question: Which country was the Caesar salad invented in? (Might be hard)',
+		answers: ['Mexico']
+	},
+	{
+		question:
+			'Online question: What is the Twitter bird’s official name? (Kinda easy)',
+		answers: ['Larry']
+	},
+	{
+		question: 'IRL question: What is a community of ants called? (Medium)',
+		answers: ['A colony']
+	},
+	{
+		question:
+			'Special question: What does it mean for somebody to be a furry? (Easy/Medium)',
+		answers: [
+			'it normally means that the person is interested in Anthropomorphic animals (human like animals), Thats literally it, no joke'
+		]
+	},
+	{
+		question: 'Carrots are a good source of which vitamin? (Should be easy)',
+		answers: ['Vitamin A']
+	},
+	{
+		question:
+			'What has a gravitational pull so strong that even light cannot escape it? (Should be a bit easy)',
+		answers: ['Black Hole']
+	},
+	{
+		question:
+			'Normal question: How many letters are there in the english alphabet? (Medium)',
+		answers: ['26!']
+	},
+	{
+		question:
+			'Game question: What year was Classic: Crossroads made by Roblox? (Medium)',
+		answers: ['2007']
+	},
+	{
+		question: 'Dev question: Who is the creator of this bot? (A bit easy)',
+		answers: ['adudu21', 'Hecker', 'Hecker#1844']
+	},
+	{
+		question: 'Dev question: What year was this bot made? (Medium)',
+		answers: ['2022']
+	},
+	{
+		question: 'Game question: What year was Friday Night Funkin made? (Medium)',
+		answers: ['2020']
+	},
+	{
+		question:
+			'Youtube question: What year was the channel of MrBeast Made? (Medium)',
+		answers: ['2012']
+	},
+	{
+		question: 'Game question: Who made FE2/Flood escape 2 on roblox? (Medium)',
+		answers: ['Crazyblox']
+	},
+
+	{
+		question: 'Normal question: Are cats bigger than humans normaly? (Normal)',
+		answers: ['no!']
+	},
+	{
+		question: 'Youtube question: Does mrbeast have over 2+ channels? (Normal)',
+		answers: ['yes']
+	},
+	{
+		question: 'internet question: Does google collect data? (Easy)',
+		answers: ['yes']
+	},
+	{
+		question:
+			'Game question: On roblox are you able to see your moderation history?',
+		answers: ['yes']
+	},
+	{
+		question: 'Normal question: Are dogs bigger than humans normaly?',
+		answers: ['no!']
+	},
+	{
+		question:
+			'Game question: What is the name of the first ever roblox group? (Medium)',
+		answers: ['RobloHunks']
+	},
+	{
+		question: 'Game question: Who is the CEO of roblox in 2022? (Medium)',
+		answers: ['David Baszucki']
+	},
+	{
+		question:
+			'Game question: Was there a beta version of roblox, if so then what was the name? (Medium)',
+		answers: ['DynaBlocks']
+	},
+	{
+		question:
+			'Discord question: What was the most popular server on discord in 2022? (Medium)',
+		answers: ['mid journey']
+	},
+	{
+		question: 'Math question: What is 2039x3x0? (Easy)',
+		answers: ['0']
+	},
+	{
+		question: 'Math question: What is 5x5? (Easy)',
+		answers: ['25!']
+	}
+];
