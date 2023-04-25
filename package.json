@@ -20,11 +20,11 @@
     "geoip-lite": "^1.4.7",
     "helmet": "^6.0.1",
     "ms": "^2.1.3",
-    "node-virustotal": "^3.35.0",
     "shelljs": "^0.8.5",
     "simple-encryptor": "^4.0.0",
     "util": "^0.12.5",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "virustotal-api": "^1.1.7"
   },
   "devDependencies": {
     "node": "^17.9.1"

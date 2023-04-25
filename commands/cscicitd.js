@@ -26,8 +26,8 @@ client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
     client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
         data: {
             name: "checklink",
-            description: "Check a link if its malicious, please wait up to 1 minute",
-          options: [{ name: 'domain', description: 'Domain only, example: google.com', type: 3, required: true }],
+            description: "Check a link if its malicious",
+          options: [{ name: 'link', description: 'Domain or URL allowed', type: 3, required: true }],
  }})
   //code
     client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({

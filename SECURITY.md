@@ -15,5 +15,4 @@ if you want, you could report a issue here in github but I HIGHLY RECOMMEND doin
 
 ## Email
 If you want, you may also contact me via email:
-contact-adudu21@proton.me or sometimes:
-contact-adudu21@pm.me
+contact-adudu21@proton.me
