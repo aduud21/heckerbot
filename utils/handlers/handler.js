@@ -82,7 +82,7 @@ if (message.channel.type === 'dm') return;
             let neededPerms = [];
 
             command.config.botperms.forEach((p) => {
-                if (!message.guild.me.permissions.has(p)) neededPerms.push('`' + p + '`');
+                if (!message.guild.members.me.permissions.has(p)) neededPerms.push('`' + p + '`');
             });
 
 
@@ -114,7 +114,7 @@ if (message.channel.type === 'dm') return;
         } catch {
             
         }
-        if (!message.guild.me.permissions.has( 'VIEW_AUDIT_LOG',
+        if (!message.guild.members.me.permissions.has( 'VIEW_AUDIT_LOG',
         'MANAGE_GUILD',
         'MANAGE_ROLES',
         'MANAGE_CHANNELS',
