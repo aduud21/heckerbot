@@ -30,11 +30,11 @@ https://bit.ly/heckerbotPrivacypolicy
 information about discord intents:
 https://gist.github.com/advaith1/e69bcc1cdd6d0087322734451f15aa2f
 
-*Tiny Note: Please atleast do some modifications and make sure its not too simular (by too simular, don't just add a comment to one line of the code or such, ex:
+*Tiny Note: Please atleast do some modifications and make sure its not too simular (by too simular, don't just add a comment to one line of the code or such*, ex:
 ```js
 //this does this
 ```
-*
+
 
 *Prefix Commands:*
 
