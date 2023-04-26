@@ -126,7 +126,7 @@ var scans = res.scans;
 
   if (malicious > 1) {
     try {
-      const outputLink = interaction.data.options[0].value.replace(/^https:\/\//, '');
+  const outputLink = interaction.data.options[0].value.replace(/^https:\/\//, '').replace(/http:\/\/|https:\/\//gi, '')
       if (commandName == "checklink")
         editInteraction(
           client,
