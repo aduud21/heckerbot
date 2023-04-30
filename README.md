@@ -58,6 +58,8 @@ https://youtube.com/c/adudu21 or adudu21 (on roblox and some other places too), 
 
 This bot runs on node.js. You will need at least node 16.
 
+Make sure your bot has Message Content Intent enabled else you'll get a error.
+
 This bot runs on replit (hosted there) so you could run it there if you wish. 
 
 NOTE: IF THERES A ERROR IN YOUR CODE OR SUCH, PLEASE REVIEW YOURSELF AND IF YOU SEE ANY throw new error PAY ATTENTION TO THAT AND SEE THE REASON, MOST COMMON ERROR AS OF 2023/3/5:
