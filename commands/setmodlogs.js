@@ -4,7 +4,7 @@ module.exports.config = {
     name: "setmodlogs",
             cooldown: '5000',
     aliases: ['setmodlog', 'setmlogs', 'setlogs', 'setlog'],
-    description: "Set a channel for modlogs, If a message is deleted it will log it into the channel you put, command cooldown: 5 seconds",
+    description: "Set a channel for modlogs, If a message is deleted/edited it will log it into the channel you put, command cooldown: 5 seconds",
     usage: "h!setmodlogs [#channel]",
     permissions: ['MANAGE_GUILD', 'MANAGE_CHANNELS'],
   botperms: ['MANAGE_GUILD', 'MANAGE_CHANNELS'],
@@ -42,7 +42,7 @@ module.exports.run = async(client, message, args) => {
     fs.writeFile('./database/modlogs.json', JSON.stringify(file), (err) => {
 
     });
-message.reply(`${client.success} Set modlogs/log channel to ${channel.name}`)
+message.reply(`${client.success} Set modlogs/log channel to <#${channel.id}>. Please note that while the channel ID is public (in hecker's database), the data contained within it is useless to anyone who does not have permission to access it.`)
 
 
     
