@@ -131,7 +131,7 @@ var scans = res.scans;
         editInteraction(
           client,
           interaction,
-          `${outputLink} is ${chance} malicious. ${keyValue} engines flagged it as malicious`
+          `${outputLink} is ${chance} malicious. ${keyValue} engines flagged it as malicious, This data is provided by VirusTotal.`
         );
     } catch (error) {
       console.log(`Discord is annoying another time, error: ${error}`);
@@ -142,7 +142,7 @@ var scans = res.scans;
         editInteraction(
           client,
           interaction,
-          `${interaction.data.options[0].value} is safe OR too new to be flagged`
+          `${interaction.data.options[0].value} is safe OR too new to be flagged, This data is provided by VirusTotal.`
         );
     } catch (error) {
       console.log(`Discord is annoying another time, error: ${error}`);
