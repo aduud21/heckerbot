@@ -33,7 +33,7 @@ var key = process.env.DONOTSHARETHIS
 // Create an useless thing lol:
 var encryptor = require('simple-encryptor')(key);
 const { Intents, Client } = require('discord.js');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS,Intents.FLAGS.GUILD_PRESENCES,Intents.FLAGS.GUILD_MESSAGES,Intents.FLAGS.GUILD_MEMBERS ]});
+const client = new Client({ intents: [Intents.FLAGS.GUILDS,Intents.FLAGS.GUILD_MESSAGES]});
 // DO NOT REMOVE THE LINE BELOW!
 client.login(encryptor.decrypt(process.env.TOKEN));
 
@@ -181,44 +181,24 @@ client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
 console.log("guild command did not work making, bot.js line 83 i think")
   }
   const { MessageEmbed, Intents } = require('discord.js');
-  let channelToSend;
-  guild.channels.cache.forEach((channel) => {
-    if (
-      channel.type === "text" &&
-      !channelToSend &&
- guild.me.permissions.has('VIEW_AUDIT_LOG',
-        'MANAGE_GUILD',
-        'MANAGE_ROLES',
-        'MANAGE_CHANNELS',
-        'KICK_MEMBERS',
-        'BAN_MEMBERS',
-        'CHANGE_NICKNAME',
-        'MANAGE_NICKNAMES',
-        'MANAGE_EMOJIS',
-        'VIEW_CHANNEL',
-        'SEND_MESSAGES',
-        'MANAGE_MESSAGES',
-        'EMBED_LINKS',
-        'ATTACH_FILES',
-        'USE_EXTERNAL_EMOJIS',
-        'ADD_REACTIONS')
-) channelToSend = channel;
-});
-
-  if(!channelToSend) return;
-  channelToSend.send(`
+  guild.fetchOwner()
+    .then(owner => {
+      owner.send(`
 Thanks for adding hecker!
+__Hecker has been added to ${guild.name} (Server ID: ${guild.id})__
 
-❗***Run h!help to view the list of all commands within this bot!***
+❗***Run h!help in ${guild.name} to view some of the prefix commands within this bot! (Alot of the prefix commands are now slash commands but if you don't have any slash command from the bot on your server after a while please try running h!cscicitd)***
 
 **❓Need support?**
 Join our support server: https://discord.com/invite/GbjgmffUKj
 
-👍 **When your done you can delete this message**
-
 ||The bot is currently on discord.js V13||`)
-  
-})
+    })
+    .catch(err => {
+      console.log(`An error has occurred! ${err}`);
+    });
+});
+
 
 // this is pretty helpful for space
 client.on('guildDelete', (guild) => {
