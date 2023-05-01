@@ -139,26 +139,6 @@ client.api.applications(`${clientUSERID}`).guilds(`${custom_sc_special_guild_id}
             name: "emergencymeeting",
             description: "Among us emergency meeting"
  }})
-  // info
-client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
-        data: {
-            name: "tos",
-            description: "View the terms of service of this discord bot"
- }})
-
-  // pa
-client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
-        data: {
-            name: "patreon",
-            description: "Want to support the developer/creator of this discord bot?"
- }})
-
-    // pp
-    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
-        data: {
-            name: "pp",
-            description: "View the privacy policy of this discord bot"
- }})
   // quiz
     client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
         data: {
