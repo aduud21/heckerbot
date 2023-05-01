@@ -19,8 +19,11 @@ module.exports.config = {
 const message = 'messageCreate'
 module.exports.run = async (client, message, args) => {
   console.log(`[COMMAND LOG] help command ran on: ${message.guild.name} ID: ${message.guild.id}`)
-  message.react('✅')
-
+  try {
+    await message.react('✅');
+  } catch (error) {
+    console.error(`Error reacting to message`);
+  }
         try {
             let pu = await client.commands.get(args[0]) || await client.commands.get(client.aliases.get(args[0]))
 

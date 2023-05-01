@@ -20,7 +20,11 @@ const message = 'messageCreate'
  */
 module.exports.run = async(client, message, args) => {
           console.log(`[COMMAND LOG] setmodlogs command ran on: ${message.guild.name} ID: ${message.guild.id}`)
-  message.react('✅')
+   try {
+    await message.react('✅');
+  } catch (error) {
+    console.error(`Error reacting to message`);
+  }
     const channel = message.mentions.channels.first() ? message.mentions.channels.first() : args[0];
 
     if (!channel) return message.reply(`Mention a channel`)

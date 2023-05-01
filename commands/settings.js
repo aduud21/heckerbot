@@ -12,7 +12,11 @@ module.exports.config = {
 const message = 'messageCreate'
 module.exports.run = async(client, message, args) => {
           console.log(`[COMMAND LOG] settings command ran on: ${message.guild.name} ID: ${message.guild.id}`)
-  message.react('✅')
+  try {
+    await message.react('✅');
+  } catch (error) {
+    console.error(`Error reacting to message`);
+  }
 
     let modLogsChannel = 'None';
 

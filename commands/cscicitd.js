@@ -75,5 +75,9 @@ client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
 msg.edit('Failed creating slash commands')
   }
   msg.edit('✅ -> Created slashcommands, discord may show them within a couple minutes')
-message.react('✅')
+  try {
+    await message.react('✅');
+  } catch (error) {
+    console.error(`Error reacting to message`);
+  }
  }
