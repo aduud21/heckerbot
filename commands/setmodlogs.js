@@ -28,9 +28,9 @@ module.exports.run = async(client, message, args) => {
     let mm ;
     try {
     if (channel === args[0]) mm = await message.guild.channels.cache.get(args[0]); else mm = await message.mentions.channels.first();        
-    } catch { }
+    } catch {}
 
-    if (!mm) return message.channel.send(client.noChannel);
+    if (!mm) return message.channel.send("**That channel** ***DOES*** **not exist on this server**");
     const file = require('../database/modlogs.json');
 
     file[message.guild.id] = {
