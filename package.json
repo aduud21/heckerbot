@@ -18,7 +18,7 @@
     "express": "^4.18.2",
     "fs": "0.0.2",
     "geoip-lite": "^1.4.7",
-    "helmet": "^6.1.1",
+    "helmet": "^6.1.2",
     "ms": "^2.1.3",
     "shelljs": "^0.8.5",
     "simple-encryptor": "^4.0.0",
