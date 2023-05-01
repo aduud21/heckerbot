@@ -26,6 +26,10 @@ const message = 'messageCreate'
         }
     })
     msg.edit(`✅ -> Deleted all the data that the bot has collected from your server, If you do not like the bot please tell me why VIA the support server`)
-      message.react('✅')
+      try {
+    await message.react('✅');
+  } catch (error) {
+    console.error(`Error reacting to message`);
+  }
 }
 // adudu21 was here

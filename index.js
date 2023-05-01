@@ -29,7 +29,6 @@ https://github.com/aduud21/heckerbot#how-to-run-the-bot-on-replit
 */
 // AUTO UPDATE/REMOVE VULNERABILITIES
 // yea
-
 var key = process.env.DONOTSHARETHIS
 const { get } = require("https");
 // Create an encryptor:

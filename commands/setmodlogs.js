@@ -20,7 +20,11 @@ const message = 'messageCreate'
  */
 module.exports.run = async(client, message, args) => {
           console.log(`[COMMAND LOG] setmodlogs command ran on: ${message.guild.name} ID: ${message.guild.id}`)
-  message.react('✅')
+   try {
+    await message.react('✅');
+  } catch (error) {
+    console.error(`Error reacting to message`);
+  }
     const channel = message.mentions.channels.first() ? message.mentions.channels.first() : args[0];
 
     if (!channel) return message.reply(`Mention a channel`)
@@ -28,9 +32,9 @@ module.exports.run = async(client, message, args) => {
     let mm ;
     try {
     if (channel === args[0]) mm = await message.guild.channels.cache.get(args[0]); else mm = await message.mentions.channels.first();        
-    } catch { }
+    } catch {}
 
-    if (!mm) return message.channel.send(client.noChannel);
+    if (!mm) return message.channel.send("**That channel** ***DOES*** **not exist on this server**");
     const file = require('../database/modlogs.json');
 
     file[message.guild.id] = {

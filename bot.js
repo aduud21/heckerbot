@@ -76,7 +76,7 @@ if (!fs.existsSync('./LICENSE')) {
 
 // adudu21 was here, something: https://replit.com/@AGuyThatLikesFurrys/Hecker-Discord-bot
 
-client.on('guildCreate', (guild) => {
+client.on('guildCreate', async (guild) => {
   const clientUSERID = '947733660432490506'
   const guild_sc_special = true;
   // if the one above is enabled you must specify a certain guild ID for special slash commands
@@ -139,26 +139,6 @@ client.api.applications(`${clientUSERID}`).guilds(`${custom_sc_special_guild_id}
             name: "emergencymeeting",
             description: "Among us emergency meeting"
  }})
-  // info
-client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
-        data: {
-            name: "tos",
-            description: "View the terms of service of this discord bot"
- }})
-
-  // pa
-client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
-        data: {
-            name: "patreon",
-            description: "Want to support the developer/creator of this discord bot?"
- }})
-
-    // pp
-    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
-        data: {
-            name: "pp",
-            description: "View the privacy policy of this discord bot"
- }})
   // quiz
     client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
         data: {
@@ -180,10 +160,9 @@ client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
   } catch (err){
 console.log("guild command did not work making, bot.js line 83 i think")
   }
-  const { MessageEmbed, Intents } = require('discord.js');
-  guild.fetchOwner()
-    .then(owner => {
-      owner.send(`
+try {
+  const owner = await guild.fetchOwner();
+  await owner.send(`
 Thanks for adding hecker!
 __Hecker has been added to ${guild.name} (Server ID: ${guild.id})__
 
@@ -192,14 +171,12 @@ __Hecker has been added to ${guild.name} (Server ID: ${guild.id})__
 **❓Need support?**
 Join our support server: https://discord.com/invite/GbjgmffUKj
 
-||The bot is currently on discord.js V13||`)
-    })
-    .catch(err => {
-      console.log(`An error has occurred! ${err}`);
-    });
+||The bot is currently on discord.js V13||`);
+} catch (error) {
+  console.log(`Failed to send message to server owner: ${error.message}`);
+}
+
 });
-
-
 // this is pretty helpful for space
 client.on('guildDelete', (guild) => {
   
