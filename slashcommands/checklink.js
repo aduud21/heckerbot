@@ -138,11 +138,12 @@ var scans = res.scans;
     }
   } else {
     try {
+      const inputLink = interaction.data.options[0].value.replace(/^https:\/\//, '').replace(/http:\/\/|https:\/\//gi, '')
       if (commandName == "checklink")
         editInteraction(
           client,
           interaction,
-          `${interaction.data.options[0].value} is safe OR too new to be flagged, This data is provided by VirusTotal.`
+          `${inputLink} is safe OR too new to be flagged, This data is provided by VirusTotal.`
         );
     } catch (error) {
       console.log(`Discord is annoying another time, error: ${error}`);
