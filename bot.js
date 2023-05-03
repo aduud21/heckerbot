@@ -110,7 +110,7 @@ const commands = [
   },
   {
     name: "checklink",
-    description: "Check a link if it's malicious",
+    description: "Check a link if it's possibly malicious",
     options: [{ name: 'link', description: 'Domain or URL allowed', type: 3, required: true }]
   },
   {
