@@ -38,7 +38,7 @@ try {
 if (commandName == "bloxlinkcheck") bloxlink.initialise(process.env.bloxlinkAPIKEY);
    const testxd = await bloxlink.SearchDiscordToRoblox(interaction.data.options[0].value)
     if (testxd.success){
-if (commandName == "bloxlinkcheck") editInteraction(client, interaction, `User is verified with bloxlink`)
+if (commandName == "bloxlinkcheck") editInteraction(client, interaction, `User is verified with bloxlink`).catch(() => {})
 
       
       }
@@ -47,7 +47,7 @@ if (commandName == "bloxlinkcheck") editInteraction(client, interaction, `User i
      
 
   
-      if (commandName == "bloxlinkcheck") editInteraction(client, interaction, `User is not verified with bloxlink`)
+      if (commandName == "bloxlinkcheck") editInteraction(client, interaction, `User is not verified with bloxlink`).catch(() => {})
   } catch (error) {
      console.log(`Discord is annoying another time, error: ${error}`)
   }

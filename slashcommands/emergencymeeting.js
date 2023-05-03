@@ -24,7 +24,7 @@ module.exports = async(client) => {
 Discuss who is the imposter`
  }
        }
-        });
+        }).catch(() => {})
         }
     });
 

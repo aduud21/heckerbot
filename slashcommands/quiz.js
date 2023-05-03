@@ -30,7 +30,7 @@ ${item.question}
 Think the answer, then click this => ||${item.answers}|| to view the correct answer`
  }
        }
-        });
+        }).catch(() => {})
         }
     });
 

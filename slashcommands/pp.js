@@ -22,7 +22,7 @@ module.exports = async(client) => {
                         content: "Privacy Policy: https://bit.ly/heckerbotPrivacypolicy"
  }
        }
-        });
+        }).catch(() => {})
         }
     });
 

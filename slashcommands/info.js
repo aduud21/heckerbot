@@ -22,7 +22,7 @@ module.exports = async(client) => {
                         content: "Terms of service: https://bit.ly/heckerTermsOfService"
  }
        }
-        });
+        }).catch(() => {})
         }
     });
 

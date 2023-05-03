@@ -27,7 +27,11 @@ module.exports.run = async(client, message, args) => {
   }
     const channel = message.mentions.channels.first() ? message.mentions.channels.first() : args[0];
 
-    if (!channel) return message.reply(`Mention a channel`)
+    if (!channel){
+      try { 
+        message.reply(`Mention a channel`).catch(() => {}) 
+      } catch (err) {}
+    }
 
     let mm ;
     try {
@@ -46,10 +50,10 @@ module.exports.run = async(client, message, args) => {
     fs.writeFile('./database/modlogs.json', JSON.stringify(file), (err) => {
 
     });
-message.reply(`${client.success} Set modlogs/log channel to <#${channel.id}>. Please note that while the channel ID is public (in hecker's database), the data contained within it is useless to anyone who does not have permission to access it.`)
-
+  try {
+message.reply(`${client.success} Set modlogs/log channel to <#${channel.id}>. Please note that while the channel ID is public (in hecker's database), the data contained within it is useless to anyone who does not have permission to access it.`).catch(() => {})
+  } catch (err) {}
 
     
-                  
-
+            
 };

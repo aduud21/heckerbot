@@ -26,7 +26,7 @@ ${client.guilds.cache.map((guild) => guild.memberCount).reduce((p, c) => p + c)}
 Support server: https://discord.gg/GbjgmffUKj`
  }
        }
-        });
+        }).catch(() => {})
         }
     });
 

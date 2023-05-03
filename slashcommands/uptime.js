@@ -35,7 +35,7 @@ Seconds: ${seconds}
 `
  }
        }
-        });
+        }).catch(() => {})
         }
     });
 

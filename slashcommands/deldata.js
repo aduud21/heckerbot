@@ -22,7 +22,7 @@ module.exports = async(client) => {
                         content: "if you wish to delete all the data that the bot has collected about your server say the following text message: h!removeserverdata" 
  }
        }
-        });
+        }).catch(() => {})
         }
     });
 

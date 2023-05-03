@@ -93,71 +93,67 @@ data: {
             name: "runcode",
             description: "ONLY THE CREATOR CAN RUN THIS COMMAND",
           options: [{ name: 'code', description: 'What code do you wish to run', type: 3, required: true }],
-     }})
+     }}).catch(() => {})
 client.api.applications(`${clientUSERID}`).guilds(`${custom_sc_special_guild_id}`).commands.post({
         data: {
             name: "blacklist",
             description: "ONLY THE CREATOR CAN RUN THIS COMMAND",
           options: [{ name: 'userid', description: 'Who do you wish to blacklist, HAS TO BE USERID OR ELSE WONT WORK', type: 3, required: true }],
- }})
+ }}).catch(() => {})
   }}
-  // bl
-    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
-        data: {
-            name: "bloxlinkcheck",
-            description: "Check if a user is verified with bloxlink",
-          options: [{ name: 'dcuserid', description: 'Their discord UserID', type: 3, required: true }],
- }})
-  // cl
-    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
-        data: {
-            name: "checklink",
-            description: "Check a link if its malicious",
-          options: [{ name: 'link', description: 'Domain or URL allowed', type: 3, required: true }],
- }})
-  //code
-    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
-        data: {
-            name: "code",
-            description: "View the bot's source code"
- }})
-  // data
-    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
-        data: {
-            name: "information",
-            description: "View infomation about this discord bot"
- }})
-  // deldata
-    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
-        data: {
-            name: "deldata",
-            description: " This will tell you how to delete all the data that the bot has collected about your server"
- }})
-  // sus
-    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
-        data: {
-            name: "emergencymeeting",
-            description: "Among us emergency meeting"
- }})
-  // quiz
-    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
-        data: {
-            name: "quiz",
-            description: "Some random questions"
- }})
-    // rps
-    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
-        data: {
-            name: "rps",
-            description: "This command will randomly pick from Rock Paper Scissors"
- }})
-  // uptime
-    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({
-        data: {
-            name: "uptime",
-            description: "View the bot's uptime"
- }})
-  } catch (err){
+  try {
+const commands = [
+  {
+    name: "bloxlinkcheck",
+    description: "Check if a user is verified with bloxlink",
+    options: [{ name: 'dcuserid', description: 'Their discord UserID', type: 3, required: true }]
+  },
+  {
+    name: "checklink",
+    description: "Check a link if it's malicious",
+    options: [{ name: 'link', description: 'Domain or URL allowed', type: 3, required: true }]
+  },
+  {
+    name: "code",
+    description: "View the bot's source code"
+  },
+  {
+    name: "information",
+    description: "View information about this discord bot"
+  },
+  {
+    name: "deldata",
+    description: "This will tell you how to delete all the data that the bot has collected about your server"
+  },
+  {
+    name: "emergencymeeting",
+    description: "Among us emergency meeting"
+  },
+  {
+    name: "quiz",
+    description: "Some random questions"
+  },
+  {
+    name: "rps",
+    description: "This command will randomly pick from Rock Paper Scissors"
+  },
+  {
+    name: "uptime",
+    description: "View the bot's uptime"
+  }
+];
+
+// Loop through the commands and add a delay between each post request
+for (let i = 0; i < commands.length; i++) {
+  setTimeout(() => {
+    client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({ data: commands[i] }).catch(() => {});
+  }, i * 2000);
+}
+} catch (error) {
+  console.error(`Error creating slash commands: ${error}`);
+}
+
+        } catch (err){
 console.log("guild command did not work making, bot.js line 83 i think")
   }
 try {
@@ -165,13 +161,13 @@ try {
   await owner.send(`
 Thanks for adding hecker!
 __Hecker has been added to ${guild.name} (Server ID: ${guild.id})__
-
-❗***Run h!help in ${guild.name} to view some of the prefix commands within this bot! (Alot of the prefix commands are now slash commands but if you don't have any slash command from the bot on your server after a while please try running h!cscicitd)***
+||Please wait while discord is registering the slash commands in your server||
+❗***Run h!help in ${guild.name} to view some of the prefix commands within this bot! (Alot of the prefix commands are now slash commands but if you don't have any slash command from the bot on your server after a while please re-invite the bot to your server)***
 
 **❓Need support?**
 Join our support server: https://discord.com/invite/GbjgmffUKj
 
-||The bot is currently on discord.js V13||`);
+||The bot is currently on discord.js V13||`)
 } catch (error) {
   console.log(`Failed to send message to server owner: ${error.message}`);
 }

@@ -24,7 +24,7 @@ module.exports = async(client) => {
 Source code on replit: https://replit.com/@AGuyThatLikesFurrys/Hecker-Discord-bot`
  }
        }
-        });
+        }).catch(() => {})
         }
     });
 

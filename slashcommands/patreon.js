@@ -22,7 +22,7 @@ module.exports = async(client) => {
                         content: "Support the creator/developer here: https://www.patreon.com/adudu21, Any amount really helps a lot!"
  }
        }
-        });
+        }).catch(() => {})
         }
     });
 

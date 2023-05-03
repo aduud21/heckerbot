@@ -24,9 +24,10 @@ module.exports.run = async(client, message, args) => {
     if (modlogs) {
         modLogsChannel = `<#${modlogs.channel}>`;
     }
-  
+  try {
     message.reply(`Configuration settings for **${message.guild.name}**
 
-Modlogs/logs: ${modLogsChannel}`)
+Modlogs/logs: ${modLogsChannel}`).catch(() => {})
+  } catch (err) {}
 
 }

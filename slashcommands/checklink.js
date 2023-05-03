@@ -62,7 +62,7 @@ if (requestCount === 4) {
     client,
     interaction,
     "BOT GOT RATELIMITED BY VIRUSTOTAL API KEY, IN 60 SECONDS BOT WILL NO LONGER BE RATELIMITED"
-  );
+  ).catch(() => {})
   if (norepert === false){
   setTimeout(() => {
     waitrn();
@@ -78,7 +78,7 @@ if (requestCount === 4) {
     client,
     interaction,
     "incorrect link, Please enter a vaild link!"
-  );
+  ).catch(() => {})
       return;
     }
   virusTotal.urlReport(interaction.data.options[0].value, true, 1).then(res => {
@@ -132,7 +132,7 @@ var scans = res.scans;
           client,
           interaction,
           `${outputLink} is ${chance} malicious. ${keyValue} engines flagged it as malicious, This data is provided by VirusTotal.`
-        );
+        ).catch(() => {})
     } catch (error) {
       console.log(`Discord is annoying another time, error: ${error}`);
     }
@@ -144,7 +144,7 @@ var scans = res.scans;
           client,
           interaction,
           `${inputLink} is safe OR too new to be flagged, This data is provided by VirusTotal.`
-        );
+        ).catch(() => {})
     } catch (error) {
       console.log(`Discord is annoying another time, error: ${error}`);
     }

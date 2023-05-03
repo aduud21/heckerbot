@@ -7,7 +7,7 @@ module.exports.config = {
     usage: 'help',
     guarded: true,
     example: "h!help",
-    description: "Help menu for all commands, command cooldown: 2.5 seconds"
+    description: "Help menu for all prefix commands, command cooldown: 2.5 seconds"
 }
 
 /**
@@ -33,7 +33,7 @@ module.exports.run = async (client, message, args) => {
     
 ${pu.config.name ? `**Name:** ${pu.config.name}` : ""}${pu.config.description ? '\n' : ""}${pu.config.description ? `**Description:** ${pu.config.description}` : ""}${pu.config.aliases ? '\n' : ""}${pu.config.aliases ? `**Aliases:** ${pu.config.aliases.join(', ')}` : ""}${pu.config.group ? '\n' : ""}${pu.config.group ? `**Group:** ${pu.config.group}` : ""}${pu.config.permissions ? '\n' : ''}${pu.config.permissions ? `**Permissions:** ${pu.config.permissions.join(', ').toLocaleLowerCase()}` : ""}${pu.config.usage ? '\n' : ""}${pu.config.usage ? `**Usage:** ${pu.config.usage}` : ""}${pu.config.example ? "\n" : ""}${pu.config.example ? `**Example:** ${pu.config.example}` : ""}                             
 
-                `)
+                `).catch(() => {})
 
             } else {
 
@@ -43,18 +43,15 @@ ${pu.config.name ? `**Name:** ${pu.config.name}` : ""}${pu.config.description ? 
                 
 
     if (!args[0]) {
-        
+        try {
           message.reply(`
 All prefix commands were removed execpt the following>
 ${client.prefix}help
 ${client.prefix}removeserverdata
-${client.prefix}cscicitd
 ${client.prefix}setmodlogs
 ${client.prefix}settings
-
-Run h!cscicitd incase there are no slash commands in your server after a couple minutes
-
-`)
+`).catch(() => {})
+        } catch (err) {}
     };
 }
 // adudu21 was here

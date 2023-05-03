@@ -27,7 +27,7 @@ module.exports = async(client) => {
                         content: `${item.question}`
  }
        }
-        });
+        }).catch(() => {})
         }
     });
 
