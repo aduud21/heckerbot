@@ -126,10 +126,6 @@ const commands = [
     description: "This will tell you how to delete all the data that the bot has collected about your server"
   },
   {
-    name: "emergencymeeting",
-    description: "Among us emergency meeting"
-  },
-  {
     name: "quiz",
     description: "Some random questions"
   },
@@ -159,8 +155,8 @@ console.log("guild command did not work making, bot.js line 83 i think")
 try {
   const owner = await guild.fetchOwner();
   await owner.send(`
-Thanks for adding hecker!
-__Hecker has been added to ${guild.name} (Server ID: ${guild.id})__
+Thanks for adding MutilpleBot!
+_MutilpleBot has been added to ${guild.name} (Server ID: ${guild.id})__
 ||Please wait while discord is registering the slash commands in your server||
 ❗***Run h!help in ${guild.name} to view some of the prefix commands within this bot! (Alot of the prefix commands are now slash commands but if you don't have any slash command from the bot on your server after a while please re-invite the bot to your server)***
 
