@@ -18,7 +18,7 @@
 |_____|___|_|                
 
 */
-
+// BOT HAD TO BE RENAMED TO MutilpleBot BECAUSE DISCORD MAY DECLINE MY VERIFY REQUEST!!!! OLD NAME IS Hecker
 // Bad means adudu21 but I made it like that cuz I want to
 // DO NOT DELETE ANY FILES WITHIN THIS BOT AS THAT MOST PROBABLY WILL MAKE THE BOT MALFUNCTION
 // Do not delete the client.login since its required for the bot to work, Make sure to read 'README.md'
