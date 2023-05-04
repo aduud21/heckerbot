@@ -107,11 +107,29 @@ Replace 957439649142407248 with the channel you want it to send (channel id)
 client.channels.cache.get('957439649142407248')
 ```
 
-For checklink slash command, you must create a secret named api and the value of your virustotal api key.
+For checklink slash command, you must create a secret named api and the value of your safe browsing api key
+1. Go to https://console.cloud.google.com and create a account if you have not
+2. Click "Select a project" dropdown box then click "New project"
+3. Name the New project anything you want
+4. Click "Create"
+5. Wait till it's done creating
+6. Select the project you made
+7. Click "APIs & Services" in the navigation menu
+8. Click "Library"
+9. Search "safe browsing api"
+10. Click safe browsing (Not the legacy"
+11. Click "Enable"
+12. Click "Create credentials"
+13. Make sure it is safe browsing api and set What data will you be accessing? to Public data
+14. Click "Next"
+15. Your API key should be shown to you!
+16. Make sure you copied you api key then click "Done"
 
-Useful links for virustotal API Key:
-- [Gimme a Virustotal API Key](https://support.virustotal.com/hc/en-us/articles/115002088769-Please-give-me-an-API-key)
-- [Virustotal API key](https://support.virustotal.com/hc/en-us/articles/115002100149-API)
+i did step 15 but did not save my API key!
+
+1. Step 6 then 7
+2. Click "Credentials"
+3. Find your API key and click "SHOW key"
 
 For bloxlinkcheck slash command, you'll need to make a secret named bloxlinkAPIKEY and value as your bloxlink api key, to get a api key, go to https://blox.link/dashboard/developer
 
