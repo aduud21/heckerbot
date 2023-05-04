@@ -33,10 +33,9 @@ if (blacklisted.includes(interaction.member.user.id)){
         })
 };
 try {
-
-       
+const usersofusersxd = interaction.data.options[0].value.replace(/[<@>]/g, "");
 if (commandName == "bloxlinkcheck") bloxlink.initialise(process.env.bloxlinkAPIKEY);
-   const testxd = await bloxlink.SearchDiscordToRoblox(interaction.data.options[0].value)
+   const testxd = await bloxlink.SearchDiscordToRoblox(usersofusersxd)
     if (testxd.success){
 if (commandName == "bloxlinkcheck") editInteraction(client, interaction, `User is verified with bloxlink`).catch(() => {})
 
