@@ -11,7 +11,7 @@ const API_KEY = process.env.api
 
 const rankThreatLevel = (threatTypes) => {
   if (threatTypes.length === 0) {
-    return " is safe OR too new to be flagged, Data is provided by Google Safe Browsing API V4.";
+    return "This message is not supposed to be here lol";
   } else if (threatTypes.length <= 2) {
     return "possibly malicious.";
   } else if (threatTypes.length <= 4) {
@@ -81,7 +81,7 @@ module.exports = async (client) => {
   editInteraction(
     client,
     interaction,
-    `**${outputLink}** has been flagged as **${rank}**, Data is provided by Google Safe Browsing API V4.`
+    `**${outputLink}** has been flagged as **${rank}**, Data is provided by [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>).`
   ).catch(() => {});
 } else {
   const uAgent = `${client.user.username}`;
@@ -95,13 +95,13 @@ module.exports = async (client) => {
       editInteraction(
         client,
         interaction,
-        `**${outputLink}** has been flagged as **dangerous**, Data is provided by Google Safe Browsing API V4 and was extra checked with anti-fish.` // https://anti-fish.bitflow.dev/
+        `**${outputLink}** has been flagged as **dangerous**, Data is provided by [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>) and was extra checked with anti-fish.` // https://anti-fish.bitflow.dev/
       ).catch(() => {});
     } else {
       editInteraction(
         client,
         interaction,
-        `**${outputLink}** is safe OR too new to be flagged, Data is provided by Google Safe Browsing API V4 and was extra checked with anti-fish.` // https://anti-fish.bitflow.dev/
+        `**${outputLink}** is safe OR too new to be flagged, Data is provided by [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>) and was extra checked with anti-fish.` // https://anti-fish.bitflow.dev/
       ).catch(() => {});
     }
   }).catch(e => { 
@@ -109,7 +109,7 @@ module.exports = async (client) => {
       editInteraction(
         client,
         interaction,
-        `**${outputLink}** is safe OR too new to be flagged, Data is provided by Google Safe Browsing API V4 and was extra checked with anti-fish.`
+        `**${outputLink}** is safe OR too new to be flagged, Data is provided by [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>) and was extra checked with anti-fish.`
       ).catch(() => {});
       return;
     }
