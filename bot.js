@@ -156,7 +156,7 @@ try {
   const owner = await guild.fetchOwner();
   await owner.send(`
 Thanks for adding MutilpleBot!
-_MutilpleBot has been added to ${guild.name} (Server ID: ${guild.id})__
+_MutilpleBot has been added to ${guild.name} (Server ID: ${guild.id})_
 ||Please wait while discord is registering the slash commands in your server||
 ❗***Run h!help in ${guild.name} to view some of the prefix commands within this bot! (Alot of the prefix commands are now slash commands but if you don't have any slash command from the bot on your server after a while please re-invite the bot to your server)***
 
