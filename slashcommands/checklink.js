@@ -13,11 +13,11 @@ const rankThreatLevel = (threatTypes) => {
   if (threatTypes.length === 0) {
     return "This message is not supposed to be here lol";
   } else if (threatTypes.length <= 2) {
-    return "possibly malicious.";
+    return "possibly malicious";
   } else if (threatTypes.length <= 4) {
-    return "likely malicious.";
+    return "likely malicious";
   } else {
-    return "very likely malicious.";
+    return "very likely malicious";
   }
 }
 module.exports = async (client) => {
