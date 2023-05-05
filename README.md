@@ -74,7 +74,7 @@ Error: key must be at least 16 characters long
 
 ## How to run the bot on replit
 
-First of all install node@17 (the bot currently runs on node@17.9.1), Run 
+First of all install node@17 if you don't got it (the bot currently runs on node@17.9.1), Run 
 ```
 npm install node@17 
 ```
@@ -86,7 +86,7 @@ Export this project to replit (download latest version and put the code in your 
  
 Create a secret named TOKEN and value as the token of your bot.
 
-Create a secret named DONOTSHARETHIS and the value should be something long (more than 50 characters, 16 is minimum), this will be used for encrypting the token and decrypting too.
+Create a secret named DONOTSHARETHIS and the value should be something long (should be more than 50 characters, 16 is minimum), this will be used for encrypting the token and decrypting too and as well encrypting the modlogs (channel ID/Server ID).
 
 For additional security, this bot encrypts the token and decrypts the token when needed so for that:
 In index.js add the following code to the top (line 1):
@@ -98,7 +98,8 @@ return;
 ```
 Check the output (via console), 
 then copy what it encrypted,
-Head back to secrets and replace your token with the encrypted one
+Head back to secrets and replace your token with the encrypted one,
+Make sure to remove all content inside "realmodlogs.txt" located in database folder
 
 Not done yet, for some slashcommands via bot.js after line 80 you must replace 947733660432490506 to your bot's userID/APPLICATION ID.
 
