@@ -8,10 +8,10 @@ module.exports = {
         cooldown: 5000,
         aliases: ['setmodlog', 'setmlogs', 'setlogs', 'setlog'],
         description: "Set a channel for modlogs. If a message is deleted/edited, it will be logged into the specified channel. Command cooldown: 5 seconds.",
-        usage: "h!setmodlogs [#channel]",
+        usage: "mb!setmodlogs [#channel]",
         permissions: ['MANAGE_GUILD', 'MANAGE_CHANNELS'],
         botperms: ['MANAGE_GUILD', 'MANAGE_CHANNELS'],
-        example: 'h!setmodlogs #mod-logs',
+        example: 'mb!setmodlogs #mod-logs',
         group: 'config'
     },
     run: async (client, message, args) => {

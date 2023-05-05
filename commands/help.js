@@ -6,7 +6,7 @@ module.exports.config = {
     group: "info",
     usage: 'help',
     guarded: true,
-    example: "h!help",
+    example: "mb!help",
     description: "Help menu for all prefix commands, command cooldown: 2.5 seconds"
 }
 
@@ -49,7 +49,6 @@ All prefix commands were removed execpt the following>
 ${client.prefix}help
 ${client.prefix}removeserverdata
 ${client.prefix}setmodlogs
-${client.prefix}settings
 `).catch(() => {})
         } catch (err) {}
     };
