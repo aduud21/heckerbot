@@ -170,10 +170,20 @@ Join our support server: https://discord.com/invite/GbjgmffUKj
 
 });
 // this is pretty helpful for space
+const CryptoJS = require('crypto-js')
 client.on('guildDelete', (guild) => {
-  
-  if (!require('./database/modlogs.json')[guild.id]) return;
-  const filelog = require('./database/modlogs.json')
-  delete filelog[guild.id]
+  const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8');
+    const bytes = CryptoJS.AES.decrypt(ciphertext, key);
+    const filelog = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    if (!filelog[guild.id]) {
+      return;
+    }
+  delete filelog[guild.id];
+    const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(filelog), key).toString();
+    fs.writeFile('./database/realmodlogs.txt', encryptedData, (err) => {
+      if (err) {
+        console.error(`Error writing to modlogs file: ${err}`)
+      }
+    })
   console.log("Optimized space: bot was removed from a server")
 })
