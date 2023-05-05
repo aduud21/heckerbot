@@ -86,7 +86,7 @@ Export this project to replit (download latest version and put the code in your 
  
 Create a secret named TOKEN and value as the token of your bot.
 
-Create a secret named DONOTSHARETHIS and the value should be something long (should be more than 50 characters, 16 is minimum), this will be used for encrypting the token and decrypting too and as well encrypting the modlogs (channel ID/Server ID).
+Create a secret named DONOTSHARETHIS and the value should be something long (should be more than 126-256 characters, 16 is minimum), this will be used for encrypting the token and decrypting too and as well encrypting the modlogs (channel ID/Server ID).
 
 For additional security, this bot encrypts the token and decrypts the token when needed so for that:
 In index.js add the following code to the top (line 1):
