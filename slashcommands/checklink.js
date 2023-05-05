@@ -46,7 +46,7 @@ if (commandName === 'checklink') {
   interactionCooldowns.set(userId, Date.now() + cooldownTime);
   setTimeout(() => {
     interactionCooldowns.delete(userId);
-  }, cooldownTime) // end of col
+  }, cooldownTime) // end of cool
 }
     if (commandName == "checklink") {
       if (blacklisted.includes(interaction.member.user.id)) {

@@ -2,7 +2,7 @@
 const REALLYMAXHEARINGREALLY1234REAL = 100
 require('events').EventEmitter.prototype._maxListeners = REALLYMAXHEARINGREALLY1234REAL;
 require('events').defaultMaxListeners = REALLYMAXHEARINGREALLY1234REAL;
-// ONLY REMOVE THE ABOVE CODE IF YOU KNOW WHAT YOU'RE DOING
+// ONLY REMOVE THE ABOVE CODE IF YOU KNOW WHAT YOU'RE DOING d
 const { Client, ClientUser, MessageEmbed, Intents } = require('discord.js')
 const axios = require('axios');
 const { blacklisted } = require('../config/bot.json')
@@ -42,7 +42,27 @@ if (commandName === 'quiz') {
       if (blacklisted.includes(interaction.member.user.id)) {
         return;
       }
-      console.log(`Slash command ${commandName} ran`)
+       if (commandName === 'quiz') client.api.interactions(interaction.id, interaction.token).callback.post({
+        data: {
+          type: 5,
+          flags: 64,
+        },
+      });
+       const editInteraction = async (client, interaction, response) => {
+        const data = typeof response === 'object' ? { embeds: [ response ] } : { content: response };
+        const channel = await client.channels.resolve(interaction.channel_id);          
+        return axios
+            .patch(`https://discord.com/api/v10/webhooks/${client.user.id}/${interaction.token}/messages/@original`, data)
+            .then((answer) => {
+              try {
+                return channel.messages.fetch(answer.data.id)
+              } catch (err) {
+                console.log(err)
+                return;
+              }
+            })
+      };
+      if (commandName === 'quiz') console.log(`Slash command ${commandName} ran`)
       const triviaQuestion = await getq()
       const question = triviaQuestion.question;
       let answers = [triviaQuestion.correct_answer]
@@ -54,14 +74,11 @@ if (commandName === 'quiz') {
       const bruhhowmuch = noq.replace(/&#039;/g, "'");
       const content = `
       Random Question: ${bruhhowmuch} \n\nThink about the answer, then click this => ||${answers}|| to view the correct answer, This data is provided by [opentdb](<https://opentdb.com/>)`
-      await client.api.interactions(interaction.id, interaction.token).callback.post({
-        data: {
-          type: 4,
-          data: {
-            content: content
-          }
-        }
-      }).catch(() => {})
+      editInteraction(
+          client,
+          interaction,
+          content
+        ).catch(() => {})
     }
   })
 }
