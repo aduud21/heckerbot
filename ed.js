@@ -1,4 +1,4 @@
-const CryptoJS = require('crypto-js');
+const CryptoJS = require('crypto-js')
 const fs = require('fs');
 const key = process.env.DONOTSHARETHIS
 module.exports = (client) => {
@@ -16,12 +16,13 @@ module.exports = (client) => {
         if (!decryptedData[newMessage.guild.id]) return;
         let modLogsID = decryptedData[newMessage.guild.id].channel;
         await newMessage.guild.channels.cache.get(modLogsID).send(`
-        ****Message log****
-        Message by <@${newMessage.author.id}>,
-        Message edited in <#${newMessage.channel.id}> 
-        Before: ${oldMessage.content}
-        After: ${newMessage.content}
-        UserID: ${newMessage.author.id} | Message ID: ${newMessage.id}`)
+****Message log****
+
+Message by <@${newMessage.author.id}>,
+Message edited in <#${newMessage.channel.id}> 
+Before: ${oldMessage.content}
+After: ${newMessage.content}
+UserID: ${newMessage.author.id} | Message ID: ${newMessage.id}`)
       } else {
         if (newMessage.channel.type === 'dm') return;
         const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8');
@@ -30,11 +31,12 @@ module.exports = (client) => {
         if (!decryptedData[newMessage.guild.id]) return;
         let modLogsID  = decryptedData[newMessage.guild.id].channel;
         await newMessage.guild.channels.cache.get(modLogsID).send(`
-        ****Message log****
-        Message by <@${newMessage.author.id}>,
-        Message edited in <#${newMessage.channel.id}> 
-        Message: <Message is too long to show>
-        UserID: ${newMessage.author.id} | Message ID: ${newMessage.id}`);
+****Message log****
+
+Message by <@${newMessage.author.id}>,
+Message edited in <#${newMessage.channel.id}> 
+Message: <Message is too long to show>
+UserID: ${newMessage.author.id} | Message ID: ${newMessage.id}`);
       }
     } catch (error) {
       const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8');
