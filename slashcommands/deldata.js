@@ -42,7 +42,7 @@ if (commandName === 'deldata') {
                 data: {
                     type: 4,
                     data: {
-                        content: "if you wish to delete all the data that the bot has collected about your server say the following text message: h!removeserverdata" 
+                        content: "if you wish to delete all the data that the bot has collected about your server say the following text message: mb!removeserverdata" 
  }
        }
         }).catch(() => {})
