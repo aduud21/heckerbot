@@ -70,8 +70,8 @@ if (commandName === 'quiz') {
         answers[0] += 'e'
       }
       answers = answers.sort()
-      const noq = question.replace(/&quot;/g, '"');
-      const bruhhowmuch = noq.replace(/&#039;/g, "'");
+      const noq = question.replace(/&quot;/g, '"')
+      const bruhhowmuch = noq.replace(/&#039;/g, "'").replace(/’/g, "\\'")
       const content = `
       Random Question: ${bruhhowmuch} \n\nThink about the answer, then click this => ||${answers}|| to view the correct answer, This data is provided by [opentdb](<https://opentdb.com/>)`
       editInteraction(
