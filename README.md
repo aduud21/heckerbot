@@ -136,8 +136,18 @@ i did step 15 but did not save my API key!
 
 For bloxlinkcheck slash command, you'll need to make a secret named bloxlinkAPIKEY and value as your bloxlink api key, to get a api key, go to https://blox.link/dashboard/developer
 
-if you have read all of this and understood (for example you not gonna claim you made this bot), Thank you, Have a great day and by the way i programmed most of this bot with my mobile phone which is like BRUH,
-on my phone i take about 2-48 hours to make new slash commands (that are not simple) and more but on computer i take less than 40 minutes to do all of that.
-:pain:
+To get dogapi and catapi and to set it up:
+1. Get a dog api key first via here:
+https://thedogapi.com/
+2. Once you signup, You'll get a email with your API key (it should be something long)
+3. Create a secret/env named dogapi and value to your API KEY
+
+For cat api:
+1. Get a dog api key first via here:
+https://thecatapi.com/
+2. Once you signup, You'll get a email with your API key (it should be something long)
+3. Create a secret/env named catapi and value to your API KEY
+
+if you have read all of this and understood (for example you not gonna claim you made this bot), Thank you, Have a great day!
 
 Email: contact-adudu21@proton.me

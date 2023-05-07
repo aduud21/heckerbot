@@ -54,6 +54,8 @@ require('./slashcommands/checklink')(client);
 require('./ed')(client);
 require('./slashcommands/bloxlinkcheck')(client);
 require('./slashcommands/quiz')(client);
+require('./slashcommands/cat')(client);
+require('./slashcommands/dog')(client);
 const message = 'messageCreate'
 client.on('messageCreate', async(message) => {
 message.channel.messages.fetch()
@@ -117,6 +119,14 @@ const commands = [
     name: "information",
     description: "View information about this discord bot"
   },
+   {
+    name: "cat",
+    description: "Get a random image of a cat"
+  },
+    {
+    name: "dog",
+    description: "Get a random image of a dog"
+  },
   {
     name: "deldata",
     description: "This will tell you how to delete all the data that the bot has collected about your server"
@@ -133,9 +143,7 @@ const commands = [
     name: "uptime",
     description: "View the bot's uptime"
   }
-];
-
-// Loop through the commands and add a delay between each post request
+]
 for (let i = 0; i < commands.length; i++) {
   setTimeout(() => {
     client.api.applications(`${clientUSERID}`).guilds(`${guild.id}`).commands.post({ data: commands[i] }).catch(() => {});
