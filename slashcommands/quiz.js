@@ -4,7 +4,8 @@ require('events').EventEmitter.prototype._maxListeners = REALLYMAXHEARINGREALLY1
 require('events').defaultMaxListeners = REALLYMAXHEARINGREALLY1234REAL;
 // ONLY REMOVE THE ABOVE CODE IF YOU KNOW WHAT YOU'RE DOING d
 const { Client, ClientUser, MessageEmbed, Intents } = require('discord.js')
-const axios = require('axios');
+const axios = require('axios')
+const he = require('he')
 const { blacklisted } = require('../config/bot.json')
 async function getq() {
   const apiUrl = 'https://opentdb.com/api.php?amount=1&type=boolean';
@@ -70,10 +71,10 @@ if (commandName === 'quiz') {
         answers[0] += 'e'
       }
       answers = answers.sort()
-      const noq = question.replace(/&quot;/g, '"')
-      const bruhhowmuch = noq.replace(/&#039;/g, "'").replace(/’/g, "\\'")
+      const encodedString = `${question}`;
+const decodedString = he.decode(encodedString);
       const content = `
-      Random Question: ${bruhhowmuch} \n\nThink about the answer, then click this => ||${answers}|| to view the correct answer, This data is provided by [opentdb](<https://opentdb.com/>)`
+      Random Question: ${decodedString} \n\nThink about the answer, then click this => ||${answers}|| to view the correct answer, This data is provided by [opentdb](<https://opentdb.com/>)`
       editInteraction(
           client,
           interaction,
