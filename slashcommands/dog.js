@@ -59,7 +59,7 @@ if (commandName === 'dog') {
       };
       console.log(`Slash command ${commandName} ran`)
         if (process.env.dogapi){
-       const response = await axios.get(`https://api.thedogapi.com/v1/images/search?api_key=${process.env.dogapi}`);
+       const response = await axios.get(`https://api.thedogapi.com/v1/images/search?api_key=${process.env.dogapi}`).catch(() => {})
       const imageUrl = response.data[0].url;
       const content = `${imageUrl}`
       editInteraction(
@@ -69,7 +69,7 @@ if (commandName === 'dog') {
         ).catch(() => {})
           return;
       }
-      const response = await axios.get('https://api.thedogapi.com/v1/images/search');
+      const response = await axios.get('https://api.thedogapi.com/v1/images/search').catch(() => {})
       const imageUrl = response.data[0].url;
       const content = `${imageUrl}`
       editInteraction(

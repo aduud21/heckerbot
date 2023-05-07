@@ -59,7 +59,7 @@ if (commandName === 'cat') {
       };
       console.log(`Slash command ${commandName} ran`)
         if (process.env.catapi){
-       const response = await axios.get(`https://api.thecatapi.com/v1/images/search?api_key=${process.env.catapi}`);
+       const response = await axios.get(`https://api.thecatapi.com/v1/images/search?api_key=${process.env.catapi}`).catch(() => {})
       const imageUrl = response.data[0].url;
       const content = `${imageUrl}`
       editInteraction(
@@ -69,7 +69,7 @@ if (commandName === 'cat') {
         ).catch(() => {})
           return;
       }
-      const response = await axios.get('https://api.thecatapi.com/v1/images/search');
+      const response = await axios.get('https://api.thecatapi.com/v1/images/search').catch(() => {})
       const imageUrl = response.data[0].url;
       const content = `${imageUrl}`
       editInteraction(
