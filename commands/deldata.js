@@ -16,7 +16,7 @@ module.exports.run = async (client, message, args) => {
     msg.edit('⏳ -> Checking database (0%)').catch(() => {})
     const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8');
     const bytes = CryptoJS.AES.decrypt(ciphertext, key);
-    const filelog = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    const filelog = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
     if (!filelog[message.guild.id]) {
       msg.edit("The bot hasn't collected any data about your server yet").catch(() => {})
       return;
