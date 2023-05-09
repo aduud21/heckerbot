@@ -28,6 +28,14 @@ module.exports = {
             } catch (err) {}
             return;
         }
+             let modLogsID = channel.id
+         const lchannel = message.guild.channels.cache.get(modLogsID);
+  if (!lchannel) {
+try { 
+                message.reply(`YOU cannot setmodlogs for a other server in this server.`).catch(() => {})
+  return;
+            } catch (err) {}
+    }
        let file = {};
 try {
     const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8');

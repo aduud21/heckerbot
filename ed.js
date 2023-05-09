@@ -49,7 +49,7 @@ UserID: ${newMessage.author.id} | Message ID: ${newMessage.id}`
 
 Message by <@${newMessage.author.id}>,
 Message edited in <#${newMessage.channel.id}> 
-<Message too long>
+<Message is too long to show>
 UserID: ${newMessage.author.id} | Message ID: ${newMessage.id}`
                  })
       }
