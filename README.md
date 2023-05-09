@@ -1,4 +1,4 @@
-# if you plan on watching this repo, i suggest you putting for Releases only
+# if you plan on watching this repo, i suggest you put Releases only
 
 ## As of 5/4/2023, i needed to rename the bot to MutilpleBot so i can try to verify the discord bot!
 
