@@ -1,4 +1,6 @@
-# As of 5/4/2023, i needed to rename the bot to MutilpleBot so i can try to verify the discord bot!
+# if you plan on watching this repo, i suggest you putting for Releases only
+
+## As of 5/4/2023, i needed to rename the bot to MutilpleBot so i can try to verify the discord bot!
 
 [Website for this discord bot](https://hecker-discord-bot-website.aguythatlikesfurrys.repl.co)
 
