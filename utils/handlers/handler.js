@@ -1,6 +1,5 @@
 const { token, prefix: mainPrefix, owners, blacklisted } = require('../../config/bot.json')
-const { MessageEmbed, Client, MessageCreate } = require('discord.js');
-const message = 'messageCreate'
+const { Client, MessageCreate } = require('discord.js');
 module.exports = async(client, message) => {
 if (message.channel.type === 'dm') return;
                   if (blacklisted.includes(message.author.id)){
@@ -96,14 +95,6 @@ if (message.channel.type === 'dm') return;
         
         
         }
-
-        client.main = new MessageEmbed()
-            .setColor(client.color)
-            .setTitle(`Command: ${command.config.name}`)
-            .setDescription(`**Description:** ${command.config.description} \n**Cooldown:** 5 second(s)? ${command.config.aliases ? '\n' : ''}${command.config.aliases ? `**Aliases:** ${command.config.aliases.join(', ')}` : ''} \n  **Usage:** ${command.config.usage} \n **Example:** ${command.config.example || "None"}`)
-    
-
-
     let commandFile = client.commands.get(cmm) || client.commands.get(client.aliases.get(cmm))
     if (commandFile) {
         if (client.cooldown.has(message.author.id)) return message.reply('Hold up there, you using prefix commands too quick!');

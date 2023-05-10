@@ -1,4 +1,4 @@
-const { MessageEmbed, Client, MessageCreate } = require('discord.js');
+const { Client } = require('discord.js');
 
 module.exports.config = {
     name: "help",
@@ -10,13 +10,6 @@ module.exports.config = {
     description: "Help menu for all prefix commands, command cooldown: 2.5 seconds"
 }
 
-/**
- * 
- * @param {Client} client 
- * @param {Message} message 
- * @param {*} args 
- */
-const message = 'messageCreate'
 module.exports.run = async (client, message, args) => {
   console.log(`[COMMAND LOG] help command ran on: ${message.guild.name} ID: ${message.guild.id}`)
   try {

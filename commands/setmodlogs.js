@@ -1,4 +1,4 @@
-const { Client, Message, MessageEmbed } = require("discord.js");
+const { Client } = require("discord.js");
 const fs = require('fs');
 const CryptoJS = require('crypto-js');
 const key = process.env.DONOTSHARETHIS

@@ -1,8 +1,4 @@
 const { token, prefix: mainPrefix, owners } = require('../../config/bot.json')
-const { MessageEmbed } = require('discord.js');
-
-const message = 'messageCreate'
-
 module.exports = async(client, message) => {
 if (message.channel.type === 'dm') return;
   //if (message.channel.type !== 'dm') {
@@ -98,14 +94,6 @@ if (message.channel.type === 'dm') return;
         
         
         }
-
-        client.main = new MessageEmbed()
-            .setColor(client.color)
-            .setTitle(`Command: ${command.config.name}`)
-            .setDescription(`**Description:** ${command.config.description} \n**Cooldown:** 5 second(s) ${command.config.aliases ? '\n' : ''}${command.config.aliases ? `**Aliases:** ${command.config.aliases.join(', ')}` : ''} \n  **Usage:** ${command.config.usage} \n **Example:** ${command.config.example || "None"}`)
-    
-
-
     let commandFile = client.commands.get(cmm) || client.commands.get(client.aliases.get(cmm))
     if (commandFile) {
         if (client.cooldown.has(message.author.id)) return message.reply('Hold up there, you using prefix commands too quick!');
