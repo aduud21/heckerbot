@@ -33,7 +33,7 @@ Message by <@${newMessage.author.id}>,
 Message edited in <#${newMessage.channel.id}> 
 Before: ||${oldMessage.content}||
 After: ||${newMessage.content}||
-UserID: ${newMessage.author.id} | Message ID: ${newMessage.id}`
+Message ID: ${newMessage.id}`
                  })
       } else {
         if (newMessage.channel.type === 'dm') return;
@@ -50,7 +50,7 @@ UserID: ${newMessage.author.id} | Message ID: ${newMessage.id}`
 Message by <@${newMessage.author.id}>,
 Message edited in <#${newMessage.channel.id}> 
 <Message is too long to show>
-UserID: ${newMessage.author.id} | Message ID: ${newMessage.id}`
+Message ID: ${newMessage.id}`
                  })
       }
     } catch (error) {
