@@ -3,7 +3,7 @@ const REALLYMAXHEARINGREALLY1234REAL = 100
 require('events').EventEmitter.prototype._maxListeners = REALLYMAXHEARINGREALLY1234REAL;
 require('events').defaultMaxListeners = REALLYMAXHEARINGREALLY1234REAL;
 // ONLY REMOVE THE ABOVE CODE IF YOU KNOW WHAT YOU'RE DOING d
-const { Client, ClientUser, MessageEmbed, Intents } = require('discord.js')
+const { Client } = require('discord.js')
 const axios = require('axios')
 const he = require('he')
 const { blacklisted } = require('../config/bot.json')
