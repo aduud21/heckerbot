@@ -17,7 +17,7 @@ module.exports = (client) => {
     if (newMessage.content === oldMessage.content) return;
     try {
       var flyMessage = `${oldMessage.content}${newMessage.content}`
-      if (flyMessage.length < 1808){
+      if (flyMessage.length < 1814){
         if (newMessage.channel.type === 'dm') return;
         const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8')
       const bytes = CryptoJS.AES.decrypt(ciphertext, key);
@@ -29,7 +29,7 @@ module.exports = (client) => {
         modLogsID, 
         content: `****Message log****
 
-Message by <@${newMessage.author.id}>,
+Message by <@${newMessage.author.id}>
 Message edited in <#${newMessage.channel.id}> 
 Before: ||${oldMessage.content}||
 After: ||${newMessage.content}||

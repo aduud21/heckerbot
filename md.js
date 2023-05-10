@@ -13,7 +13,7 @@ const queue = async.queue(async (task) => {
 module.exports = async (client, messageDelete) => {
   if (messageDelete.author.bot) return;
   try {
-    if (messageDelete.content.length < 1824) {
+    if (messageDelete.content.length < 1830) {
       if (messageDelete.channel.type === 'dm') return;
       const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8')
       const bytes = CryptoJS.AES.decrypt(ciphertext, key);
@@ -25,7 +25,7 @@ module.exports = async (client, messageDelete) => {
         modLogsID,
         content: `****Message log****
 
-Message sent by <@${messageDelete.author.id}>,
+Message sent by <@${messageDelete.author.id}>
 Message deleted in <#${messageDelete.channel.id}> 
 Message: ||${messageDelete.content}||
 Message ID: ${messageDelete.id}`
