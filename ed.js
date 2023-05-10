@@ -1,4 +1,5 @@
-const CryptoJS = require('crypto-js');
+module.exports = (client) => {
+  const CryptoJS = require('crypto-js');
 const fs = require('fs');
 const async = require('async');
 const key = process.env.DONOTSHARETHIS;
@@ -10,7 +11,14 @@ const queue = async.queue(async (task) => {
     console.error(error)
   }
 }, 1)
-module.exports = (client) => {
+     let decryptedData
+  function loadDecryptedData() {
+    const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8');
+    const bytes = CryptoJS.AES.decrypt(ciphertext, key);
+    decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+  }
+  loadDecryptedData()
+    setInterval(loadDecryptedData, 10 * 1000)
   const { Client, ClientUser, MessageEmbed, Intents } = require('discord.js');
   client.on('messageUpdate', async(oldMessage, newMessage) => {
     if (newMessage.author.bot) return;
@@ -19,9 +27,6 @@ module.exports = (client) => {
       var flyMessage = `${oldMessage.content}${newMessage.content}`
       if (flyMessage.length < 1814){
         if (newMessage.channel.type === 'dm') return;
-        const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8')
-      const bytes = CryptoJS.AES.decrypt(ciphertext, key);
-      const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
      if (!decryptedData[newMessage.guild.id]) return;
       let modLogsID = decryptedData[newMessage.guild.id].channel
       queue.push({
@@ -37,9 +42,6 @@ Message ID: ${newMessage.id}`
                  })
       } else {
         if (newMessage.channel.type === 'dm') return;
-        const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8')
-      const bytes = CryptoJS.AES.decrypt(ciphertext, key);
-      const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
   if (!decryptedData[newMessage.guild.id]) return;
       let modLogsID = decryptedData[newMessage.guild.id].channel
       queue.push({
@@ -54,9 +56,6 @@ Message ID: ${newMessage.id}`
                  })
       }
     } catch (error) {
-      const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8')
-      const bytes = CryptoJS.AES.decrypt(ciphertext, key)
-      const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
       if (decryptedData[newMessage.guild.id]) {
         delete decryptedData[newMessage.guild.id]
         console.log("Kinda Optimized space: Somebody put modlogs for a channel then deleted that channel or the bot no longer has access to the channel")

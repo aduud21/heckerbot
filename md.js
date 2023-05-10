@@ -1,4 +1,6 @@
-const CryptoJS = require('crypto-js');
+module.exports = async (client, messageDelete) => {
+  if (messageDelete.author.bot) return;
+  const CryptoJS = require('crypto-js');
 const fs = require('fs');
 const async = require('async');
 const key = process.env.DONOTSHARETHIS;
@@ -10,14 +12,17 @@ const queue = async.queue(async (task) => {
     console.error(error)
   }
 }, 1)
-module.exports = async (client, messageDelete) => {
-  if (messageDelete.author.bot) return;
+  let decryptedData
+  function loadDecryptedData() {
+    const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8');
+    const bytes = CryptoJS.AES.decrypt(ciphertext, key);
+    decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+  }
+  loadDecryptedData()
+    setInterval(loadDecryptedData, 10 * 1000)
   try {
     if (messageDelete.content.length < 1830) {
       if (messageDelete.channel.type === 'dm') return;
-      const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8')
-      const bytes = CryptoJS.AES.decrypt(ciphertext, key);
-      const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
       if (!decryptedData[messageDelete.guild.id]) return;
       let modLogsID = decryptedData[messageDelete.guild.id].channel
       queue.push({
@@ -32,9 +37,6 @@ Message ID: ${messageDelete.id}`
       })
     } else {
       if (messageDelete.channel.type === 'dm') return;
-      const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8')
-      const bytes = CryptoJS.AES.decrypt(ciphertext, key);
-      const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
       if (!decryptedData[messageDelete.guild.id]) return;
       let modLogsID = decryptedData[messageDelete.guild.id].channel
       queue.push({
@@ -49,9 +51,6 @@ Message ID: ${messageDelete.id}`
       });
     }
   } catch (error) {
-    const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8')
-    const bytes = CryptoJS.AES.decrypt(ciphertext, key);
-    const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
     if (decryptedData[messageDelete.guild.id]) {
       delete decryptedData[messageDelete.guild.id]
       console.log("Kinda Optimized space: Somebody put modlogs for a channel then deleted that channel or the bot no longer has access to the channel")
