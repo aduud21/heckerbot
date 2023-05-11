@@ -4,20 +4,21 @@ module.exports = async (client, messageDelete) => {
 const fs = require('fs');
 const async = require('async');
 const key = process.env.DONOTSHARETHIS;
-const queue = async.queue(async (task) => {
+  const queue = async.queue(async (task) => {
   const { messageDelete, modLogsID, content } = task;
   try {
-    await messageDelete.guild.channels.cache.get(modLogsID).send(content);
+    await messageDelete.guild.channels.cache.get(modLogsID).send(content)
   } catch (error) {
-    console.error(error)
+    console.log(error)
   }
 }, 1)
   let decryptedData
   function loadDecryptedData() {
-    const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8');
-    const bytes = CryptoJS.AES.decrypt(ciphertext, key);
-    decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-  }
+  const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8')
+  const bytes = CryptoJS.AES.decrypt(ciphertext, key)
+  decryptedData = {}
+  decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
+}
   loadDecryptedData()
     setInterval(loadDecryptedData, 10 * 1000)
   try {

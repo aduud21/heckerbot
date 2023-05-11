@@ -54,18 +54,12 @@ require('./slashcommands/checklink')(client);
 require('./ed')(client);
 require('./slashcommands/bloxlinkcheck')(client);
 require('./slashcommands/quiz')(client);
-const message = 'messageCreate'
 client.on('messageCreate', async(message) => {
-message.channel.messages.fetch()
 require('./utils/handlers/handler')(client, message)
 });
 client.on('messageDelete', async(message) => {
-message.channel.messages.fetch()
 require('./md')(client, message)
 });
-client.on('messageUpdate', (o, message) => {
-require('./utils/handlers/editHandles')(client, message);
-})
 if (!fs.existsSync('./LICENSE')) {
   return;
            }
