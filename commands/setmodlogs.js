@@ -6,9 +6,9 @@ const key = process.env.DONOTSHARETHIS;
 module.exports = {
     config: {
         name: "setmodlogs",
-        cooldown: 5000,
+        cooldown: 15000,
         aliases: ['setmodlog', 'setmlogs', 'setlogs', 'setlog'],
-        description: "Set a channel for modlogs. If a message is deleted/edited, it will be logged into the specified channel. Command cooldown: 5 seconds.",
+        description: "Set a channel for modlogs. If a message is deleted/edited, it will be logged into the specified channel. Command cooldown: 15 seconds.",
         usage: "mb!setmodlogs [#channel]",
         permissions: ['MANAGE_GUILD', 'MANAGE_CHANNELS'],
         botperms: ['MANAGE_GUILD', 'MANAGE_CHANNELS'],
