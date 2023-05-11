@@ -1,7 +1,8 @@
 const { Client } = require("discord.js");
 const fs = require('fs');
 const CryptoJS = require('crypto-js');
-const key = process.env.DONOTSHARETHIS
+const key = process.env.DONOTSHARETHIS;
+
 module.exports = {
     config: {
         name: "setmodlogs",
@@ -28,35 +29,35 @@ module.exports = {
             } catch (err) {}
             return;
         }
-             let modLogsID = channel.id
-         const lchannel = message.guild.channels.cache.get(modLogsID);
-  if (!lchannel) {
-try { 
+        let modLogsID = channel.id
+        const lchannel = message.guild.channels.cache.get(modLogsID)
+        if (!lchannel) {
+            try { 
                 message.reply(`YOU cannot setmodlogs for a other server in this server.`).catch(() => {})
-  return;
+                return;
             } catch (err) {}
-    }
-       let file = {};
-try {
-    const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8');
-    const plaintext = CryptoJS.AES.decrypt(ciphertext, key).toString(CryptoJS.enc.Utf8)
-    file = JSON.parse(plaintext);
-} catch (err) {
-    console.error(err);
-}
+        }
+        let file = {};
+        try {
+            const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8')
+            const plaintext = CryptoJS.AES.decrypt(ciphertext, key).toString(CryptoJS.enc.Utf8)
+            file = JSON.parse(plaintext)
+        } catch (err) {
+            console.log(err)
+        }
         file[message.guild.id] = {
             channel: channel.id
         };
         const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(file), key).toString()
         fs.writeFile('./database/realmodlogs.txt', ciphertext, (err) => {
             if (err) {
-                console.error(err);
+                console.log(err);
                 return;
             }
-            console.log('Modlogs encrypted & saved.');
+            console.log('Modlogs encrypted & saved.')
         });
         try {
-            message.reply(`${client.success} Modlogs have been set to <#${channel.id}>.`).catch(() => {});
+            message.reply(`${client.success} Modlogs have been set to <#${channel.id}>.`).catch(() => {})
         } catch (err) {}
     }
 }
