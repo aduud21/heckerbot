@@ -4,7 +4,7 @@ require('events').EventEmitter.prototype._maxListeners = REALLYMAXHEARINGREALLY1
 require('events').defaultMaxListeners = REALLYMAXHEARINGREALLY1234REAL;
 // ONLY REMOVE THE ABOVE CODE IF YOU KNOW WHAT YOUE DOING
 const { Client } = require('discord.js')
-const { blacklisted } = require('../config/bot.json')
+const { blacklisted, owners } = require('../config/bot.json')
 const interactionCooldowns = new Map() // get userids for cooldown, should be above module.exports = async (client) => {
 module.exports = async(client) => {
     client.ws.on("INTERACTION_CREATE", (interaction) => {
@@ -44,7 +44,7 @@ if (commandName === 'information') {
                     data: {
                         content: `Bot created: 2022/2/28
 Command cooldown is: Disabled for owner
-Owner/Creator: Hecker#1844 
+Owner(s) UserID(s): ${owners}
 ${client.guilds.cache.map((guild) => guild.memberCount).reduce((p, c) => p + c)} users can use this bot
 Support server: https://discord.gg/GbjgmffUKj`
  }

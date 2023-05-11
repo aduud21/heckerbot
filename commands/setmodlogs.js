@@ -1,7 +1,7 @@
 const { Client } = require("discord.js");
 const fs = require('fs');
 const CryptoJS = require('crypto-js');
-const key = process.env.DONOTSHARETHIS;
+const key = process.env.DONOTSHARETHIS
 
 module.exports = {
     config: {
