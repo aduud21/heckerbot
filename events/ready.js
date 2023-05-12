@@ -7,21 +7,17 @@ if (!fs.existsSync('./LICENSE')) {
   return;
 }
 module.exports = async(client) => {
-      console.log(`☑️ -> [LOGIN] Logged into token as user ${client.user.tag}`)
-client.user.setActivity(`mb!help | ${client.guilds.cache.size} servers`, { type: "LISTENING"})
+const shardId = client.shard.ids.length > 0 ? client.shard.ids[0] : 0
+const activityText = `servers | Shard ${shardId + 1}`
+  console.log(`☑️ -> [LOGIN] Logged into token as user ${client.user.tag}`)
+ client.user.setActivity(activityText, { type: "LISTENING" })
   try {
     if  (start_up_message){
 const channel = client.channels.cache.get('957439649142407248')
-channel.send(`<:xd:1073736745872535603> Bot restarted <:xd:1073736745872535603>`)
+channel.send(`🤖 Bot restarted 🤖`)
   }
   } catch (error) {
 console.log("Could not send restart message in selected channel, ready.js in events folder")
     return;
   }
-   async function checkbotalivedayslol() {
-  client.user.setActivity(`mb!help | ${client.guilds.cache.size} servers`, { type: "LISTENING"})
-}
-setInterval(() => {
-    checkbotalivedayslol()
-}, 60000)
   }

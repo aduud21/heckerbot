@@ -45,7 +45,6 @@ if (commandName === 'information') {
                         content: `Bot created: 2022/2/28
 Command cooldown is: Disabled for owner
 Owner(s) UserID(s): ${owners}
-${client.guilds.cache.map((guild) => guild.memberCount).reduce((p, c) => p + c)} users can use this bot
 Support server: https://discord.gg/GbjgmffUKj`
  }
        }
