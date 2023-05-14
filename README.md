@@ -51,8 +51,7 @@ You may view the slash commands of the bot by going into slashcommands folder
 
 *Notes:*
 
-1. Many things may not work when you fork (copy the code of the bot)
-2. Bot is not made to work 100% if you just fork/copy the bot and may require you quite a good amount of modifications for it to fully for you, if you wish to know when new updates are released join the support server of the bot at https://discord.gg/GbjgmffUKj
+1. Bot is not made to work 100% if you just fork/copy the bot and may require you quite a good amount of modifications for it to fully for you, if you wish to know when new updates are released join the support server of the bot at https://discord.gg/GbjgmffUKj
 
 ****Creator:
 https://youtube.com/c/adudu21 or adudu21 (on roblox and some other places too), on replit i am AGuyThatLikesFurrys (my username on replit is a joke), My discord UserID is 710227418492960778 and username with tag Hecker#1844****
