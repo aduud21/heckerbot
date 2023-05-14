@@ -42,7 +42,7 @@ https://gist.github.com/advaith1/e69bcc1cdd6d0087322734451f15aa2f
 
 *Prefix Commands:*
 
-You may view the prefix commands of the bot by going into the Files of this replit or saying h!help on discord when running the bot
+You may view the prefix commands of the bot by going into the Files of this replit or saying mb!help on discord when running the bot
 
 *Slash commands:*
 
