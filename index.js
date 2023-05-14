@@ -29,12 +29,10 @@ https://github.com/aduud21/heckerbot#how-to-run-the-bot-on-replit
 */
 // AUTO UPDATE/REMOVE VULNERABILITIES
 // yea
-var key = process.env.DONOTSHARETHIS
 const { get } = require("https");
-// Create an encryptor:
+var key = process.env.DONOTSHARETHIS
+const CryptoJS = require('crypto-js');
 try {
-
-var encryptor = require('simple-encryptor')(key);
 console.log('Checking for vulnerabilities')
 const shell = require('shelljs')
  shell.exec('npm audit fix') // any possible fixable vulnerabilities? if so fix them, that's what this part of the code does
@@ -69,8 +67,10 @@ get(`https://discord.com/api/v10/gateway`, ({ statusCode }) => {
 }, 10000); // this is in milliseconds, 1000 milliseconds = 1 second, this uses 10000 milliseconds so every 10 seconds it repeats a thing to do
 // PLEASE DO NOT DELETE THE LICENSE FILE, and do not claim you made this bot
 const { ShardingManager } = require('discord.js');
-
-const manager = new ShardingManager('./bot.js', { token: encryptor.decrypt(process.env.TOKEN) }); /*
+const encryptedToken = process.env.TOKEN
+const decryptedBytes = CryptoJS.AES.decrypt(encryptedToken, key)
+const decryptedToken = decryptedBytes.toString(CryptoJS.enc.Utf8)
+const manager = new ShardingManager('./bot.js', { token: decryptedToken }); /*
 For public websites such as replit, use secrets/ENV to secure youe bot token
 */
 

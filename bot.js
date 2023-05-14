@@ -29,14 +29,14 @@ if (!fs.existsSync('./LICENSE')) {
   return;
 }
 var key = process.env.DONOTSHARETHIS
- 
-// Create an useless thing lol:
-var encryptor = require('simple-encryptor')(key);
+const CryptoJS = require('crypto-js');
 const { Intents, Client } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS,Intents.FLAGS.GUILD_MESSAGES]});
+const encryptedData = process.env.TOKEN
+const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, key)
+const decryptedToken = decryptedBytes.toString(CryptoJS.enc.Utf8)
 // DO NOT REMOVE THE LINE BELOW!
-client.login(encryptor.decrypt(process.env.TOKEN));
-
+client.login(decryptedToken)
 // e
 console.log('⌛-> [LOGINDATA] Data found, program will try to use it!')
 const { keep_alive } = require('./keep_alive');
@@ -151,7 +151,6 @@ Join our support server: https://discord.com/invite/GbjgmffUKj
 
 });
 // this is pretty helpful for space
-const CryptoJS = require('crypto-js')
 client.on('guildDelete', (guild) => {
   const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8');
     const bytes = CryptoJS.AES.decrypt(ciphertext, key);

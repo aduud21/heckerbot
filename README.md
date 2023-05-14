@@ -92,9 +92,11 @@ Create a secret named DONOTSHARETHIS and the value should be something long (sho
 For additional security, this bot encrypts the token and decrypts the token when needed so for that:
 In index.js add the following code to the top (line 1):
 ```js
-var key = process.env.DONOTSHARETHIS
-var encryptor = require('simple-encryptor')(key);
-console.log(encryptor.encrypt(process.env.TOKEN))
+const CryptoJS = require('crypto-js');
+const key = process.env.DONOTSHARETHIS;
+const tokenENV = process.env.TOKEN
+const encryptedData = CryptoJS.AES.encrypt(tokenENV, key).toString();
+console.log(encryptedData);
 return;
 ```
 Check the output (via console), 
