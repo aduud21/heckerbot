@@ -4,7 +4,7 @@ require('events').EventEmitter.prototype._maxListeners = REALLYMAXHEARINGREALLY1
 require('events').defaultMaxListeners = REALLYMAXHEARINGREALLY1234REAL;
 // ONLY REMOVE THE ABOVE CODE IF YOU KNOW WHAT YOUE DOING
 const { Client } = require('discord.js');
-const { owners, blacklisted } = require('../config/bot.json')
+const { owners } = require('../config/bot.json')
 const interactionCooldowns = new Map() // get userids for cooldown, should be above module.exports = async (client) => {
 module.exports = async(client) => {
     client.ws.on("INTERACTION_CREATE", async(interaction) => {
@@ -34,9 +34,6 @@ if (commandName === 'runcode') {
   }, cooldownTime) // end of col
 }
         if (commandName == "runcode") {
-if (blacklisted.includes(interaction.member.user.id)){
-  return;
-}
       if (!owners.includes(interaction.member.user.id)){
             if (commandName == "runcode") client.api.interactions(interaction.id, interaction.token).callback.post({
                 data: {

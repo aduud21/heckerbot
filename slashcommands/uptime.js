@@ -4,7 +4,6 @@ require('events').EventEmitter.prototype._maxListeners = REALLYMAXHEARINGREALLY1
 require('events').defaultMaxListeners = REALLYMAXHEARINGREALLY1234REAL;
 // ONLY REMOVE THE ABOVE CODE IF YOU KNOW WHAT YOUE DOING
 const { Client } = require('discord.js')
-const { blacklisted } = require('../config/bot.json')
 const interactionCooldowns = new Map() // get userids for cooldown, should be above module.exports = async (client) => {
 module.exports = async(client) => {
     client.ws.on("INTERACTION_CREATE", (interaction) => {
@@ -34,9 +33,6 @@ if (commandName === 'uptime') {
   }, cooldownTime) // end of col
 }
         if (commandName == "uptime") {
-          if (blacklisted.includes(interaction.member.user.id)){
-  return;
-          }
           if (commandName == "uptime") console.log(`Slash command ${commandName} ran`);   
         let totaltime = (client.uptime / 1000);
         let days = Math.floor(totaltime / 86400);

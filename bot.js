@@ -47,7 +47,6 @@ require('./slashcommands/datasxd')(client);
 require('./slashcommands/deldata')(client);
 require('./slashcommands/code')(client);
 require('./slashcommands/owneronly')(client);
-require('./slashcommands/blacklist')(client);
 require('./slashcommands/uptime')(client);
 require('./slashcommands/rps')(client);
 require('./slashcommands/checklink')(client);
@@ -77,19 +76,13 @@ client.on('guildCreate', async (guild) => {
 if (guild_sc_special){
   if (guild.id === custom_sc_special_guild_id){
   
-// blacklist, to have access towards it, open slashcommands folder then blacklist.js and change every 710227418492960778 to your discord user ID then open config and open bot.json and replace 710227418492960778 with your discord user ID (via "owners":"710227418492960778")
+// stuff, to have access towards it, open bot.json in config folder and replace 710227418492960778 with your discord user ID (via "owners":"710227418492960778")
 client.api.applications(`${clientUSERID}`).guilds(`${custom_sc_special_guild_id}`).commands.post({
 data: {
             name: "runcode",
             description: "ONLY THE CREATOR CAN RUN THIS COMMAND",
           options: [{ name: 'code', description: 'What code do you wish to run', type: 3, required: true }],
      }}).catch(() => {})
-client.api.applications(`${clientUSERID}`).guilds(`${custom_sc_special_guild_id}`).commands.post({
-        data: {
-            name: "blacklist",
-            description: "ONLY THE CREATOR CAN RUN THIS COMMAND",
-          options: [{ name: 'userid', description: 'Who do you wish to blacklist, HAS TO BE USERID OR ELSE WONT WORK', type: 3, required: true }],
- }}).catch(() => {})
   }}
   try {
 const commands = [

@@ -6,7 +6,6 @@ require('events').EventEmitter.prototype._maxListeners = REALLYMAXHEARINGREALLY1
 require('events').defaultMaxListeners = REALLYMAXHEARINGREALLY1234REAL;
 // ONLY REMOVE THE ABOVE CODE IF YOU KNOW WHAT YOUE DOING
 const { Client } = require('discord.js');
-const { blacklisted } = require('../config/bot.json')
 const axios = require('axios')
 const interactionCooldowns = new Map() // get userids for cooldown, should be above module.exports = async (client) => {
 module.exports = async(client) => {
@@ -38,9 +37,6 @@ if (commandName === 'bloxlinkcheck') {
   }, cooldownTime) // end of col
 }
               if (commandName == "bloxlinkcheck") {
-if (blacklisted.includes(interaction.member.user.id)){
-  return;
-          }
                 if (commandName == "bloxlinkcheck") client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
             type: 5

@@ -6,7 +6,6 @@ require('events').defaultMaxListeners = REALLYMAXHEARINGREALLY1234REAL;
 const { Client } = require('discord.js')
 const axios = require('axios')
 const he = require('he')
-const { blacklisted } = require('../config/bot.json')
 async function getq() {
   const apiUrl = 'https://opentdb.com/api.php?amount=1&type=boolean';
   const response = await axios.get(apiUrl);
@@ -40,9 +39,6 @@ if (commandName === 'quiz') {
   }, cooldownTime) // end of col
 }
     if (commandName === 'quiz') {
-      if (blacklisted.includes(interaction.member.user.id)) {
-        return;
-      }
        if (commandName === 'quiz') client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
           type: 5,

@@ -5,7 +5,6 @@ require('events').EventEmitter.prototype._maxListeners = REALLYMAXHEARINGREALLY1
 require('events').defaultMaxListeners = REALLYMAXHEARINGREALLY1234REAL;
 // ONLY REMOVE THE ABOVE CODE IF YOU KNOW WHAT YOUE DOING
 const { Client } = require('discord.js');
-const { blacklisted } = require('../config/bot.json')
 const axios = require('axios')
 const API_KEY = process.env.api
 
@@ -49,9 +48,6 @@ if (commandName === 'checklink') {
   }, cooldownTime) // end of cool
 }
     if (commandName == "checklink") {
-      if (blacklisted.includes(interaction.member.user.id)) {
-        return;
-      }
       client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
           type: 5,

@@ -12,11 +12,7 @@ module.exports = async (client) => {
         await client.on('messageCreate', async (message) => {
             if (message.channel.type === 'dm')
              return
-            if (require('../database/prefixes.json')[message.guild.id]) {
-                client.prefix = await require('../database/prefixes.json')[message.guild.id].prefix;
-            } else {
-                client.prefix = await require('../config/bot.json').prefix;
-            }
+        client.prefix = await require('../config/bot.json').prefix;   
         })
     } catch {
 

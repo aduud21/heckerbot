@@ -1,7 +1,4 @@
 const fs = require('fs');
-
-
-
 module.exports = async (client) => {
     fs.readdir('./events/', (err, files) => {
         if (err) return console.error(err);

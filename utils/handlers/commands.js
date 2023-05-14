@@ -8,7 +8,7 @@ module.exports = (client) => {
     
         let jsFile = files.filter(f => f.split('.').pop() === 'js');
         if (jsFile.length <= 0) {
-            return console.log('No commands were found, please add some!')
+            return console.log('No prefix commands were found, please add some or remove handlers folder in utils')
         }
         jsFile.forEach((file, i) => {
             var pullCmd = require(`../../commands/${file}`);
