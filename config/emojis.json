@@ -1,4 +1,5 @@
 {
     "success": "✅",
-    "fail": "❌"
+    "fail": "❌",
+      "pending": "⏳"
 }

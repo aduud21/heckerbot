@@ -11,7 +11,6 @@ module.exports.config = {
 }
 
 module.exports.run = async (client, message, args) => {
-  console.log(`[COMMAND LOG] help command ran on: ${message.guild.name} ID: ${message.guild.id}`)
   try {
     await message.react('✅');
   } catch (error) {

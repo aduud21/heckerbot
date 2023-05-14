@@ -19,14 +19,6 @@ if (commandName === 'bloxlinkcheck') {
   if (interactionCooldowns.has(userId)) {
     const remainingCooldown = interactionCooldowns.get(userId) - Date.now();
     if (remainingCooldown > 0) {
-      client.api.interactions(interaction.id, interaction.token).callback.post({
-        data: {
-          type: 4,
-          data: {
-            content: `You can use this command again in ${remainingCooldown}ms.`,
-          },
-        },
-      });
       return;
     }
   }
