@@ -22,7 +22,7 @@ const key = process.env.DONOTSHARETHIS;
   loadDecryptedData()
     setInterval(loadDecryptedData, 10 * 1000)
   try {
-    if (messageDelete.content.length < 1830) {
+    if (messageDelete.content.length < 1829) {
       if (messageDelete.channel.type === 'dm') return;
       if (!decryptedData[messageDelete.guild.id]) return;
       let modLogsID = decryptedData[messageDelete.guild.id].channel
@@ -33,7 +33,8 @@ const key = process.env.DONOTSHARETHIS;
 
 Message sent by <@${messageDelete.author.id}>
 Message deleted in <#${messageDelete.channel.id}> 
-Message: ||${messageDelete.content}||
+Message: 
+||${messageDelete.content}||
 Message ID: ${messageDelete.id}`
       })
     } else {

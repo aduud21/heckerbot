@@ -26,7 +26,7 @@ const queue = async.queue(async (task) => {
     if (newMessage.content === oldMessage.content) return;
     try {
       var flyMessage = `${oldMessage.content}${newMessage.content}`
-      if (flyMessage.length < 1814){
+      if (flyMessage.length < 1812){
         if (newMessage.channel.type === 'dm') return;
      if (!decryptedData[newMessage.guild.id]) return;
       let modLogsID = decryptedData[newMessage.guild.id].channel
@@ -37,8 +37,10 @@ const queue = async.queue(async (task) => {
 
 Message by <@${newMessage.author.id}>
 Message edited in <#${newMessage.channel.id}> 
-Before: ||${oldMessage.content}||
-After: ||${newMessage.content}||
+Before: 
+||${oldMessage.content}||
+After: 
+||${newMessage.content}||
 Message ID: ${newMessage.id}`
                  })
       } else {
