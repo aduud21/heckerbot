@@ -30,51 +30,57 @@ https://github.com/aduud21/heckerbot#how-to-run-the-bot-on-replit
 // AUTO UPDATE/REMOVE VULNERABILITIES
 // yea
 const { get } = require("https");
-var key = process.env.DONOTSHARETHIS
-const CryptoJS = require('crypto-js');
+var key = process.env.DONOTSHARETHIS;
+const CryptoJS = require("crypto-js");
 try {
-console.log('Checking for vulnerabilities')
-const shell = require('shelljs')
- shell.exec('npm audit fix') // any possible fixable vulnerabilities? if so fix them, that's what this part of the code does
-console.log('Finished checking for vulnerabilities')
-/*
+  console.log("Checking for vulnerabilities");
+  const shell = require("shelljs");
+  shell.exec("npm audit fix"); // any possible fixable vulnerabilities? if so fix them, that's what this part of the code does
+  console.log("Finished checking for vulnerabilities");
+  /*
 catch basically catches any error that occurs when you use it correctly, can be very helpful
 */
 } catch (error) {
-   console.log(`Startup ERROR: ${error}`)
+  console.log(`Startup ERROR: ${error}`);
 }
 // code for replit
 get(`https://discord.com/api/v10/gateway`, ({ statusCode }) => {
   if (statusCode == 429) {
-    console.log(`Startup ERROR: ⚠️⚠️⚠️ RATELIMIT DETECTED, RESTARTING... ⚠️⚠️⚠️`);
+    console.log(
+      `Startup ERROR: ⚠️⚠️⚠️ RATELIMIT DETECTED, RESTARTING... ⚠️⚠️⚠️`
+    );
     process.kill(1);
   }
-})
+});
 // TOKEN CHECK
-if (!process.env.TOKEN){
-  console.log('NO TOKEN FOUND, USE REPLIT SECRETS FOR THIS TO WORK AND IF YOU DONT USE REPLIT SECRETS AND HAVE THIS PROJECT ON REPLIT ITS A MASSIVE SECURITY PROBLEM FOR YOUR BOT') 
+if (!process.env.TOKEN) {
+  console.log(
+    "NO TOKEN FOUND, USE REPLIT SECRETS FOR THIS TO WORK AND IF YOU DONT USE REPLIT SECRETS AND HAVE THIS PROJECT ON REPLIT ITS A MASSIVE SECURITY PROBLEM FOR YOUR BOT"
+  );
   return;
 }
 
 // code for replit
 setInterval(() => {
-get(`https://discord.com/api/v10/gateway`, ({ statusCode }) => {
-  if (statusCode == 429) {
-    console.log(`⚠️⚠️⚠️ RATELIMIT DETECTED, RESTARTING... ⚠️⚠️⚠️`);
-    process.kill(1);
-  }
-});
+  get(`https://discord.com/api/v10/gateway`, ({ statusCode }) => {
+    if (statusCode == 429) {
+      console.log(`⚠️⚠️⚠️ RATELIMIT DETECTED, RESTARTING... ⚠️⚠️⚠️`);
+      process.kill(1);
+    }
+  });
 }, 10000); // this is in milliseconds, 1000 milliseconds = 1 second, this uses 10000 milliseconds so every 10 seconds it repeats a thing to do
 // PLEASE DO NOT DELETE THE LICENSE FILE, and do not claim you made this bot
-const { ShardingManager } = require('discord.js');
-const encryptedToken = process.env.TOKEN
-const decryptedBytes = CryptoJS.AES.decrypt(encryptedToken, key)
-const decryptedToken = decryptedBytes.toString(CryptoJS.enc.Utf8)
-const manager = new ShardingManager('./bot.js', { token: decryptedToken }); /*
+const { ShardingManager } = require("discord.js");
+const encryptedToken = process.env.TOKEN;
+const decryptedBytes = CryptoJS.AES.decrypt(encryptedToken, key);
+const decryptedToken = decryptedBytes.toString(CryptoJS.enc.Utf8);
+const manager = new ShardingManager("./bot.js", { token: decryptedToken }); /*
 For public websites such as replit, use secrets/ENV to secure youe bot token
 */
 
-manager.on('shardCreate', shard => console.log(`🇨🇦💫🌟[🔵SHARD🔵]🌟💫🇲🇽 Launched shard 🟢 ${shard.id} 🟢`));
+manager.on("shardCreate", (shard) =>
+  console.log(`🇨🇦💫🌟[🔵SHARD🔵]🌟💫🇲🇽 Launched shard 🟢 ${shard.id} 🟢`)
+);
 
 manager.spawn();
 // make sure to read README.md file
