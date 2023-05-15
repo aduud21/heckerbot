@@ -7,7 +7,7 @@ if (!fs.existsSync('./LICENSE')) {
 }
 module.exports = async(client) => {
 const shardId = client.shard.ids.length > 0 ? client.shard.ids[0] : 0
-const activityText = `servers | Shard ${shardId + 1}`
+const activityText = `servers | Shard${shardId}`
   console.log(`☑️ -> [LOGIN] Logged into token as user ${client.user.tag}`)
  client.user.setActivity(activityText, { type: "LISTENING" })
   try {
