@@ -4,7 +4,7 @@
   "description": "A bot which has many use cases",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier --write ."
   },
   "author": "adudu21",
   "license": "YSNBA (https://github.com/aduud21/heckerbot/blob/main/LICENSE)",
@@ -28,7 +28,8 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "node": "^17.9.1"
+    "node": "^17.9.1",
+    "prettier": "^2.8.8"
   },
   "keywords": [
     "node.js",
