@@ -1,7 +1,4 @@
 const fs = require('fs');
-if (!fs.existsSync('./LICENSE')) {
-    return;
-}
 module.exports = (client) => {
     fs.readdir('./commands/', (err, files) => {
         if (err) console.log(err);
@@ -13,7 +10,7 @@ module.exports = (client) => {
             );
         }
         jsFile.forEach((file, i) => {
-            var pullCmd = require(`../../commands/${file}`);
+            let pullCmd = require(`../../commands/${file}`);
             client.commands.set(pullCmd.config.name, pullCmd);
 
             console.log('✅ -> File: ' + pullCmd.config.name + ' successfully loaded');
