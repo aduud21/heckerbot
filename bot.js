@@ -62,7 +62,6 @@ client.on(Events.InteractionCreate, async (interaction) => {
     require('./slashcommands/bloxlinkcheck')(client, interaction);
     require('./slashcommands/quiz')(client, interaction);
 });
-require('./ed')(client);
 client.on('messageCreate', async (message) => {
     require('./utils/handlers/handler')(client, message);
 });
@@ -78,4 +77,7 @@ client.on('guildCreate', async (guild) => {
 // this is pretty helpful for space
 client.on('guildDelete', (guild) => {
     require('./guildDelete')(client, guild);
+});
+client.on('messageUpdate', async (oldMessage, newMessage) => {
+    require('./ed')(client, oldMessage, newMessage);
 });

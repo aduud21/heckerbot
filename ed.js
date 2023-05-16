@@ -20,24 +20,22 @@ module.exports = (client, oldMessage, newMessage) => {
     }
     loadDecryptedData();
     setInterval(loadDecryptedData, 10 * 1000);
-    const { Client, ClientUser, EmbedBuilder, GatewayIntentBits } = require('discord.js');
-    client.on('messageUpdate', async (oldMessage, newMessage) => {
-        try {
-            if (newMessage.author.bot) {
-                return;
-            }
-        } catch {}
-        if (newMessage.content === oldMessage.content) return;
-        try {
-            var flyMessage = `${oldMessage.content}${newMessage.content}`;
-            if (flyMessage.length < 1812) {
-                if (newMessage.channel.type === 'dm') return;
-                if (!decryptedData[newMessage.guild.id]) return;
-                let modLogsID = decryptedData[newMessage.guild.id].channel;
-                queue.push({
-                    newMessage,
-                    modLogsID,
-                    content: `****Message log****
+    try {
+        if (newMessage.author.bot) {
+            return;
+        }
+    } catch {}
+    if (newMessage.content === oldMessage.content) return;
+    try {
+        var flyMessage = `${oldMessage.content}${newMessage.content}`;
+        if (flyMessage.length < 1812) {
+            if (newMessage.channel.type === 'dm') return;
+            if (!decryptedData[newMessage.guild.id]) return;
+            let modLogsID = decryptedData[newMessage.guild.id].channel;
+            queue.push({
+                newMessage,
+                modLogsID,
+                content: `****Message log****
 
 Message by <@${newMessage.author.id}>
 Message edited in <#${newMessage.channel.id}> 
@@ -46,29 +44,28 @@ Before:
 After: 
 ||${newMessage.content}||
 Message ID: ${newMessage.id}`,
-                });
-            } else {
-                if (newMessage.channel.type === 'dm') return;
-                if (!decryptedData[newMessage.guild.id]) return;
-                let modLogsID = decryptedData[newMessage.guild.id].channel;
-                queue.push({
-                    newMessage,
-                    modLogsID,
-                    content: `****Message log****
+            });
+        } else {
+            if (newMessage.channel.type === 'dm') return;
+            if (!decryptedData[newMessage.guild.id]) return;
+            let modLogsID = decryptedData[newMessage.guild.id].channel;
+            queue.push({
+                newMessage,
+                modLogsID,
+                content: `****Message log****
 
 Message by <@${newMessage.author.id}>,
 Message edited in <#${newMessage.channel.id}> 
 <Message is too long to show>
 Message ID: ${newMessage.id}`,
-                });
-            }
-        } catch (error) {
-            if (decryptedData[newMessage.guild.id]) {
-                delete decryptedData[newMessage.guild.id];
-                console.log(
-                    'Kinda Optimized space: Somebody put modlogs for a channel then deleted that channel or the bot no longer has access to the channel'
-                );
-            }
+            });
         }
-    });
+    } catch (error) {
+        if (decryptedData[newMessage.guild.id]) {
+            delete decryptedData[newMessage.guild.id];
+            console.log(
+                'Kinda Optimized space: Somebody put modlogs for a channel then deleted that channel or the bot no longer has access to the channel'
+            );
+        }
+    }
 };
