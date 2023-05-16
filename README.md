@@ -99,13 +99,23 @@ const key = process.env.DONOTSHARETHIS;
 const tokenENV = process.env.TOKEN;
 const encryptedData = CryptoJS.AES.encrypt(tokenENV, key).toString();
 console.log(encryptedData);
+// The code below should ONLY be ran once
+const fs = require('fs');
+ file = {}
+ const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(file), key).toString();
+        fs.writeFile('./database/realmodlogs.txt', ciphertext, (err) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+        });
 return;
 ```
+(To avoid issues with database encryption, the code above will write to the database to make it only {} and encrypted)
 
 Check the output (via console),
 then copy what it encrypted,
 Head back to secrets and replace your token with the encrypted one,
-Make sure to remove all content inside "realmodlogs.txt" located in database folder
 
 Not done yet, for some slashcommands via bot.js after line 80 you must replace 947733660432490506 to your bot's userID/APPLICATION ID.
 
