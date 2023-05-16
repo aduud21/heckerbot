@@ -9,9 +9,7 @@
 ## Alternative, if that doesn't work then
 
 1. Make sure your in the discord server
-2. DM me about the vulnerability (Hecker#1844) and explain how to do it and how dangerous it is
-
-## My discord userID is 710227418492960778
+2. DM me about the vulnerability (<@710227418492960778>) and explain how to do it and how dangerous it is
 
 ## Github
 
