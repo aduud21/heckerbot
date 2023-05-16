@@ -1,0 +1,13 @@
+node_modules/
+mittelblot-db-backup/
+*.min.*
+*.bundle.*
+._*
+*bootstrap*
+*bootstrap*
+*vendor*
+
+.husky/
+
+utils/functions/data/Auditlog.js
+*.md

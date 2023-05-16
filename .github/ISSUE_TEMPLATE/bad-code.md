@@ -1,10 +1,9 @@
 ---
 name: Bad code
 about: Code which is not optimized
-title: ''
+title: ""
 labels: bad-code
 assignees: aduud21
-
 ---
 
 **What is not optimized**

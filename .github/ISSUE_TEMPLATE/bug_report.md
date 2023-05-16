@@ -1,17 +1,17 @@
 ---
 name: Bug report
 about: Create a report to help me improve
-title: ''
+title: ""
 labels: bug
 assignees: aduud21
-
 ---
 
 **Describe the bug**
 A clear and concise description of what the bug is.
 
 **To Reproduce**
-Steps to reproduce the behavior, Example: 
+Steps to reproduce the behavior, Example:
+
 1. Turn on the bot/Run it
 2. Run a certain command many times
 3. See error.

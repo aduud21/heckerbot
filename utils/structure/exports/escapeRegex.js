@@ -1,3 +1,3 @@
 module.exports = {
-    escapeRegex:  str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-}
+    escapeRegex: (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
+};

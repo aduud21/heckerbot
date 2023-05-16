@@ -1,14 +1,14 @@
 [
-  {
-		"question": "🪨Rock🪨",
-		"answers": ["yes", "no"]
-  },
     {
-		"question": "Paper",
-		"answers": ["yes", "no"]
+        "question": "🪨Rock🪨",
+        "answers": ["yes", "no"]
     },
-      {
-		"question": "✂️Scissors✂️",
-		"answers": ["yes", "no"]
-         }
+    {
+        "question": "Paper",
+        "answers": ["yes", "no"]
+    },
+    {
+        "question": "✂️Scissors✂️",
+        "answers": ["yes", "no"]
+    }
 ]

@@ -1,1 +1,6 @@
-{"owners":"710227418492960778","botperms":["ADMINISTRATOR"],"prefix":"mb!","support":"https://discord.gg/GbjgmffUKj"}
+{
+    "owners": "710227418492960778",
+    "botperms": ["ADMINISTRATOR"],
+    "prefix": "mb!",
+    "support": "https://discord.gg/GbjgmffUKj"
+}
