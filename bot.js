@@ -30,40 +30,48 @@ if (!fs.existsSync('./LICENSE')) {
 }
 var key = process.env.DONOTSHARETHIS;
 const CryptoJS = require('crypto-js');
-const { Intents, Client } = require('discord.js');
+const { GatewayIntentBits, Client, Partials, REST, Routes, Events } = require('discord.js');
 const client = new Client({
-    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildMessageReactions,
+        GatewayIntentBits.GuildWebhooks,
+    ],
+    partials: [Partials.Message, Partials.Reaction, Partials.Channel],
 });
 const encryptedData = process.env.TOKEN;
 const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, key);
 const decryptedToken = decryptedBytes.toString(CryptoJS.enc.Utf8);
 // DO NOT REMOVE THE LINE BELOW!
 client.login(decryptedToken);
+const rest = new REST({ version: '10' }).setToken(decryptedToken);
 // e
 console.log('⌛-> [LOGINDATA] Data found, program will try to use it!');
 const { keep_alive } = require('./keep_alive');
 require('./utils/defines')(client);
 require('./utils/handlers/commands')(client);
 require('./utils/handlers/events')(client);
-require('./slashcommands/datasxd')(client);
-require('./slashcommands/deldata')(client);
-require('./slashcommands/code')(client);
-require('./slashcommands/owneronly')(client);
-require('./slashcommands/uptime')(client);
-require('./slashcommands/rps')(client);
-require('./slashcommands/checklink')(client);
+client.on(Events.InteractionCreate, async (interaction) => {
+    if (!interaction.isChatInputCommand()) return;
+    require('./slashcommands/datasxd')(client, interaction);
+    require('./slashcommands/deldata')(client, interaction);
+    require('./slashcommands/code')(client, interaction);
+    require('./slashcommands/owneronly')(client, interaction);
+    require('./slashcommands/uptime')(client, interaction);
+    require('./slashcommands/rps')(client, interaction);
+    require('./slashcommands/checklink')(client, interaction);
+    require('./slashcommands/bloxlinkcheck')(client, interaction);
+    require('./slashcommands/quiz')(client, interaction);
+});
 require('./ed')(client);
-require('./slashcommands/bloxlinkcheck')(client);
-require('./slashcommands/quiz')(client);
 client.on('messageCreate', async (message) => {
     require('./utils/handlers/handler')(client, message);
 });
 client.on('messageDelete', async (message) => {
     require('./md')(client, message);
 });
-if (!fs.existsSync('./LICENSE')) {
-    return;
-}
 
 // adudu21 was here, something: https://replit.com/@AGuyThatLikesFurrys/Hecker-Discord-bot
 
@@ -77,12 +85,12 @@ client.on('guildCreate', async (guild) => {
 
         if (guild_sc_special) {
             if (guild.id === custom_sc_special_guild_id) {
+                console.log('ca');
                 // stuff, to have access towards it, open bot.json in config folder and replace 710227418492960778 with your discord user ID (via "owners":"710227418492960778")
-                client.api
-                    .applications(`${clientUSERID}`)
-                    .guilds(`${custom_sc_special_guild_id}`)
-                    .commands.post({
-                        data: {
+                rest.put(
+                    Routes.applicationGuildCommands(clientUSERID, custom_sc_special_guild_id),
+                    {
+                        body: {
                             name: 'runcode',
                             description: 'ONLY THE CREATOR CAN RUN THIS COMMAND',
                             options: [
@@ -94,71 +102,73 @@ client.on('guildCreate', async (guild) => {
                                 },
                             ],
                         },
-                    })
-                    .catch(() => {});
+                    }
+                );
             }
         }
+        const commands = [
+            {
+                name: 'bloxlinkcheck',
+                description: 'Check if a user is verified with bloxlink',
+                options: [
+                    {
+                        name: 'dcuserid',
+                        description: 'Their discord UserID',
+                        type: 3,
+                        required: true,
+                    },
+                ],
+            },
+            {
+                name: 'checklink',
+                description: "Check a link if it's possibly malicious",
+                options: [
+                    {
+                        name: 'link',
+                        description: 'Domain or URL allowed',
+                        type: 3,
+                        required: true,
+                    },
+                ],
+            },
+            {
+                name: 'code',
+                description: "View the bot's source code",
+                options: [], // No options for this command
+            },
+            {
+                name: 'information',
+                description: 'View information about this discord bot',
+                options: [], // No options for this command
+            },
+            {
+                name: 'deldata',
+                description:
+                    'This will tell you how to delete all the data that the bot has collected about your server',
+                options: [], // No options for this command
+            },
+            {
+                name: 'quiz',
+                description: 'Some random questions',
+                options: [], // No options for this command
+            },
+            {
+                name: 'rps',
+                description: 'This command will randomly pick from Rock Paper Scissors',
+                options: [], // No options for this command
+            },
+            {
+                name: 'uptime',
+                description: "View the bot's uptime",
+                options: [], // No options for this command
+            },
+        ];
         try {
-            const commands = [
-                {
-                    name: 'bloxlinkcheck',
-                    description: 'Check if a user is verified with bloxlink',
-                    options: [
-                        {
-                            name: 'dcuserid',
-                            description: 'Their discord UserID',
-                            type: 3,
-                            required: true,
-                        },
-                    ],
-                },
-                {
-                    name: 'checklink',
-                    description: "Check a link if it's possibly malicious",
-                    options: [
-                        {
-                            name: 'link',
-                            description: 'Domain or URL allowed',
-                            type: 3,
-                            required: true,
-                        },
-                    ],
-                },
-                {
-                    name: 'code',
-                    description: "View the bot's source code",
-                },
-                {
-                    name: 'information',
-                    description: 'View information about this discord bot',
-                },
-                {
-                    name: 'deldata',
-                    description:
-                        'This will tell you how to delete all the data that the bot has collected about your server',
-                },
-                {
-                    name: 'quiz',
-                    description: 'Some random questions',
-                },
-                {
-                    name: 'rps',
-                    description: 'This command will randomly pick from Rock Paper Scissors',
-                },
-                {
-                    name: 'uptime',
-                    description: "View the bot's uptime",
-                },
-            ];
-            for (let i = 0; i < commands.length; i++) {
-                setTimeout(() => {
-                    client.api
-                        .applications(`${clientUSERID}`)
-                        .guilds(`${guild.id}`)
-                        .commands.post({ data: commands[i] })
-                        .catch(() => {});
-                }, i * 2000);
-            }
+            rest.put(Routes.applicationGuildCommands(clientUSERID, guild.id), {
+                body: commands,
+            }).catch((e) => {
+                console.log(e);
+            });
         } catch (error) {
             console.error(`Error creating slash commands: ${error}`);
         }
@@ -176,7 +186,7 @@ _MutilpleBot has been added to ${guild.name} (Server ID: ${guild.id})_
 **❓Need support?**
 Join our support server: https://discord.com/invite/GbjgmffUKj
 
-||The bot is currently on discord.js V13||`);
+||The bot is currently on discord.js V14||`);
     } catch (error) {
         console.log(`Failed to send message to server owner: ${error.message}`);
     }

@@ -20,7 +20,7 @@ module.exports = (client, oldMessage, newMessage) => {
     }
     loadDecryptedData();
     setInterval(loadDecryptedData, 10 * 1000);
-    const { Client, ClientUser, MessageEmbed, Intents } = require('discord.js');
+    const { Client, ClientUser, EmbedBuilder, GatewayIntentBits } = require('discord.js');
     client.on('messageUpdate', async (oldMessage, newMessage) => {
         if (newMessage.author.bot) return;
         if (newMessage.content === oldMessage.content) return;
