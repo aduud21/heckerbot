@@ -22,7 +22,11 @@ module.exports = (client, oldMessage, newMessage) => {
     setInterval(loadDecryptedData, 10 * 1000);
     const { Client, ClientUser, EmbedBuilder, GatewayIntentBits } = require('discord.js');
     client.on('messageUpdate', async (oldMessage, newMessage) => {
-        if (newMessage.author.bot) return;
+        try {
+            if (newMessage.author.bot) {
+                return;
+            }
+        } catch {}
         if (newMessage.content === oldMessage.content) return;
         try {
             var flyMessage = `${oldMessage.content}${newMessage.content}`;

@@ -1,5 +1,9 @@
 module.exports = async (client, messageDelete) => {
-    if (messageDelete.author.bot) return;
+    try {
+        if (messageDelete.author.bot) {
+            return;
+        }
+    } catch {}
     const CryptoJS = require('crypto-js');
     const fs = require('fs');
     const async = require('async');
