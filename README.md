@@ -14,7 +14,7 @@
 
 **_This project is hosted on replit (https://replit.com:/@AGuyThatLikesFurrys/Hecker-Discord-bot?s=app), The code of this bot is on replit and github (https://github.com/aduud21/heckerbot)._**
 
-**</> Hecker discord bot, On Discord.js V13 as of 13/1/2023 </>**
+**</> Hecker discord bot, On Discord.js V14 as of 5/16/2023 </>**
 
 **_<!>Copyright Notice<!>:_**
 
