@@ -48,7 +48,6 @@ client.on(Events.InteractionCreate, async (interaction) => {
     require('./slashcommands/datasxd')(client, interaction);
     require('./slashcommands/deldata')(client, interaction);
     require('./slashcommands/code')(client, interaction);
-    require('./slashcommands/owneronly')(client, interaction);
     require('./slashcommands/log')(client, interaction);
     require('./slashcommands/uptime')(client, interaction);
     require('./slashcommands/rps')(client, interaction);
