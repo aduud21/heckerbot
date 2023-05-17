@@ -113,7 +113,7 @@ Check the output (via console),
 then copy what it encrypted,
 Head back to secrets and replace your token with the encrypted one,
 
-Not done yet, for some slashcommands via bot.js after line 80 you must replace 947733660432490506 to your bot's userID/APPLICATION ID.
+Not done yet, for some slashcommands, go in guildEvents folder then guildCreate file and modify clientUSERID (line 2) 80 to your bot's userID/APPLICATION ID.
 
 After doing this, in events folder (ready.js) you can turn off/on start_up_message (by default it is on), if you want start up messages then:
 
