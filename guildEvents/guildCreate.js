@@ -67,8 +67,23 @@ module.exports = async (client, guild, rest, Routes) => {
             {
                 name: 'deldata',
                 description:
-                    'This will tell you how to delete all the data that the bot has collected about your server',
+                    'Clear all the data that bot has collected from your server, server command cooldown: 15 seconds',
                 options: [], // No options for this command
+                default_member_permissions: '0',
+            },
+            {
+                name: 'setmodlog',
+                description:
+                    'Set a logging channel for deleted/edited messages. Server Command cooldown: 15 seconds.',
+                options: [
+                    {
+                        name: 'channel',
+                        description: `Mention a text channel`,
+                        type: 3,
+                        required: true,
+                    },
+                ],
+                default_member_permissions: '0',
             },
             {
                 name: 'quiz',
@@ -103,9 +118,7 @@ module.exports = async (client, guild, rest, Routes) => {
         await owner.send(`
 Thanks for adding MutilpleBot!
 _MutilpleBot has been added to ${guild.name} (Server ID: ${guild.id})_
-||Please wait while discord is registering the slash commands in your server||
-❗***Run mb!help in ${guild.name} to view some of the prefix commands within this bot! (Alot of the prefix commands are now slash commands but if you don't have any slash command from the bot on your server after a while please re-invite the bot to your server)***
-
+Slash commands should have been made as soonly as you invited the bot
 **❓Need support?**
 Join our support server: https://discord.com/invite/GbjgmffUKj
 

@@ -1,5 +1,5 @@
 const start_up_message = true; // Possible values: true, false
-const { Client, ActivityType } = require('discord.js');
+const { ActivityType } = require('discord.js');
 console.log(
     '⏳ -> [LOGIN] Trying to login with provided token, if this takes longer than 5 minutes it might be cause you provided a invaild token'
 );

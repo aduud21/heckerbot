@@ -1,11 +1,5 @@
 /*
                            
- _____         _             
-|  |  |___ ___| |_ ___ ___   
-|     | -_|  _| '_| -_|  _|  
-|__|__|___|___|_,_|___|_|    
-                             
-                             
  ____  _                   _ 
 |    \|_|___ ___ ___ ___ _| |
 |  |  | |_ -|  _| . |  _| . |
@@ -46,9 +40,8 @@ client.login(decryptedToken);
 const rest = new REST({ version: '10' }).setToken(decryptedToken);
 // e
 console.log('⌛-> [LOGINDATA] Data found, program will try to use it!');
-const { keep_alive } = require('./keep_alive');
+require('./keep_alive');
 require('./utils/defines')(client);
-require('./utils/handlers/commands')(client);
 require('./utils/handlers/events')(client);
 client.on(Events.InteractionCreate, async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
@@ -56,14 +49,12 @@ client.on(Events.InteractionCreate, async (interaction) => {
     require('./slashcommands/deldata')(client, interaction);
     require('./slashcommands/code')(client, interaction);
     require('./slashcommands/owneronly')(client, interaction);
+    require('./slashcommands/log')(client, interaction);
     require('./slashcommands/uptime')(client, interaction);
     require('./slashcommands/rps')(client, interaction);
     require('./slashcommands/checklink')(client, interaction);
     require('./slashcommands/bloxlinkcheck')(client, interaction);
     require('./slashcommands/quiz')(client, interaction);
-});
-client.on('messageCreate', async (message) => {
-    require('./utils/handlers/handler')(client, message);
 });
 client.on('messageDelete', async (message) => {
     require('./messageEvents/md')(client, message);
