@@ -18,7 +18,7 @@ module.exports = async (client, interaction) => {
         setTimeout(() => {
             interactionCooldowns.delete(userId);
         }, cooldownTime); // end of col
-        await interaction.reply({ content: 'Checking...' });
+        await interaction.reply({ content: 'Checking...' }).catch(() => {});
     }
     try {
         const usersofusersxd = interaction.options._hoistedOptions[0].value.replace(/[<@>]/g, '');

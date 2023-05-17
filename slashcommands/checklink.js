@@ -32,7 +32,7 @@ module.exports = async (client, interaction) => {
         }, cooldownTime); // end of cool
     }
     if (commandName == 'checklink') {
-        await interaction.reply({ content: 'Checking...' });
+        await interaction.reply({ content: 'Checking...' }).catch(() => {});
         var datareal = `${interaction.options._hoistedOptions[0].value}`;
         const regex = /(?:[A-z0-9](?:[A-z0-9-]{0,61}[A-z0-9])?\.)+[A-z0-9][A-z0-9-]{0,61}[A-z0-9]/;
         const match = datareal.match(regex);
@@ -51,7 +51,7 @@ module.exports = async (client, interaction) => {
                 `https://safebrowsing.googleapis.com/v4/threatMatches:find?key=${API_KEY}`,
                 {
                     client: {
-                        clientId: 'discord-bot-MutilpleBot',
+                        clientId: `${client.user.username}`,
                         clientVersion: '0.0.1',
                     },
                     threatInfo: {

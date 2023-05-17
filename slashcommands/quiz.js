@@ -26,7 +26,8 @@ module.exports = async (client, interaction) => {
         }, cooldownTime); // end of col
     }
     if (commandName === 'quiz') {
-        if (commandName === 'quiz') await interaction.reply({ content: 'Loading...' });
+        if (commandName === 'quiz')
+            await interaction.reply({ content: 'Loading...' }).catch(() => {});
     }
     if (commandName === 'quiz') console.log(`Slash command ${commandName} ran`);
     const triviaQuestion = await getq();
@@ -40,5 +41,5 @@ module.exports = async (client, interaction) => {
     const decodedString = he.decode(encodedString);
     const content = `
       Random Question: ${decodedString} \n\nThink about the answer, then click this => ||${answers}|| to view the correct answer, This data is provided by [opentdb](<https://opentdb.com/>)`;
-    if (commandName === 'quiz') interaction.editReply({ content: content });
+    if (commandName === 'quiz') interaction.editReply({ content: content }).catch(() => {});
 };
