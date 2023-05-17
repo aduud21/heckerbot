@@ -66,18 +66,18 @@ client.on('messageCreate', async (message) => {
     require('./utils/handlers/handler')(client, message);
 });
 client.on('messageDelete', async (message) => {
-    require('./md')(client, message);
+    require('./messageEvents/md')(client, message);
+});
+client.on('messageUpdate', async (oldMessage, newMessage) => {
+    require('./messageEvents/ed')(client, oldMessage, newMessage);
 });
 
 // adudu21 was here, something: https://replit.com/@AGuyThatLikesFurrys/Hecker-Discord-bot
 
 client.on('guildCreate', async (guild) => {
-    require('./guildCreate')(client, guild, rest, Routes);
+    require('./guildEvents/guildCreate')(client, guild, rest, Routes);
 });
 // this is pretty helpful for space
 client.on('guildDelete', (guild) => {
-    require('./guildDelete')(client, guild);
-});
-client.on('messageUpdate', async (oldMessage, newMessage) => {
-    require('./ed')(client, oldMessage, newMessage);
+    require('./guildEvents/guildDelete')(client, guild);
 });

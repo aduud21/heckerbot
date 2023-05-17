@@ -37,6 +37,9 @@ try {
     const shell = require('shelljs');
     shell.exec('npm audit fix'); // any possible fixable vulnerabilities? if so fix them, that's what this part of the code does
     console.log('Finished checking for vulnerabilities');
+    console.log('Making code look good');
+    shell.exec('npm run format'); // incase i forget to format the code when it runs, it will do that automatically here!
+    console.log('Code look good');
     /*
 catch basically catches any error that occurs when you use it correctly, can be very helpful
 */
