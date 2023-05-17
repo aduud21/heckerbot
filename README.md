@@ -39,10 +39,6 @@ _Tiny Note: Please atleast do some modifications and make sure its not too simul
 //this does this
 ```
 
-_Prefix Commands:_
-
-You may view the prefix commands of the bot by going into the Files of this replit or saying mb!help on discord when running the bot
-
 _Slash commands:_
 
 You may view the slash commands of the bot by going into slashcommands folder
