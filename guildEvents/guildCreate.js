@@ -38,6 +38,11 @@ module.exports = async (client, guild, rest, Routes) => {
                 options: [], // No options for this command
             },
             {
+                name: 'membercount',
+                description: 'View total membercount of this server',
+                options: [], // No options for this command
+            },
+            {
                 name: 'deldata',
                 description:
                     'Clear all the data that bot has collected from your server, server command cooldown: 15 seconds',
