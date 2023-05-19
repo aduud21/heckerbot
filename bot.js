@@ -19,7 +19,7 @@
 // Dont share your bot token (its pretty much the password for it)
 console.log('⏳-> [LOGINDATA] Checking data...');
 const fs = require('fs');
-var key = process.env.DONOTSHARETHIS;
+let key = process.env.DONOTSHARETHIS;
 const CryptoJS = require('crypto-js');
 const { GatewayIntentBits, Client, Partials, REST, Routes, Events } = require('discord.js');
 const client = new Client({
@@ -54,6 +54,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
     require('./slashcommands/checklink')(client, interaction);
     require('./slashcommands/bloxlinkcheck')(client, interaction);
     require('./slashcommands/quiz')(client, interaction);
+    require('./slashcommands/membercount')(client, interaction);
 });
 client.on('messageDelete', async (message) => {
     require('./messageEvents/md')(client, message);

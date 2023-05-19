@@ -45,6 +45,11 @@ module.exports = async (client, guild, rest, Routes) => {
                 default_member_permissions: '0',
             },
             {
+                name: 'membercount',
+                description: 'View total membercount of this server',
+                options: [], // No options for this command
+            },
+            {
                 name: 'setmodlog',
                 description:
                     'Set a logging channel for deleted/edited messages. Server Command cooldown: 15 seconds.',

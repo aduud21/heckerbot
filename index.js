@@ -30,7 +30,7 @@ https://github.com/aduud21/heckerbot#how-to-run-the-bot-on-replit
 // AUTO UPDATE/REMOVE VULNERABILITIES
 // yea
 const { get } = require('https');
-var key = process.env.DONOTSHARETHIS;
+let key = process.env.DONOTSHARETHIS;
 const CryptoJS = require('crypto-js');
 try {
     console.log(`Node version: ${process.version}`);
