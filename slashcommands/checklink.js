@@ -31,6 +31,7 @@ module.exports = async (client, interaction) => {
             interactionCooldowns.delete(userId);
         }, cooldownTime); // end of cool
     }
+    if (commandName == 'checklink') console.log(`Slash command ${commandName} ran`);
     if (commandName == 'checklink') {
         await interaction.reply({ content: 'Checking...' }).catch(() => {});
         var datareal = `${interaction.options._hoistedOptions[0].value}`;
