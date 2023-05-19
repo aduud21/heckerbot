@@ -1,4 +1,4 @@
-The bot is updating to a new host provider! Please wait while im doing this, 5/18/2023
+# im updating the bot host provider so please wait, 5/18/2023.
 
 # if you plan on watching this repo, i suggest you put Releases only
 
@@ -14,7 +14,7 @@ The bot is updating to a new host provider! Please wait while im doing this, 5/1
 [![Discord Support Server](https://img.shields.io/badge/Discord_Support_Server-black?logo=discord)](https://discord.gg/YSEB7PnHVV)
 [![CodeFactor](https://www.codefactor.io/repository/github/aduud21/heckerbot/badge)](https://www.codefactor.io/repository/github/aduud21/heckerbot)
 
-**_This project is hosted on replit (https://replit.com:/@AGuyThatLikesFurrys/Hecker-Discord-bot?s=app), The code of this bot is on replit and github (https://github.com/aduud21/heckerbot)._**
+**_This project is hosted on solarhosting (https://solarhosting.cc/)_**
 
 **</> MutilpleBot, On Discord.js V14 as of 5/16/2023 </>**
 
@@ -51,15 +51,13 @@ _Notes:_
 2. if you want to join the support server: https://discord.gg/GbjgmffUKj
 
 \***_Creator:
-https://youtube.com/c/adudu21 or adudu21 (on roblox and some other places too), on replit i am AGuyThatLikesFurrys (my username on replit is a joke), My discord UserID is 710227418492960778_**
+https://youtube.com/c/adudu21 or adudu21 (on roblox and some other places too), on replit i am AGuyThatLikesFurrys (my username on replit is a joke), My discord UserID is 710227418492960778_***
 
 # Installation
 
-This bot runs on node.js. You will need at least node 17.
+This bot runs on node.js 18. You will need at least node 17.
 
 Make sure your bot has Message Content Intent enabled else you'll get a error.
-
-This bot runs on replit (hosted there) so you could run it there if you wish.
 
 NOTE: IF THERES A ERROR IN YOUR CODE OR SUCH, PLEASE REVIEW YOURSELF AND IF YOU SEE ANY throw new error PAY ATTENTION TO THAT AND SEE THE REASON, MOST COMMON ERROR AS OF 2023/3/5:
 
@@ -85,6 +83,12 @@ npm install
 Create a secret named TOKEN and value as the token of your bot.
 
 Create a secret named DONOTSHARETHIS and the value should be something long (should be more than 126-256 characters, 16 is minimum), this will be used for encrypting the token and decrypting too and as well encrypting the modlogs (channel ID/Server ID).
+
+Before you proceed, please go to line 34 and 35 in index.js and put // at the start of the line, once you do and finish the additional security step, remove the // that you added in line 34 and 35, ex:
+```js
+//let key = process.env.DONOTSHARETHIS;
+//const CryptoJS = require('crypto-js');
+```
 
 For additional security, this bot encrypts the token and decrypts the token when needed so for that:
 In index.js add the following code to the top (line 1):
