@@ -51,7 +51,7 @@ module.exports = async (client, interaction) => {
                 `https://safebrowsing.googleapis.com/v4/threatMatches:find?key=${API_KEY}`,
                 {
                     client: {
-                        clientId: `${client.user.username}`,
+                        clientId: `Discord ${client.user.username}`,
                         clientVersion: '0.0.1',
                     },
                     threatInfo: {
@@ -78,7 +78,7 @@ module.exports = async (client, interaction) => {
                     )
                     .catch(() => {});
             } else {
-                const uAgent = `${client.user.username}`;
+                const uAgent = `Discord ${client.user.username}`;
                 axios
                     .post(
                         'https://anti-fish.bitflow.dev/check',
