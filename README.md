@@ -72,15 +72,15 @@ Error: key must be at least 16 characters long
 
 ## How to run the bot on replit
 
-First of all run npm install
+You'll need your bot token.
+
+[![Import this project to replit](https://replit.com/badge?caption=Import%20this%20project%20to%20Replit)](https://replit.com/github/aduud21/heckerbot) or download the latest github [![GitHub release](https://img.shields.io/github/release/aduud21/heckerbot?include_prereleases=&sort=semver)](https://github.com/aduud21/heckerbot/releases/).
+
+Make sure to run
 
 ```js
 npm install
 ```
-
-You'll need your bot token.
-
-[![Import this project to replit](https://replit.com/badge?caption=Import%20this%20project%20to%20Replit)](https://replit.com/github/aduud21/heckerbot) or download the latest github [![GitHub release](https://img.shields.io/github/release/aduud21/heckerbot?include_prereleases=&sort=semver)](https://github.com/aduud21/heckerbot/releases/).
 
 Create a secret named TOKEN and value as the token of your bot.
 
