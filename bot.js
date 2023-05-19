@@ -18,7 +18,6 @@
 // Do not delete the client.login since its required for the bot to work, Make sure to read 'README.md'
 // Dont share your bot token (its pretty much the password for it)
 console.log('⏳-> [LOGINDATA] Checking data...');
-const fs = require('fs');
 let key = process.env.DONOTSHARETHIS;
 const CryptoJS = require('crypto-js');
 const { GatewayIntentBits, Client, Partials, REST, Routes, Events } = require('discord.js');
