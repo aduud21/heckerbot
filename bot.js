@@ -41,7 +41,6 @@ client.login(decryptedToken);
 const rest = new REST({ version: '10' }).setToken(decryptedToken);
 // e
 console.log('⌛-> [LOGINDATA] Data found, program will try to use it!');
-require('./keep_alive');
 require('./utils/defines')(client);
 require('./utils/handlers/events')(client);
 client.on(Events.InteractionCreate, async (interaction) => {
@@ -55,6 +54,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
     require('./slashcommands/checklink')(client, interaction);
     require('./slashcommands/bloxlinkcheck')(client, interaction);
     require('./slashcommands/quiz')(client, interaction);
+    require('./slashcommands/membercount')(client, interaction);
 });
 client.on('messageDelete', async (message) => {
     require('./messageEvents/md')(client, message);
