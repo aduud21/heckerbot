@@ -1,4 +1,3 @@
-require('dotenv').config({ path: './config/TOKENORAPIKEYS.env' });
 module.exports = async (client, guild) => {
     const CryptoJS = require('crypto-js');
     var key = process.env.DONOTSHARETHIS;

@@ -1,5 +1,3 @@
-# Please wait, i have done a switch which i have to revert
-
 [![Made with Replit Badge](https://replit.com/badge?caption=Made%20with%20Replit)](https://replit.com/github/aduud21/heckerbot)
 
 # if you plan on watching this repo, i suggest you put Releases only

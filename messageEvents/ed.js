@@ -1,4 +1,3 @@
-require('dotenv').config({ path: './config/TOKENORAPIKEYS.env' });
 module.exports = (client, oldMessage, newMessage) => {
     const CryptoJS = require('crypto-js');
     const fs = require('fs');

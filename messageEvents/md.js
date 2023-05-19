@@ -1,4 +1,3 @@
-require('dotenv').config({ path: './config/TOKENORAPIKEYS.env' });
 module.exports = async (client, messageDelete) => {
     try {
         if (messageDelete.author.bot) {
