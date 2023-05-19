@@ -134,7 +134,7 @@ For checklink slash command, you must create a secret named api and the value of
 7. Click "APIs & Services" in the navigation menu
 8. Click "Library"
 9. Search "safe browsing api"
-10. Click safe browsing (Not the legacy"
+10. Click safe browsing (Not the legacy)
 11. Click "Enable"
 12. Click "Create credentials"
 13. Make sure it is safe browsing api and set What data will you be accessing? to Public data
