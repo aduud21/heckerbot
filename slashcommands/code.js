@@ -24,7 +24,7 @@ module.exports = async (client, interaction) => {
             interaction
                 .reply(
                     `
-Source code on github: https://github.com/aduud21/heckerbot,                     
+Source code on github: https://github.com/aduud21/heckerbot                     
 `
                 )
                 .catch(() => {});
