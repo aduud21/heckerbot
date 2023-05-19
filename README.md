@@ -2,7 +2,7 @@
 
 # if you plan on watching this repo, i suggest you put Releases only
 
-## As of 5/4/2023, i needed to rename the bot to MutilpleBot so i can try to verify the discord bot!
+## As of 5/4/2023, i needed to rename the bot to MutilpleBot so i can try to verify the discord bot, Orignal name is Hecker!
 
 [Website for this discord bot](https://hecker-discord-bot-website.aguythatlikesfurrys.repl.co)
 
@@ -16,7 +16,7 @@
 
 **_This project is hosted on replit (https://replit.com:/@AGuyThatLikesFurrys/Hecker-Discord-bot?s=app), The code of this bot is on replit and github (https://github.com/aduud21/heckerbot)._**
 
-**</> Hecker discord bot, On Discord.js V14 as of 5/16/2023 </>**
+**</> MutilpleBot, On Discord.js V14 as of 5/16/2023 </>**
 
 **_<!>Copyright Notice<!>:_**
 
@@ -55,7 +55,7 @@ https://youtube.com/c/adudu21 or adudu21 (on roblox and some other places too), 
 
 # Installation
 
-This bot runs on node.js. You will need at least node 16.
+This bot runs on node.js. You will need at least node 17.
 
 Make sure your bot has Message Content Intent enabled else you'll get a error.
 
@@ -72,17 +72,15 @@ Error: key must be at least 16 characters long
 
 ## How to run the bot on replit
 
-First of all install node@17 if you don't got it (the bot currently runs on node@17.9.1), Run
+First of all run npm install
 
+```js
+npm install
 ```
-npm install node@17
-```
-
-in shell.
 
 You'll need your bot token.
 
-Export this project to replit (download latest version and put the code in your replit) OR fork https://replit.com:/@AGuyThatLikesFurrys/Hecker-Discord-bot?s=app directly in replit (Note: this way may break sometimes) .
+[![Import this project to replit](https://replit.com/badge?caption=Import%20this%20project%20to%20Replit)](https://replit.com/github/aduud21/heckerbot) or download the latest github [![GitHub release](https://img.shields.io/github/release/aduud21/heckerbot?include_prereleases=&sort=semver)](https://github.com/aduud21/heckerbot/releases/).
 
 Create a secret named TOKEN and value as the token of your bot.
 
@@ -115,7 +113,7 @@ Check the output (via console),
 then copy what it encrypted,
 Head back to secrets and replace your token with the encrypted one,
 
-Not done yet, for some slashcommands, go in guildEvents folder then guildCreate file and modify clientUSERID (line 2) 80 to your bot's userID/APPLICATION ID.
+Not done yet, for some slashcommands, go in guildEvents folder then guildCreate file and modify clientUSERID (line 2) to your bot's userID/APPLICATION ID.
 
 After doing this, in events folder (ready.js) you can turn off/on start_up_message (by default it is on), if you want start up messages then:
 
