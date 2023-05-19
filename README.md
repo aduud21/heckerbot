@@ -1,4 +1,4 @@
-[![Made with Replit Badge](https://replit.com/badge?caption=Made%20with%20Replit)](https://replit.com/github/aduud21/heckerbot)
+The bot is updating to a new host provider! Please wait while im doing this, 5/18/2023
 
 # if you plan on watching this repo, i suggest you put Releases only
 
