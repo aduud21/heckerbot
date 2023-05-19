@@ -1,4 +1,3 @@
-require('dotenv').config({ path: './config/TOKENORAPIKEYS.env' });
 // Some mega important code for the bot or some useless json files are hidden, if you wish to see them Click Files then the three dots at the top then "Show Hidden Files"
 // I ALSO RECOMMEND ENCRYPTING THE TOKEN FOR A BIT MORE SECURITY
 /*
@@ -31,7 +30,7 @@ https://github.com/aduud21/heckerbot#how-to-run-the-bot-on-replit
 // AUTO UPDATE/REMOVE VULNERABILITIES
 // yea
 const { get } = require('https');
-let key = process.env.DONOTSHARETHIS;
+var key = process.env.DONOTSHARETHIS;
 const CryptoJS = require('crypto-js');
 try {
     console.log(`Node version: ${process.version}`);
@@ -58,7 +57,7 @@ get(`https://discord.com/api/v10/gateway`, ({ statusCode }) => {
 // TOKEN CHECK
 if (!process.env.TOKEN) {
     console.log(
-        'NO TOKEN FOUND, USE REPLIT SECRETS OR ENV FOR THIS TO WORK AND IF YOU DONT USE REPLIT SECRETS AND HAVE THIS PROJECT ON REPLIT ITS A MASSIVE SECURITY PROBLEM FOR YOUR BOT'
+        'NO TOKEN FOUND, USE REPLIT SECRETS FOR THIS TO WORK AND IF YOU DONT USE REPLIT SECRETS AND HAVE THIS PROJECT ON REPLIT ITS A MASSIVE SECURITY PROBLEM FOR YOUR BOT'
     );
     return;
 }
@@ -78,7 +77,7 @@ const encryptedToken = process.env.TOKEN;
 const decryptedBytes = CryptoJS.AES.decrypt(encryptedToken, key);
 const decryptedToken = decryptedBytes.toString(CryptoJS.enc.Utf8);
 const manager = new ShardingManager('./bot.js', { token: decryptedToken }); /*
-For public websites such as replit, use secrets/ENV to secure your bot token
+For public websites such as replit, use secrets/ENV to secure youe bot token
 */
 
 manager.on('shardCreate', (shard) =>
