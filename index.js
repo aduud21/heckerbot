@@ -33,6 +33,7 @@ const { get } = require('https');
 var key = process.env.DONOTSHARETHIS;
 const CryptoJS = require('crypto-js');
 try {
+  console.log(`Node version: ${process.version}`)
     console.log('Checking for vulnerabilities');
     const shell = require('shelljs');
     shell.exec('npm audit fix'); // any possible fixable vulnerabilities? if so fix them, that's what this part of the code does
