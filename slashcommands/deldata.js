@@ -30,7 +30,7 @@ module.exports = async (client, interaction) => {
         setTimeout(() => {
             interactionServerCooldownsPreventRL.delete(serverId);
         }, cooldownTimeRL); // end of col
-        const cooldownTime = 60000;
+        const cooldownTime = 15000;
         interactionServerCooldowns.set(serverId, Date.now() + cooldownTime);
         setTimeout(() => {
             interactionServerCooldowns.delete(serverId);
