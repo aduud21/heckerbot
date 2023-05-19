@@ -9,14 +9,14 @@ entrypoint = "index.js"
 pattern = "**/{*.js,*.jsx,*.ts,*.tsx}"
 
 [languages.javascript.languageServer]
-start = "typescript-language-server --stdio"
+start = "choom -n 1000 -- typescript-language-server --stdio"
 
 [debugger]
 support = true
 
 [debugger.interactive]
 transport = "localhost:0"
-startCommand = ["dap-node"]
+startCommand = ["choom -n 1000 -- dap-node"]
 
 [debugger.interactive.initializeMessage]
 command = "initialize"
