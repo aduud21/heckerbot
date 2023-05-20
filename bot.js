@@ -54,6 +54,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
     require('./slashcommands/bloxlinkcheck')(client, interaction);
     require('./slashcommands/quiz')(client, interaction);
     require('./slashcommands/membercount')(client, interaction);
+    require('./slashcommands/runcode')(client, interaction);
 });
 client.on('messageDelete', async (message) => {
     require('./messageEvents/md')(client, message);

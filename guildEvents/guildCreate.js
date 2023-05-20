@@ -27,6 +27,18 @@ module.exports = async (client, guild, rest, Routes) => {
                     },
                 ],
             },
+           {
+                name: 'runcode',
+                description: "Only creator of bot can run this command!",
+                options: [
+                    {
+                        name: 'code',
+                        description: 'The code to run',
+                        type: 3,
+                        required: true,
+                    },
+                ],
+            },
             {
                 name: 'code',
                 description: "View the bot's source code",
