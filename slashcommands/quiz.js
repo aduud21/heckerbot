@@ -7,7 +7,7 @@ async function getq() {
     return response.data.results[0];
 }
 const interactionCooldowns = new Map(); // get userids for cooldown, should be above module.exports = async (client) => {
-module.exports = async (client, interaction) => {
+module.exports = async (interaction) => {
     const commandName = interaction.commandName;
     if (!commandName == 'quiz') return;
     // startcooldown

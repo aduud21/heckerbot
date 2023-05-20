@@ -44,17 +44,17 @@ require('./utils/defines')(client);
 require('./utils/handlers/events')(client);
 client.on(Events.InteractionCreate, async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
-    require('./slashcommands/datasxd')(client, interaction);
+    require('./slashcommands/datasxd')(interaction);
     require('./slashcommands/deldata')(client, interaction);
-    require('./slashcommands/code')(client, interaction);
+    require('./slashcommands/code')(interaction);
     require('./slashcommands/log')(client, interaction);
     require('./slashcommands/uptime')(client, interaction);
-    require('./slashcommands/rps')(client, interaction);
+    require('./slashcommands/rps')(interaction);
     require('./slashcommands/checklink')(client, interaction);
-    require('./slashcommands/bloxlinkcheck')(client, interaction);
-    require('./slashcommands/quiz')(client, interaction);
-    require('./slashcommands/membercount')(client, interaction);
-    require('./slashcommands/runcode')(client, interaction);
+    require('./slashcommands/bloxlinkcheck')(interaction);
+    require('./slashcommands/quiz')(interaction);
+    require('./slashcommands/membercount')(interaction);
+    require('./slashcommands/runcode')(interaction);
 });
 client.on('messageDelete', async (message) => {
     require('./messageEvents/md')(client, message);

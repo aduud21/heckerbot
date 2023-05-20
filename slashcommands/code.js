@@ -1,6 +1,5 @@
-const { Client } = require('discord.js');
 const interactionCooldowns = new Map(); // get userids for cooldown, should be above module.exports = async (client) => {
-module.exports = async (client, interaction) => {
+module.exports = async (interaction) => {
     const commandName = interaction.commandName;
     if (!commandName == 'code') return;
     // startcooldown

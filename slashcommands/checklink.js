@@ -1,7 +1,5 @@
-const { Client } = require('discord.js');
 const axios = require('axios');
 const API_KEY = process.env.api;
-
 const rankThreatLevel = (threatTypes) => {
     if (threatTypes.length === 0) {
         return 'This message is not supposed to be here lol';
