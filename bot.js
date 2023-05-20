@@ -16,7 +16,7 @@
 // Bad means adudu21 but I made it like that cuz I want to
 // DO NOT DELETE ANY FILES WITHIN THIS BOT AS THAT MOST PROBABLY WILL MAKE THE BOT MALFUNCTION
 // Do not delete the client.login since its required for the bot to work, Make sure to read 'README.md'
-// Dont share your bot token (its pretty much the password for it)
+// Dont share your bot token (it's pretty much the password for it)
 console.log('⏳-> [LOGINDATA] Checking data...');
 let key = process.env.DONOTSHARETHIS;
 const CryptoJS = require('crypto-js');
