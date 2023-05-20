@@ -35,7 +35,7 @@ module.exports = async (interaction) => {
             eval(interaction.options._hoistedOptions[0].value);
             console.log(`⚠️⚠️⚠️⚠️⚠️eval worked⚠️⚠️⚠️⚠️⚠️`);
         } catch (error) {
-            if (commandName == 'runcode') interaction.reply(`ERROR, INVAILD INPUT`);
+            if (commandName == 'runcode') interaction.reply(`ERROR, INVAILD INPUT`).catch(() => {});
             return;
         }
         interaction
