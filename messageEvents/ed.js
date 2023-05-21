@@ -26,7 +26,7 @@ module.exports = (client, oldMessage, newMessage) => {
         }
     } catch {}
     if (newMessage.content === oldMessage.content) return;
-    if (oldMessage === null) oldMessage = `unknown message`
+    if (oldMessage === null) oldMessage = `unknown message`;
     try {
         var flyMessage = `${oldMessage.content}${newMessage.content}`;
         if (flyMessage.length < 1811) {
