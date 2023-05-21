@@ -5,7 +5,14 @@ const fs = require('fs');
 const async = require('async');
 const key = process.env.DONOTSHARETHIS;
 let decryptedData;
-
+const queue = async.queue(async (task) => {
+    const { messageDelete, modLogsID, EmbedBuilder } = task;
+    try {
+        await messageDelete.guild.channels.cache.get(modLogsID).send({ embeds: [EmbedBuilder] });
+    } catch (error) {
+        console.log(error);
+    }
+}, 1);
 function loadDecryptedData() {
     const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8');
     const bytes = CryptoJS.AES.decrypt(ciphertext, key);
@@ -14,17 +21,8 @@ function loadDecryptedData() {
 
 loadDecryptedData();
 setInterval(loadDecryptedData, 10 * 1000);
-module.exports = (client, messageDelete) => {
-    const queue = async.queue(async (task) => {
-        const { messageDelete, modLogsID, EmbedBuilder } = task;
-        try {
-            await messageDelete.guild.channels.cache
-                .get(modLogsID)
-                .send({ embeds: [EmbedBuilder] });
-        } catch (error) {
-            console.log(error);
-        }
-    }, 1);
+module.exports = (messageDelete) => {
+    if (messageDelete.channel.type === 'dm') return;
 
     try {
         if (messageDelete.author.bot) {
@@ -34,7 +32,6 @@ module.exports = (client, messageDelete) => {
 
     try {
         if (messageDelete.content.length < 3811) {
-            if (messageDelete.channel.type === 'dm') return;
             if (!decryptedData[messageDelete.guild.id]) return;
             let modLogsID = decryptedData[messageDelete.guild.id].channel;
             queue.push({
@@ -48,7 +45,6 @@ Message deleted in <#${messageDelete.channel.id}>
 Message ID: ${messageDelete.id}`),
             });
         } else {
-            if (messageDelete.channel.type === 'dm') return;
             if (!decryptedData[messageDelete.guild.id]) return;
             let modLogsID = decryptedData[messageDelete.guild.id].channel;
             queue.push({

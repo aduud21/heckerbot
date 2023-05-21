@@ -5,7 +5,14 @@ const fs = require('fs');
 const async = require('async');
 const key = process.env.DONOTSHARETHIS;
 let decryptedData;
-
+const queue = async.queue(async (task) => {
+    const { newMessage, modLogsID, EmbedBuilder } = task;
+    try {
+        await newMessage.guild.channels.cache.get(modLogsID).send({ embeds: [EmbedBuilder] });
+    } catch (error) {
+        console.log(error);
+    }
+}, 1);
 function loadDecryptedData() {
     const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8');
     const bytes = CryptoJS.AES.decrypt(ciphertext, key);
@@ -14,15 +21,8 @@ function loadDecryptedData() {
 
 loadDecryptedData();
 setInterval(loadDecryptedData, 10 * 1000);
-module.exports = (client, oldMessage, newMessage) => {
-    const queue = async.queue(async (task) => {
-        const { newMessage, modLogsID, EmbedBuilder } = task;
-        try {
-            await newMessage.guild.channels.cache.get(modLogsID).send({ embeds: [EmbedBuilder] });
-        } catch (error) {
-            console.log(error);
-        }
-    }, 1);
+module.exports = (oldMessage, newMessage) => {
+    if (newMessage.content === oldMessage.content) return;
 
     try {
         if (newMessage.author.bot) {
@@ -30,7 +30,6 @@ module.exports = (client, oldMessage, newMessage) => {
         }
     } catch {}
 
-    if (newMessage.content === oldMessage.content) return;
     if (oldMessage === null) oldMessage = `unknown message`;
 
     try {
@@ -53,7 +52,6 @@ After:
 Message ID: ${newMessage.id}`),
             });
         } else {
-            if (newMessage.channel.type === 'dm') return;
             if (!decryptedData[newMessage.guild.id]) return;
             let modLogsID = decryptedData[newMessage.guild.id].channel;
             queue.push({

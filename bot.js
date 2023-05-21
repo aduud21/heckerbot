@@ -57,10 +57,10 @@ client.on(Events.InteractionCreate, async (interaction) => {
     require('./slashcommands/runcode')(interaction);
 });
 client.on('messageDelete', async (message) => {
-    require('./messageEvents/md')(client, message);
+    require('./messageEvents/md')(message);
 });
 client.on('messageUpdate', async (oldMessage, newMessage) => {
-    require('./messageEvents/ed')(client, oldMessage, newMessage);
+    require('./messageEvents/ed')(oldMessage, newMessage);
 });
 
 // adudu21 was here, something: https://replit.com/@AGuyThatLikesFurrys/Hecker-Discord-bot
