@@ -1,45 +1,53 @@
-module.exports = async (client, messageDelete) => {
-    try {
-        if (messageDelete.author.bot) {
-            return;
-        }
-    } catch {}
+const { EmbedBuilder } = require('discord.js');
+const { main } = require('../config/colors.json');
+
+module.exports = (client, messageDelete) => {
     const CryptoJS = require('crypto-js');
     const fs = require('fs');
     const async = require('async');
     const key = process.env.DONOTSHARETHIS;
     const queue = async.queue(async (task) => {
-        const { messageDelete, modLogsID, content } = task;
+        const { messageDelete, modLogsID, EmbedBuilder } = task;
         try {
-            await messageDelete.guild.channels.cache.get(modLogsID).send(content);
+            await messageDelete.guild.channels.cache
+                .get(modLogsID)
+                .send({ embeds: [EmbedBuilder] });
         } catch (error) {
             console.log(error);
         }
     }, 1);
+
     let decryptedData;
+
     function loadDecryptedData() {
         const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8');
         const bytes = CryptoJS.AES.decrypt(ciphertext, key);
-        decryptedData = {};
         decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
     }
+
     loadDecryptedData();
     setInterval(loadDecryptedData, 10 * 1000);
+
     try {
-        if (messageDelete.content.length < 1828) {
+        if (messageDelete.author.bot) {
+            return;
+        }
+    } catch {}
+
+    try {
+        if (messageDelete.content.length < 3811) {
             if (messageDelete.channel.type === 'dm') return;
             if (!decryptedData[messageDelete.guild.id]) return;
             let modLogsID = decryptedData[messageDelete.guild.id].channel;
             queue.push({
                 messageDelete,
                 modLogsID,
-                content: `****Message log****
-
-Message sent by <@!${messageDelete.author.id}>
+                EmbedBuilder: new EmbedBuilder().setColor(main).setTitle('****Message log****')
+                    .setDescription(`
+Message by <@!${messageDelete.author.id}>
 Message deleted in <#${messageDelete.channel.id}> 
-Message: 
 ||${messageDelete.content}||
-Message ID: ${messageDelete.id}`,
+Message ID: ${messageDelete.id}`),
             });
         } else {
             if (messageDelete.channel.type === 'dm') return;
@@ -48,12 +56,12 @@ Message ID: ${messageDelete.id}`,
             queue.push({
                 messageDelete,
                 modLogsID,
-                content: `****Message log****
-
-Message sent by <@${messageDelete.author.id}>,
+                EmbedBuilder: new EmbedBuilder().setColor(main).setTitle('****Message log****')
+                    .setDescription(`
+Message by <@${messageDelete.author.id}>
 Message deleted in <#${messageDelete.channel.id}> 
-Message: <Message is too long to show>
-Message ID: ${messageDelete.id}`,
+<Message is too long to show>
+Message ID: ${messageDelete.id}`),
             });
         }
     } catch (error) {
