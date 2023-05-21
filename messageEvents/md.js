@@ -1,7 +1,7 @@
 const { EmbedBuilder } = require('discord.js');
 const { main } = require('../config/colors.json');
 
-module.exports = (client, messageDelete) => {
+module.exports = (messageDelete) => {
     const CryptoJS = require('crypto-js');
     const fs = require('fs');
     const async = require('async');
@@ -45,7 +45,8 @@ module.exports = (client, messageDelete) => {
                 EmbedBuilder: new EmbedBuilder().setColor(main).setTitle('****Message log****')
                     .setDescription(`
 Message by <@!${messageDelete.author.id}>
-Message deleted in <#${messageDelete.channel.id}> 
+Message deleted in <#${messageDelete.channel.id}>
+Message:
 ||${messageDelete.content}||
 Message ID: ${messageDelete.id}`),
             });

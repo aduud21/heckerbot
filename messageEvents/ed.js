@@ -1,7 +1,7 @@
 const { EmbedBuilder } = require('discord.js');
 const { main } = require('../config/colors.json');
 
-module.exports = (client, oldMessage, newMessage) => {
+module.exports = (oldMessage, newMessage) => {
     const CryptoJS = require('crypto-js');
     const fs = require('fs');
     const async = require('async');
