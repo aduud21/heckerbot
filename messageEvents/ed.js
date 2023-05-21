@@ -14,16 +14,15 @@ function loadDecryptedData() {
 
 loadDecryptedData();
 setInterval(loadDecryptedData, 10 * 1000);
-const queue = async.queue(async (task) => {
-    const { newMessage, modLogsID, embeds } = task;
-    try {
-        await newMessage.guild.channels.cache.get(modLogsID).send({ embeds: [embeds] });
-    } catch (error) {
-        console.log(error);
-    }
-}, 1);
-module.exports = (oldMessage, newMessage) => {
-    if (newMessage.channel.type === 'dm') return;
+module.exports = (client, oldMessage, newMessage) => {
+    const queue = async.queue(async (task) => {
+        const { newMessage, modLogsID, EmbedBuilder } = task;
+        try {
+            await newMessage.guild.channels.cache.get(modLogsID).send({ embeds: [EmbedBuilder] });
+        } catch (error) {
+            console.log(error);
+        }
+    }, 1);
 
     try {
         if (newMessage.author.bot) {
@@ -37,12 +36,13 @@ module.exports = (oldMessage, newMessage) => {
     try {
         let flyMessage = `${oldMessage.content}${newMessage.content}`;
         if (flyMessage.length < 3811) {
+            if (newMessage.channel.type === 'dm') return;
             if (!decryptedData[newMessage.guild.id]) return;
             let modLogsID = decryptedData[newMessage.guild.id].channel;
             queue.push({
                 newMessage,
                 modLogsID,
-                embeds: new EmbedBuilder().setColor(main).setTitle('****Message log****')
+                EmbedBuilder: new EmbedBuilder().setColor(main).setTitle('****Message log****')
                     .setDescription(`
 Message by <@!${newMessage.author.id}>
 Message edited in <#${newMessage.channel.id}> 
@@ -53,12 +53,13 @@ After:
 Message ID: ${newMessage.id}`),
             });
         } else {
+            if (newMessage.channel.type === 'dm') return;
             if (!decryptedData[newMessage.guild.id]) return;
             let modLogsID = decryptedData[newMessage.guild.id].channel;
             queue.push({
                 newMessage,
                 modLogsID,
-                embeds: new EmbedBuilder().setColor(main).setTitle('****Message log****')
+                EmbedBuilder: new EmbedBuilder().setColor(main).setTitle('****Message log****')
                     .setDescription(`
 Message by <@${newMessage.author.id}>
 Message edited in <#${newMessage.channel.id}> 

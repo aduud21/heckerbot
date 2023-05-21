@@ -1,10 +1,11 @@
+const { EmbedBuilder } = require('discord.js');
+const { main } = require('../config/colors.json');
 const CryptoJS = require('crypto-js');
 const fs = require('fs');
 const async = require('async');
 const key = process.env.DONOTSHARETHIS;
-const { EmbedBuilder } = require('discord.js');
-const { main } = require('../config/colors.json');
 let decryptedData;
+
 function loadDecryptedData() {
     const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8');
     const bytes = CryptoJS.AES.decrypt(ciphertext, key);
@@ -13,16 +14,17 @@ function loadDecryptedData() {
 
 loadDecryptedData();
 setInterval(loadDecryptedData, 10 * 1000);
-const queue = async.queue(async (task) => {
-    const { messageDelete, modLogsID, embeds } = task;
-    try {
-        await messageDelete.guild.channels.cache.get(modLogsID).send({ embeds: [embeds] });
-    } catch (error) {
-        console.log(error);
-    }
-}, 1);
-module.exports = (messageDelete) => {
-    if (messageDelete.channel.type === 'dm') return;
+module.exports = (client, messageDelete) => {
+    const queue = async.queue(async (task) => {
+        const { messageDelete, modLogsID, EmbedBuilder } = task;
+        try {
+            await messageDelete.guild.channels.cache
+                .get(modLogsID)
+                .send({ embeds: [EmbedBuilder] });
+        } catch (error) {
+            console.log(error);
+        }
+    }, 1);
 
     try {
         if (messageDelete.author.bot) {
@@ -32,26 +34,27 @@ module.exports = (messageDelete) => {
 
     try {
         if (messageDelete.content.length < 3811) {
+            if (messageDelete.channel.type === 'dm') return;
             if (!decryptedData[messageDelete.guild.id]) return;
             let modLogsID = decryptedData[messageDelete.guild.id].channel;
             queue.push({
                 messageDelete,
                 modLogsID,
-                embeds: new EmbedBuilder().setColor(main).setTitle('****Message log****')
+                EmbedBuilder: new EmbedBuilder().setColor(main).setTitle('****Message log****')
                     .setDescription(`
 Message by <@!${messageDelete.author.id}>
-Message deleted in <#${messageDelete.channel.id}>
-Message:
+Message deleted in <#${messageDelete.channel.id}> 
 ||${messageDelete.content}||
 Message ID: ${messageDelete.id}`),
             });
         } else {
+            if (messageDelete.channel.type === 'dm') return;
             if (!decryptedData[messageDelete.guild.id]) return;
             let modLogsID = decryptedData[messageDelete.guild.id].channel;
             queue.push({
                 messageDelete,
                 modLogsID,
-                embeds: new EmbedBuilder().setColor(main).setTitle('****Message log****')
+                EmbedBuilder: new EmbedBuilder().setColor(main).setTitle('****Message log****')
                     .setDescription(`
 Message by <@${messageDelete.author.id}>
 Message deleted in <#${messageDelete.channel.id}> 
