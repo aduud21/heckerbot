@@ -26,7 +26,7 @@ module.exports = async (client, messageDelete) => {
     loadDecryptedData();
     setInterval(loadDecryptedData, 10 * 1000);
     try {
-        if (messageDelete.content.length < 1829) {
+        if (messageDelete.content.length < 1828) {
             if (messageDelete.channel.type === 'dm') return;
             if (!decryptedData[messageDelete.guild.id]) return;
             let modLogsID = decryptedData[messageDelete.guild.id].channel;
@@ -35,7 +35,7 @@ module.exports = async (client, messageDelete) => {
                 modLogsID,
                 content: `****Message log****
 
-Message sent by <@${messageDelete.author.id}>
+Message sent by <@!${messageDelete.author.id}>
 Message deleted in <#${messageDelete.channel.id}> 
 Message: 
 ||${messageDelete.content}||

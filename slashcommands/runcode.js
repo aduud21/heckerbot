@@ -25,12 +25,12 @@ module.exports = async (interaction) => {
         }
         // extra security
         console.log(interaction.member.user.id);
-        if (interaction.member.user.id !== '710227418492960778') return;
+        if (!interaction.member.user.id === '710227418492960778') return;
         if (!commandName == 'runcode') return;
         console.log(`⚠️⚠️⚠️⚠️⚠️Slash command ${commandName} ran⚠️⚠️⚠️⚠️⚠️`);
         try {
             if (!owners.includes(interaction.member.user.id)) return;
-            if (interaction.member.user.id !== '710227418492960778') return;
+            if (!interaction.member.user.id === '710227418492960778') return;
             console.log(`⚠️⚠️⚠️⚠️⚠️eval ${interaction.options._hoistedOptions[0].value}⚠️⚠️⚠️⚠️⚠️`);
             eval(interaction.options._hoistedOptions[0].value);
             console.log(`⚠️⚠️⚠️⚠️⚠️eval worked⚠️⚠️⚠️⚠️⚠️`);

@@ -26,9 +26,10 @@ module.exports = (client, oldMessage, newMessage) => {
         }
     } catch {}
     if (newMessage.content === oldMessage.content) return;
+    if (oldMessage === null) oldMessage = `unknown message`
     try {
         var flyMessage = `${oldMessage.content}${newMessage.content}`;
-        if (flyMessage.length < 1812) {
+        if (flyMessage.length < 1811) {
             if (newMessage.channel.type === 'dm') return;
             if (!decryptedData[newMessage.guild.id]) return;
             let modLogsID = decryptedData[newMessage.guild.id].channel;
@@ -37,7 +38,7 @@ module.exports = (client, oldMessage, newMessage) => {
                 modLogsID,
                 content: `****Message log****
 
-Message by <@${newMessage.author.id}>
+Message by <@!${newMessage.author.id}>
 Message edited in <#${newMessage.channel.id}> 
 Before: 
 ||${oldMessage.content}||
