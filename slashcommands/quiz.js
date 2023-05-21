@@ -8,10 +8,8 @@ async function getq() {
 module.exports = async (interaction) => {
     const commandName = interaction.commandName;
     if (commandName === 'quiz') {
-        if (commandName === 'quiz')
-            await interaction.reply({ content: 'Loading...' }).catch(() => {});
+        await interaction.reply({ content: 'Loading...' }).catch(() => {});
     }
-    if (commandName === 'quiz') console.log(`Slash command ${commandName} ran`);
     const triviaQuestion = await getq();
     const question = triviaQuestion.question;
     let answers = [triviaQuestion.correct_answer];

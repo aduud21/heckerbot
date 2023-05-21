@@ -19,7 +19,7 @@
 // Dont share your bot token (it's pretty much the password for it)
 console.log('⏳-> [LOGINDATA] Checking data...');
 let key = process.env.DONOTSHARETHIS;
-const interactionCooldowns = new Map(); // get userids for cooldown, should be above module.exports = async (client) => {
+const interactionCooldownsRL = new Map();
 const CryptoJS = require('crypto-js');
 const { GatewayIntentBits, Client, Partials, REST, Routes, Events } = require('discord.js');
 const client = new Client({
@@ -44,30 +44,20 @@ require('./utils/defines')(client);
 require('./utils/handlers/events')(client);
 client.on(Events.InteractionCreate, async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
-    // startcooldown
     const userId = interaction.member.user.id;
-    if (interactionCooldowns.has(userId)) {
-        const remainingCooldown = interactionCooldowns.get(userId) - Date.now();
-        if (remainingCooldown > 0) {
+    if (interactionCooldownsRL.has(userId)) {
+        const remainingCooldownRL = interactionCooldownsRL.get(userId) - Date.now();
+        if (remainingCooldownRL > 0) {
             return;
         }
     }
-    const cooldownTime = 5000;
-    interactionCooldowns.set(userId, Date.now() + cooldownTime);
+    const cooldownTimeRL = 5000;
+    interactionCooldownsRL.set(userId, Date.now() + cooldownTimeRL);
     setTimeout(() => {
-        interactionCooldowns.delete(userId);
-    }, cooldownTime); // end of col
-    require('./slashcommands/datasxd')(interaction);
-    require('./slashcommands/deldata')(client, interaction);
-    require('./slashcommands/code')(interaction);
-    require('./slashcommands/log')(client, interaction);
-    require('./slashcommands/uptime')(client, interaction);
-    require('./slashcommands/rps')(interaction);
-    require('./slashcommands/checklink')(client, interaction);
-    require('./slashcommands/bloxlinkcheck')(interaction);
-    require('./slashcommands/quiz')(interaction);
-    require('./slashcommands/membercount')(interaction);
-    require('./slashcommands/runcode')(interaction);
+        interactionCooldownsRL.delete(userId);
+    }, cooldownTimeRL);
+    const commandName = interaction.commandName;
+    require(`./slashcommands/${commandName}`)(interaction, client);
 });
 client.on('messageDelete', async (message) => {
     require('./messageEvents/md')(message);

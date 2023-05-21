@@ -6,14 +6,12 @@ module.exports = async (interaction) => {
         const filter = (response) => {
             return item.answers();
         };
-        if (commandName == 'rps') console.log(`Slash command ${commandName} ran`);
-        if (commandName == 'rps')
-            interaction
-                .reply(
-                    `
+        interaction
+            .reply(
+                `
 ${item.question}
 `
-                )
-                .catch(() => {});
+            )
+            .catch(() => {});
     }
 };

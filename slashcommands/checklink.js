@@ -11,21 +11,19 @@ const rankThreatLevel = (threatTypes) => {
         return 'very likely malicious';
     }
 };
-module.exports = async (client, interaction) => {
+module.exports = async (interaction, client) => {
     const commandName = interaction.commandName;
-    if (commandName == 'checklink') console.log(`Slash command ${commandName} ran`);
     if (commandName == 'checklink') {
-        await interaction.reply({ content: 'Checking...' }).catch(() => {});
         var datareal = `${interaction.options._hoistedOptions[0].value}`;
         const regex = /(?:[A-z0-9](?:[A-z0-9-]{0,61}[A-z0-9])?\.)+[A-z0-9][A-z0-9-]{0,61}[A-z0-9]/;
         const match = datareal.match(regex);
         if (!match) {
             interaction
-                .editReply({ content: 'incorrect link, Please enter a vaild link!' })
+                .reply({ content: 'incorrect link, Please enter a vaild link!' })
                 .catch(() => {});
             return;
         }
-
+        await interaction.reply({ content: 'Checking...' }).catch(() => {});
         try {
             const outputLink = interaction.options._hoistedOptions[0].value
                 .replace(/^https:\/\//, '')
