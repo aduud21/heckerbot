@@ -1,25 +1,7 @@
 const bloxlink = require('bloxlink-sdk');
-const { Client } = require('discord.js');
-const axios = require('axios');
-const interactionCooldowns = new Map(); // get userids for cooldown, should be above module.exports = async (client) => {
 module.exports = async (interaction) => {
     const commandName = interaction.commandName;
-    // startcooldown
-    if (commandName === 'bloxlinkcheck') {
-        const userId = interaction.member.user.id;
-        if (interactionCooldowns.has(userId)) {
-            const remainingCooldown = interactionCooldowns.get(userId) - Date.now();
-            if (remainingCooldown > 0) {
-                return;
-            }
-        }
-        const cooldownTime = 5000;
-        interactionCooldowns.set(userId, Date.now() + cooldownTime);
-        setTimeout(() => {
-            interactionCooldowns.delete(userId);
-        }, cooldownTime); // end of col
-        await interaction.reply({ content: 'Checking...' }).catch(() => {});
-    }
+    await interaction.reply({ content: 'Checking...' }).catch(() => {});
     try {
         const usersofusersxd = interaction.options._hoistedOptions[0].value.replace(/[<@>]/g, '');
         if (commandName == 'bloxlinkcheck') bloxlink.initialise(process.env.bloxlinkAPIKEY);

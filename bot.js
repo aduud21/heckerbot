@@ -19,6 +19,7 @@
 // Dont share your bot token (it's pretty much the password for it)
 console.log('⏳-> [LOGINDATA] Checking data...');
 let key = process.env.DONOTSHARETHIS;
+const interactionCooldowns = new Map(); // get userids for cooldown, should be above module.exports = async (client) => {
 const CryptoJS = require('crypto-js');
 const { GatewayIntentBits, Client, Partials, REST, Routes, Events } = require('discord.js');
 const client = new Client({
@@ -27,7 +28,6 @@ const client = new Client({
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent,
         GatewayIntentBits.GuildMessageReactions,
-        GatewayIntentBits.GuildWebhooks,
     ],
     partials: [Partials.Message, Partials.Reaction, Partials.Channel],
 });
@@ -44,6 +44,19 @@ require('./utils/defines')(client);
 require('./utils/handlers/events')(client);
 client.on(Events.InteractionCreate, async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
+    // startcooldown
+    const userId = interaction.member.user.id;
+    if (interactionCooldowns.has(userId)) {
+        const remainingCooldown = interactionCooldowns.get(userId) - Date.now();
+        if (remainingCooldown > 0) {
+            return;
+        }
+    }
+    const cooldownTime = 5000;
+    interactionCooldowns.set(userId, Date.now() + cooldownTime);
+    setTimeout(() => {
+        interactionCooldowns.delete(userId);
+    }, cooldownTime); // end of col
     require('./slashcommands/datasxd')(interaction);
     require('./slashcommands/deldata')(client, interaction);
     require('./slashcommands/code')(interaction);
