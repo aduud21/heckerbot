@@ -20,6 +20,8 @@
 console.log('⏳-> [LOGINDATA] Checking data...');
 let key = process.env.DONOTSHARETHIS;
 const interactionCooldownsRL = new Map();
+const interactionCooldownsRLPrevent = new Map();
+const cooldownTimeRL = 5000;
 const CryptoJS = require('crypto-js');
 const { GatewayIntentBits, Client, Partials, REST, Routes, Events } = require('discord.js');
 const client = new Client({
@@ -47,11 +49,25 @@ client.on(Events.InteractionCreate, async (interaction) => {
     const userId = interaction.member.user.id;
     if (interactionCooldownsRL.has(userId)) {
         const remainingCooldownRL = interactionCooldownsRL.get(userId) - Date.now();
+        const remainingCooldownRLPrevent = interactionCooldownsRLPrevent.get(userId) - Date.now();
+        if (remainingCooldownRLPrevent > 0) {
+            return;
+        }
         if (remainingCooldownRL > 0) {
+            interactionCooldownsRLPrevent.set(userId, Date.now() + cooldownTimeRL);
+            interaction
+                .reply(
+                    `Please wait ${
+                        remainingCooldownRL + cooldownTimeRL
+                    }ms to use a command again, this cooldown is to prevent abuse.`
+                )
+                .catch(() => {});
+            setTimeout(() => {
+                interactionCooldownsRLPrevent.delete(userId);
+            }, cooldownTimeRL);
             return;
         }
     }
-    const cooldownTimeRL = 5000;
     interactionCooldownsRL.set(userId, Date.now() + cooldownTimeRL);
     setTimeout(() => {
         interactionCooldownsRL.delete(userId);
