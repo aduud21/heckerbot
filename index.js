@@ -76,6 +76,7 @@ const decryptedBytes = CryptoJS.AES.decrypt(encryptedToken, key);
 const decryptedToken = decryptedBytes.toString(CryptoJS.enc.Utf8);
 const manager = new ClusterManager(`./bot.js`, {
     totalShards: 'auto', // or 'auto'
+    totalClusters: 'auto', // or 'auto'
     /// Check below for more options
     shardsPerClusters: 2,
     // totalClusters: 7,
