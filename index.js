@@ -29,6 +29,7 @@ https://github.com/aduud21/heckerbot#how-to-run-the-bot-on-replit
 */
 // AUTO UPDATE/REMOVE VULNERABILITIES
 // yea
+const { ClusterManager, HeartbeatManager } = require('discord-hybrid-sharding');
 const { get } = require('https');
 let key = process.env.DONOTSHARETHIS;
 const CryptoJS = require('crypto-js');
@@ -70,7 +71,6 @@ setInterval(() => {
     });
 }, 10000); // this is in milliseconds, 1000 milliseconds = 1 second, this uses 10000 milliseconds so every 10 seconds it repeats a thing to do
 // PLEASE DO NOT DELETE THE LICENSE FILE, and do not claim you made this bot
-const { ClusterManager } = require('discord-hybrid-sharding');
 const encryptedToken = process.env.TOKEN;
 const decryptedBytes = CryptoJS.AES.decrypt(encryptedToken, key);
 const decryptedToken = decryptedBytes.toString(CryptoJS.enc.Utf8);
@@ -83,7 +83,12 @@ const manager = new ClusterManager(`./bot.js`, {
     mode: 'process', // you can also choose "worker"
     token: decryptedToken,
 });
-
 manager.on('clusterCreate', (cluster) => console.log(`Launched Cluster ${cluster.id}`));
 manager.spawn({ timeout: -1 });
+manager.extend(
+    new HeartbeatManager({
+        interval: 2000, // Interval to send a heartbeat
+        maxMissedHeartbeats: 5, // Maximum amount of missed Heartbeats until Cluster will get respawned
+    })
+);
 // make sure to read README.md file
