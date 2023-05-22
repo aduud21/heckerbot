@@ -7,6 +7,7 @@ module.exports = async (interaction) => {
                 `Bot created: 2022/2/28
 Owner(s) UserID(s): ${owners}
 Support server: ${support}
+ShardId: ${interaction.guild.shardId}
 `
             )
             .catch(() => {});

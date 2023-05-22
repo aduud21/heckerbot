@@ -23,8 +23,11 @@ const interactionCooldownsRL = new Map();
 const interactionCooldownsRLPrevent = new Map();
 const cooldownTimeRL = 5000;
 const CryptoJS = require('crypto-js');
-const { GatewayIntentBits, Client, Partials, REST, Routes, Events } = require('discord.js');
+const { ClusterClient, getInfo } = require('discord-hybrid-sharding');
+const { GatewayIntentBits, Partials, Client, REST, Routes, Events } = require('discord.js');
 const client = new Client({
+    shards: getInfo().SHARD_LIST, // An array of shards that will get spawned
+    shardCount: getInfo().TOTAL_SHARDS, // Total number of shards
     intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
@@ -37,6 +40,7 @@ const encryptedData = process.env.TOKEN;
 const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, key);
 const decryptedToken = decryptedBytes.toString(CryptoJS.enc.Utf8);
 // DO NOT REMOVE THE LINE BELOW!
+client.cluster = new ClusterClient(client); // initialize the Client, so we access the .broadcastEval()
 client.login(decryptedToken);
 const rest = new REST({ version: '10' }).setToken(decryptedToken);
 // e

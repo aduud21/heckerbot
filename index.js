@@ -70,17 +70,19 @@ setInterval(() => {
     });
 }, 10000); // this is in milliseconds, 1000 milliseconds = 1 second, this uses 10000 milliseconds so every 10 seconds it repeats a thing to do
 // PLEASE DO NOT DELETE THE LICENSE FILE, and do not claim you made this bot
-const { ShardingManager } = require('discord.js');
+const { ClusterManager } = require('discord-hybrid-sharding');
 const encryptedToken = process.env.TOKEN;
 const decryptedBytes = CryptoJS.AES.decrypt(encryptedToken, key);
 const decryptedToken = decryptedBytes.toString(CryptoJS.enc.Utf8);
-const manager = new ShardingManager('./bot.js', { token: decryptedToken }); /*
-For public websites such as replit, use secrets/ENV to secure youe bot token
-*/
+const manager = new ClusterManager(`./bot.js`, {
+    totalShards: 'auto', // or 'auto'
+    /// Check below for more options
+    shardsPerClusters: 2,
+    // totalClusters: 7,
+    mode: 'process', // you can also choose "worker"
+    token: decryptedToken,
+});
 
-manager.on('shardCreate', (shard) =>
-    console.log(`🇨🇦💫🌟[🔵SHARD🔵]🌟💫🇲🇽 Launched shard 🟢 ${shard.id} 🟢`)
-);
-
-manager.spawn();
+manager.on('clusterCreate', (cluster) => console.log(`Launched Cluster ${cluster.id}`));
+manager.spawn({ timeout: -1 });
 // make sure to read README.md file
