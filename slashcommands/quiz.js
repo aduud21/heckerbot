@@ -2,7 +2,7 @@ const axios = require('axios');
 const he = require('he');
 async function getq() {
     const apiUrl = 'https://opentdb.com/api.php?amount=1&type=boolean';
-    const response = await axios.get(apiUrl);
+    const response = await axios.get(apiUrl).catch(() => {});
     return response.data.results[0];
 }
 module.exports = async (interaction) => {
