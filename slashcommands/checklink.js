@@ -32,7 +32,7 @@ module.exports = async (interaction, client) => {
                 `https://safebrowsing.googleapis.com/v4/threatMatches:find?key=${API_KEY}`,
                 {
                     client: {
-                        clientId: `Discord ${client.user.username}`,
+                        clientId: `Discord bot ${client.user.username}`,
                         clientVersion: '0.0.1',
                     },
                     threatInfo: {
@@ -48,7 +48,7 @@ module.exports = async (interaction, client) => {
                         threatEntries: [{ url: `${interaction.options._hoistedOptions[0].value}` }],
                     },
                 }
-            );
+            ).catch(() => {});
             if (response.data && response.data.matches && response.data.matches.length > 0) {
                 const threatTypes = response.data.matches.map((match) => match.threatType);
                 const rank = rankThreatLevel(threatTypes);
@@ -59,7 +59,7 @@ module.exports = async (interaction, client) => {
                     )
                     .catch(() => {});
             } else {
-                const uAgent = `Discord ${client.user.username}`;
+                const uAgent = `Discord bot ${client.user.username}`;
                 axios
                     .post(
                         'https://anti-fish.bitflow.dev/check',
