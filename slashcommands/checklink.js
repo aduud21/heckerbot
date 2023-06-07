@@ -28,9 +28,8 @@ module.exports = async (interaction, client) => {
             const outputLink = interaction.options._hoistedOptions[0].value
                 .replace(/^https:\/\//, '')
                 .replace(/http:\/\/|https:\/\//gi, '');
-            const response = await axios.post(
-                `https://safebrowsing.googleapis.com/v4/threatMatches:find?key=${API_KEY}`,
-                {
+            const response = await axios
+                .post(`https://safebrowsing.googleapis.com/v4/threatMatches:find?key=${API_KEY}`, {
                     client: {
                         clientId: `Discord bot ${client.user.username}`,
                         clientVersion: '0.0.1',
@@ -47,8 +46,8 @@ module.exports = async (interaction, client) => {
                         threatEntryTypes: ['URL'],
                         threatEntries: [{ url: `${interaction.options._hoistedOptions[0].value}` }],
                     },
-                }
-            ).catch(() => {});
+                })
+                .catch(() => {});
             if (response.data && response.data.matches && response.data.matches.length > 0) {
                 const threatTypes = response.data.matches.map((match) => match.threatType);
                 const rank = rankThreatLevel(threatTypes);
