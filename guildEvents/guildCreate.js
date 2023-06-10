@@ -108,7 +108,7 @@ module.exports = async (client, guild, rest, Routes) => {
         await owner.send(`
 Thanks for adding MutilpleBot!
 _MutilpleBot has been added to ${guild.name} (Server ID: ${guild.id})_
-Slash commands should have been made as soonly as you invited the bot, As well prefix commands will be added soon! at the moment there is no prefix command (6/10/2023).
+Slash commands should have been made as soonly as you invited the bot, Prefix commands are supported: mb!help.
 **❓Need support?**
 Join our support server: https://discord.com/invite/GbjgmffUKj
 
