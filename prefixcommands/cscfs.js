@@ -2,14 +2,14 @@ module.exports.config = {
   name: "cscfs",
   aliases: ['createslashcommand', 'csc', 'rcsc', 'createslashcommands'],
   group: 'config',
-  cooldown: '600000',
+  cooldown: '60000',
   guarded: true,
   permissions: ['ADMINISTRATOR'],
   description: "if there are no slash commands in your server after inviting the bot, try this prefix command while the bot is online, command cooldown: 1 minute",
 }
 const interactionServerCooldowns = new Map(); // get serverids for cooldown, should be above module.exports = async (client) => {
 const interactionServerCooldownsPreventRL = new Map(); // get serverids for cooldown, should be above
-module.exports.run = async(client, message, rest, Routes) => {
+module.exports.run = async(client, message, args, rest, Routes) => {
   const guild = message.guild
   const clientUSERID = client.user.id
   // startcooldown
@@ -35,7 +35,7 @@ module.exports.run = async(client, message, rest, Routes) => {
         setTimeout(() => {
             interactionServerCooldownsPreventRL.delete(serverId);
         }, cooldownTimeRL); // end of col
-        const cooldownTime = 15000;
+        const cooldownTime = 60000;
         interactionServerCooldowns.set(serverId, Date.now() + cooldownTime);
         setTimeout(() => {
             interactionServerCooldowns.delete(serverId);
@@ -136,8 +136,10 @@ module.exports.run = async(client, message, rest, Routes) => {
                 console.log(e);
             });
         } catch (error) {
-           message.reply('Failed creating slash commands').catch(() => {});
+           message.reply(`Failed creating slash commands because: 
+           ${error}`).catch(() => {});
             console.error(`Error creating slash commands: ${error}`);
+           return;
         }
   message.reply('✅ -> Created slashcommands').catch(() => {});
     await message.react('✅').catch(() => {});

@@ -30,7 +30,7 @@ ${pu.config.name ? `**Name:** ${pu.config.name}` : ''}${pu.config.description ? 
                         pu.config.group ? `**Group:** ${pu.config.group}` : ''
                     }${pu.config.permissions ? '\n' : ''}${
                         pu.config.permissions
-                            ? `**PermissionsBitField:** ${pu.config.permissions
+                            ? `**Permission(s) required:** ${pu.config.permissions
                                   .join(', ')
                                   .toLocaleLowerCase()}`
                             : ''

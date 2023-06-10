@@ -48,13 +48,7 @@ console.log('⌛-> [LOGINDATA] Data found, program will try to use it!');
 require('./keep_alive');
 require('./utils/defines')(client);
 require('./utils/handlers/events')(client);
-/*
-unused for now:
 require('./prefixcommand')(client);
-client.on('messageCreate', async (message) => {
-    require('./handleprefixcommand')(client, message, rest, Routes);
-});
-*/
 client.on(Events.InteractionCreate, async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
     const userId = interaction.member.user.id;
@@ -101,4 +95,8 @@ client.on('guildCreate', async (guild) => {
 // this is pretty helpful for space
 client.on('guildDelete', (guild) => {
     require('./guildEvents/guildDelete')(client, guild);
+});
+
+client.on('messageCreate', async (message) => {
+    require('./handleprefixcommand')(client, message, rest, Routes);
 });

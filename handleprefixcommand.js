@@ -1,6 +1,6 @@
 const { prefix: mainPrefix, owners } = require('./config/bot.json');
 const UserPreventRL = new Map(); // get userids for cooldown, should be above module.exports = async (client)
-module.exports = async (client, message) => {
+module.exports = async (client, message, rest, Routes) => {
     if (message.channel.type === 'dm') return;
     var escapeRegex = require('./utils/structure/exports/escapeRegex').escapeRegex;
     const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(mainPrefix)})\\s*`);
@@ -100,7 +100,7 @@ module.exports = async (client, message) => {
                 .catch(() => {});
             return;
         }
-        commandFile.run(client, message, args);
+        commandFile.run(client, message, args, rest, Routes);
         client.cooldown.add(message.author.id);
         setTimeout(() => {
             client.cooldown.delete(message.author.id);

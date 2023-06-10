@@ -1,5 +1,5 @@
 const fs = require('fs');
-module.exports = (client) => {
+module.exports = (client, message, rest, Routes) => {
     fs.readdir('./prefixcommands/', (err, files) => {
         if (err) console.log(err);
 
