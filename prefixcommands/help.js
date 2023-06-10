@@ -9,7 +9,7 @@ module.exports.config = {
 };
 
 module.exports.run = async (client, message, args) => {
-        await message.react('✅').catch(() => {});
+    await message.react('✅').catch(() => {});
     try {
         let pu =
             (await client.commands.get(args[0])) ||

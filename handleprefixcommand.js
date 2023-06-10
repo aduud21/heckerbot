@@ -2,7 +2,7 @@ const { prefix: mainPrefix, owners } = require('./config/bot.json');
 const UserPreventRL = new Map(); // get userids for cooldown, should be above module.exports = async (client)
 module.exports = async (client, message, rest, Routes) => {
     if (message.channel.type === 'dm') return;
-    var escapeRegex = require('./utils/structure/exports/escapeRegex').escapeRegex;
+    let escapeRegex = require('./utils/structure/exports/escapeRegex').escapeRegex;
     const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(mainPrefix)})\\s*`);
     if (!prefixRegex.test(message.content)) return;
     const [, prefix] = message.content.match(prefixRegex);
@@ -10,7 +10,7 @@ module.exports = async (client, message, rest, Routes) => {
     if (message.author.bot) return;
     let args = message.content.slice(prefix.length).trim().split(/ +/g);
     const cmm = args.shift().toLocaleLowerCase();
-    var command = client.commands.get(cmm) || client.commands.get(client.aliases.get(cmm));
+    let command = client.commands.get(cmm) || client.commands.get(client.aliases.get(cmm));
     if (!command) return;
     if (command.config.permissions) {
         let neededPerms = [];
@@ -51,7 +51,9 @@ module.exports = async (client, message, rest, Routes) => {
         if (command.config.ownerOnly === true) {
             if (!owners.includes(message.author.id)) return;
             message.react('❌').catch(() => {}),
-                message.reply(`❌-> Error 403, only owner(s) of this bot can use this command`).catch(() => {});
+                message
+                    .reply(`❌-> Error 403, only owner(s) of this bot can use this command`)
+                    .catch(() => {});
         }
     }
     if (command.config.botperms) {
