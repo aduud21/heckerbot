@@ -47,7 +47,7 @@ const rest = new REST({ version: '10' }).setToken(decryptedToken);
 console.log('⌛-> [LOGINDATA] Data found, program will try to use it!');
 client.rest.on('rateLimited', (data) => {
     console.log(`Client encountered a rate limit: `, data);
-    file = data;
+    file = JSON.stringify(data);
     fs.writeFile('./ratelimitTEMPLOG.txt', file, (err) => {
         if (err) {
             console.log(err);
