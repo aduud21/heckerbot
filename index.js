@@ -46,13 +46,6 @@ catch basically catches any error that occurs when you use it correctly, can be 
 } catch (error) {
     console.log(`Startup ERROR: ${error}`);
 }
-// code for replit
-get(`https://discord.com/api/v10/gateway`, ({ statusCode }) => {
-    if (statusCode == 429) {
-        console.log(`Startup ERROR: ⚠️⚠️⚠️ RATELIMIT DETECTED, RESTARTING... ⚠️⚠️⚠️`);
-        process.kill(1);
-    }
-});
 // TOKEN CHECK
 if (!process.env.TOKEN) {
     console.log(
@@ -60,16 +53,6 @@ if (!process.env.TOKEN) {
     );
     return;
 }
-
-// code for replit
-setInterval(() => {
-    get(`https://discord.com/api/v10/gateway`, ({ statusCode }) => {
-        if (statusCode == 429) {
-            console.log(`⚠️⚠️⚠️ RATELIMIT DETECTED, RESTARTING... ⚠️⚠️⚠️`);
-            process.kill(1);
-        }
-    });
-}, 10000); // this is in milliseconds, 1000 milliseconds = 1 second, this uses 10000 milliseconds so every 10 seconds it repeats a thing to do
 // PLEASE DO NOT DELETE THE LICENSE FILE, and do not claim you made this bot
 const encryptedToken = process.env.TOKEN;
 const decryptedBytes = CryptoJS.AES.decrypt(encryptedToken, key);
