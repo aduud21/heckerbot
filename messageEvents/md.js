@@ -20,10 +20,10 @@ function loadDecryptedData() {
     const bytes = CryptoJS.AES.decrypt(ciphertext, key);
     decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 }
-
 loadDecryptedData();
 setInterval(loadDecryptedData, 10 * 1000);
 module.exports = (messageDelete) => {
+    if (!messageDelete.content) return;
     if (messageDelete.channel.type === 'dm') return;
     try {
         if (messageDelete.author.bot) {

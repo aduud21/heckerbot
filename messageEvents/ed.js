@@ -26,6 +26,8 @@ loadDecryptedData();
 setInterval(loadDecryptedData, 10 * 1000);
 
 module.exports = (oldMessage, newMessage) => {
+    if (!oldMessage.content) return;
+    if (!newMessage.content) return;
     if (newMessage.content === oldMessage.content) return;
     try {
         if (newMessage.author.bot) {
