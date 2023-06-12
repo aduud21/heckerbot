@@ -30,16 +30,13 @@ https://github.com/aduud21/heckerbot#how-to-run-the-bot-on-replit
 // AUTO UPDATE/REMOVE VULNERABILITIES
 // yea
 const { ClusterManager, HeartbeatManager } = require('discord-hybrid-sharding');
-const { get } = require('https');
 let key = process.env.DONOTSHARETHIS;
 const CryptoJS = require('crypto-js');
 try {
     console.log(`Node version: ${process.version}`);
-    console.log('Checking for vulnerabilities');
-    const shell = require('shelljs');
-    shell.exec('npm audit fix'); // any possible fixable vulnerabilities? if so fix them, that's what this part of the code does
-    console.log('Finished checking for vulnerabilities');
-    console.log(`Make sure to run npm run format if you haven't after a code change or smth`);
+    console.log(
+        `Make sure to run npm run format and npm audit fix if you haven't after a code change or smth`
+    );
     /*
 catch basically catches any error that occurs when you use it correctly, can be very helpful
 */
