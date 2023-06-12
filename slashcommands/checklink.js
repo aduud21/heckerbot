@@ -70,13 +70,13 @@ module.exports = async (interaction, client) => {
                         if (a.match) {
                             interaction
                                 .editReply(
-                                    `**${outputLink}** has been flagged as **dangerous**, Data is provided by [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>) and was extra checked with anti-fish.` // https://anti-fish.bitflow.dev/
+                                    `**${outputLink}** has been flagged as **dangerous**, Data is provided by [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>) and was extra checked with [anti-fish](<https://anti-fish.bitflow.dev/>).` // https://anti-fish.bitflow.dev/
                                 )
                                 .catch(() => {});
                         } else {
                             interaction
                                 .editReply(
-                                    `**${outputLink}** is safe OR too new to be flagged, Data is provided by [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>) and was extra checked with anti-fish.` // https://anti-fish.bitflow.dev/
+                                    `**${outputLink}** is safe OR too new to be flagged, Data is provided by [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>) and was extra checked with [anti-fish](<https://anti-fish.bitflow.dev/>).` // https://anti-fish.bitflow.dev/
                                 )
                                 .catch(() => {});
                         }
@@ -85,7 +85,7 @@ module.exports = async (interaction, client) => {
                         if (e.response && e.response.status === 404) {
                             interaction
                                 .editReply(
-                                    `**${outputLink}** is safe OR too new to be flagged, Data is provided by [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>) and was extra checked with anti-fish.`
+                                    `**${outputLink}** is safe OR too new to be flagged, Data is provided by [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>) and was extra checked with [anti-fish](<https://anti-fish.bitflow.dev/>).`
                                 )
                                 .catch(() => {});
                             return;
