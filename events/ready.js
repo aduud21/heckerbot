@@ -8,13 +8,13 @@ if (!fs.existsSync('./LICENSE')) {
     return;
 }
 module.exports = async (client) => {
-    const activityText = `servers | Shard${client.cluster.id}`;
+    const activityText = `servers | Cluster${client.cluster.id}`;
     console.log(`☑️ -> [LOGIN] Logged into token as user ${client.user.tag}`);
     client.user.setActivity(activityText, { type: ActivityType.Listening });
     try {
         if (start_up_message) {
             const channel = client.channels.cache.get('957439649142407248');
-            channel.send(`🤖 Bot restarted 🤖`);
+            channel.send(`🤖 Client restarted, Cluster${client.cluster.id} 🤖`);
         }
     } catch (error) {
         console.log(

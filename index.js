@@ -1,3 +1,6 @@
+// This bot is designed (made) to run on replit
+// This bot is designed (made) to run on replit
+// This bot is designed (made) to run on replit
 // Some mega important code for the bot or some useless json files are hidden, if you wish to see them Click Files then the three dots at the top then "Show Hidden Files"
 // I ALSO RECOMMEND ENCRYPTING THE TOKEN FOR A BIT MORE SECURITY
 /*
