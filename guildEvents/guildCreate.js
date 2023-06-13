@@ -52,7 +52,7 @@ module.exports = async (client, guild, rest, Routes) => {
             {
                 name: 'deldata',
                 description:
-                    'Clear all the data that bot has collected from your server, server command cooldown: 15 seconds',
+                    'Clear all the data that bot has collected from your server. May prevent using setmodlog.',
                 options: [], // No options for this command
                 default_member_permissions: '0',
             },
