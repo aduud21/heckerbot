@@ -36,6 +36,13 @@ module.exports = async (interaction, client) => {
         }, cooldownTime); // end of col
     }
     if (commandName == 'setmodlog') {
+      try {
+                    interaction.reply(
+                        `There may be a issue with setmodlogs as of now, it is planned to be fixed soon tho...`
+                    );
+                } catch (error) {
+                    console.error('Error replying to interaction:', error);
+                }
         try {
             const input = interaction.options._hoistedOptions[0].value;
             const onlyN = input.match(/\d+/)[0];
