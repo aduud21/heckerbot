@@ -27,12 +27,15 @@ module.exports = async (interaction, client) => {
                 return;
             }
         }
-
+  interaction.reply(
+                `setmodlogs is temporarily not working as of 6/14/2023, please wait while the devs of this bot fix it, should take less than 2 weeks.`).catch(() => {});
+            return;
         const currentModlogs = interactionServerCooldowns.size;
         if (currentModlogs >= MAX_MODLOGS_PER_SERVER) {
             interaction.reply(
                 `The maximum number of modlogs has already been set for this server.`
-            );
+            )
+            .catch(() => {});
             return;
         }
 
@@ -85,7 +88,7 @@ module.exports = async (interaction, client) => {
                     try {
                         interaction.reply(
                             `${client.fail} YOU cannot setmodlogs for a channel that has already been selected for it`
-                        );
+                        ).catch(() => {});
                     } catch (error) {
                         console.error('Error replying to interaction:', error);
                     }
