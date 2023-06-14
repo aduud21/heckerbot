@@ -61,7 +61,7 @@ module.exports = async (interaction, client) => {
             } catch (err) {
                 console.log(err);
             }
-            if (file[interaction.guild.id] && file[interaction.guild.id].channel == channel.id) {
+            if (file[interaction.guild.id].channel == channel.id) {
                 try {
                     interaction.reply(
                         `${client.fail} YOU cannot setmodlogs for a channel that has already been selected for it`
