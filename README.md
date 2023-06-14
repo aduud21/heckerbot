@@ -1,6 +1,6 @@
 [![Made with Replit Badge](https://replit.com/badge?caption=Made%20with%20Replit)](https://replit.com/github/aduud21/heckerbot)
 
-# if you plan on watching this repo, i suggest you put Releases only
+# if you plan on watching this repo, i suggest you put Releases only, There may be often new Releases
 
 ## As of 5/4/2023, i needed to rename the bot to MutilpleBot so i can try to verify the discord bot, Orignal name is Hecker!
 
