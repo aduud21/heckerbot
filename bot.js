@@ -47,14 +47,6 @@ const rest = new REST({ version: '10' }).setToken(decryptedToken);
 console.log('⌛-> [LOGINDATA] Data found, program will try to use it!');
 client.rest.on('rateLimited', (data) => {
     console.log('Client encountered a rate limit:', data);
-    const fileData = JSON.stringify(data);
-    fs.writeFile(filePath, fileData, (err) => {
-        if (err) {
-            console.error('Error writing rate limit data to file:', err);
-            return;
-        }
-        console.log('Rate limit data written to file successfully.');
-    });
 });
 require('./keep_alive');
 require('./utils/defines')(client);
