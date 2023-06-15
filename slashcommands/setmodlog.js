@@ -27,12 +27,6 @@ module.exports = async (interaction, client) => {
                 return;
             }
         }
-        interaction
-            .reply(
-                `setmodlogs is temporarily not working as of 6/14/2023, please wait while the devs of this bot fix it, should take less than 2 weeks.`
-            )
-            .catch(() => {});
-        return;
         const currentModlogs = interactionServerCooldowns.size;
         if (currentModlogs >= MAX_MODLOGS_PER_SERVER) {
             interaction
