@@ -54,7 +54,8 @@ module.exports = async (interaction, client) => {
 
                 interaction
                     .editReply(
-                        `**${outputLink}** has been flagged as **${rank}** by google safe browsing, Data provided by [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>).`
+                        `**${outputLink}** has been flagged as **${rank}** by google safe browsing, Exercise caution when visiting websites as the checklink command may not detect all threats or accurately determine website safety. i rely on data from [anti-fish api](<https://anti-fish.bitflow.dev/>) and [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>), which may not capture the latest or emerging threats. Use your best judgment when browsing unfamiliar websites!
+`
                     )
                     .catch(() => {});
             } else {
@@ -70,13 +71,15 @@ module.exports = async (interaction, client) => {
                         if (a.match) {
                             interaction
                                 .editReply(
-                                    `**${outputLink}** has been flagged as **dangerous** by antifish, Data is provided by [anti-fish](<https://anti-fish.bitflow.dev/>).` // https://anti-fish.bitflow.dev/
+                                    `**${outputLink}** has been flagged as **dangerous** by antifish, Exercise caution when visiting websites as the checklink command may not detect all threats or accurately determine website safety. i rely on data from [anti-fish api](<https://anti-fish.bitflow.dev/>) and [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>), which may not capture the latest or emerging threats. Use your best judgment when browsing unfamiliar websites!
+` // https://anti-fish.bitflow.dev/
                                 )
                                 .catch(() => {});
                         } else {
                             interaction
                                 .editReply(
-                                    `**${outputLink}** is safe OR too new to be flagged, Data provided by [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>) and was extra checked with [anti-fish](<https://anti-fish.bitflow.dev/>).` // https://anti-fish.bitflow.dev/
+                                    `**${outputLink}** is safe OR too new to be flagged, Exercise caution when visiting websites as the checklink command may not detect all threats or accurately determine website safety. i rely on data from [anti-fish api](<https://anti-fish.bitflow.dev/>) and [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>), which may not capture the latest or emerging threats. Use your best judgment when browsing unfamiliar websites!
+` // https://anti-fish.bitflow.dev/
                                 )
                                 .catch(() => {});
                         }
@@ -85,7 +88,8 @@ module.exports = async (interaction, client) => {
                         if (e.response && e.response.status === 404) {
                             interaction
                                 .editReply(
-                                    `**${outputLink}** is safe OR too new to be flagged, Data provided by [anti-fish](<https://anti-fish.bitflow.dev/>).`
+                                    `**${outputLink}** is safe OR too new to be flagged, Exercise caution when visiting websites as the checklink command may not detect all threats or accurately determine website safety. i rely on data from [anti-fish api](<https://anti-fish.bitflow.dev/>) and [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>), which may not capture the latest or emerging threats. Use your best judgment when browsing unfamiliar websites!
+`
                                 )
                                 .catch(() => {});
                             return;
