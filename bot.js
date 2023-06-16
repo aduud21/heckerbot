@@ -47,6 +47,14 @@ const rest = new REST({ version: '10' }).setToken(decryptedToken);
 console.log('⌛-> [LOGINDATA] Data found, program will try to use it!');
 client.rest.on('rateLimited', (data) => {
     console.log('Client encountered a rate limit:', data);
+    const fs = require('fs');
+    fs.writeFile('./tempratelimitchecklog.txt', JSON.stringify(data), 'utf8', (err) => {
+        if (err) {
+            console.error('An error occurred while writing to the file:', err);
+        } else {
+            console.log('Content has been written to the file successfully.');
+        }
+    });
 });
 require('./keep_alive');
 require('./utils/defines')(client);
