@@ -46,15 +46,27 @@ const rest = new REST({ version: '10' }).setToken(decryptedToken);
 // e
 console.log('⌛-> [LOGINDATA] Data found, program will try to use it!');
 client.rest.on('rateLimited', (data) => {
-    console.log('Client encountered a rate limit:', data);
+    const options = {
+        timeZone: 'America/Mexico_City',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+    }; // this is almost my timezone
+    const currentTime = new Date().toLocaleString('en-US', options);
+    console.log('[' + currentTime + '] Client encountered a rate limit:', data);
     const fs = require('fs');
-    fs.writeFile('./tempratelimitchecklog.txt', JSON.stringify(data), 'utf8', (err) => {
-        if (err) {
-            console.error('An error occurred while writing to the file:', err);
-        } else {
-            console.log('Content has been written to the file successfully.');
+    fs.writeFile(
+        './tempratelimitchecklog.txt',
+        '[' + currentTime + '] ' + JSON.stringify(data),
+        'utf8',
+        (err) => {
+            if (err) {
+                console.error('An error occurred while writing to the file:', err);
+            } else {
+                console.log('Content has been written to the file successfully.');
+            }
         }
-    });
+    );
 });
 require('./keep_alive');
 require('./utils/defines')(client);
