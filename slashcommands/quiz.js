@@ -10,7 +10,7 @@ const urls = [
     'https://opentdb.com/api.php?amount=1&category=18', // Computer 1
     'https://opentdb.com/api.php?amount=1&category=18&type=boolean', // Computer 2
     'https://opentdb.com/api.php?amount=1&category=15&type=boolean', // Video games 1
-    'https://opentdb.com/api.php?amount=1&category=15' // Video games 2
+    'https://opentdb.com/api.php?amount=1&category=15', // Video games 2
 ];
 async function getRandomQuestion() {
     try {

@@ -14,15 +14,17 @@ const rankThreatLevel = (threatTypes) => {
 module.exports = async (interaction, client) => {
     const commandName = interaction.commandName;
     if (commandName == 'checklink') {
-        var datareal = `${interaction.options._hoistedOptions[0].value}`;
-        const regex = /(?:[A-z0-9](?:[A-z0-9-]{0,61}[A-z0-9])?\.)+[A-z0-9][A-z0-9-]{0,61}[A-z0-9]/;
+        let datareal = `${interaction.options._hoistedOptions[0].value}`;
+        const regex =
+            /^(?!.*[\\#])((?:[A-Za-z\d-]{0,61}[A-Za-z\d]\.)+[A-Za-z\d][A-Za-z\d-]{0,61}[A-Za-z\d])$/;
         const match = datareal.match(regex);
         if (!match) {
             interaction
-                .reply({ content: 'incorrect link, Please enter a vaild link!' })
+                .reply({ content: 'Incorrect link. Please enter a valid link!' })
                 .catch(() => {});
             return;
         }
+
         await interaction.reply({ content: 'Checking...' }).catch(() => {});
         try {
             const outputLink = interaction.options._hoistedOptions[0].value
