@@ -24,7 +24,7 @@ module.exports = async (messageDelete) => {
     if (messageDelete.channel.type === 'dm') return;
     if (messageDelete.author.bot) return;
     try {
-        if (messageDelete.content.length < 3811) {
+        if (messageDelete.content.length < 3711) {
             if (!decryptedData[messageDelete.guild.id]) return;
             const modLogsID = decryptedData[messageDelete.guild.id].channel;
             const text = messageDelete.content;
