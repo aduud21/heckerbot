@@ -7,14 +7,11 @@ const fs = require('fs');
 const async = require('async');
 const key = process.env.DONOTSHARETHIS;
 let decryptedData;
-const queue = async.queue(async (task) => {
-    const { messageDelete, message, modLogsID, EmbedBuilder } = task;
-    try {
-        await messageDelete.guild.channels.cache.get(modLogsID).send({ embeds: [EmbedBuilder] });
-    } catch (error) {
-        console.log(error);
-    }
-}, 1);
+const queues = new Map();
+const queueTimeouts = new Map();
+function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
 function loadDecryptedData() {
     const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8');
     const bytes = CryptoJS.AES.decrypt(ciphertext, key);
@@ -22,52 +19,91 @@ function loadDecryptedData() {
 }
 loadDecryptedData();
 setInterval(loadDecryptedData, 10 * 1000);
-module.exports = (messageDelete) => {
+module.exports = async (messageDelete) => {
     if (!messageDelete.content) return;
     if (messageDelete.channel.type === 'dm') return;
-    try {
-        if (messageDelete.author.bot) {
-            return;
-        }
-    } catch {}
-
+    if (messageDelete.author.bot) return;
     try {
         if (messageDelete.content.length < 3811) {
             if (!decryptedData[messageDelete.guild.id]) return;
-            let modLogsID = decryptedData[messageDelete.guild.id].channel;
+            const modLogsID = decryptedData[messageDelete.guild.id].channel;
             const text = messageDelete.content;
-            let filteredMessage = text
+            const filteredMessage = text
                 .replace(creditCardRegex, '[personal info]')
                 .replace(phoneNumberRegex, '[redacted]');
+            let queue = queues.get(messageDelete.guild.id);
+            if (!queue) {
+                queue = async.queue(async (task) => {
+                    const { messageDelete, modLogsID, EmbedBuilder } = task;
+                    try {
+                        await messageDelete.guild.channels.cache
+                            .get(modLogsID)
+                            .send({ embeds: [EmbedBuilder] });
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }, 1);
+                queues.set(messageDelete.guild.id, queue);
+            }
+            const timeoutId = queueTimeouts.get(messageDelete.guild.id);
+            if (timeoutId) {
+                await delay(5000);
+                clearTimeout(timeoutId);
+            }
             queue.push({
                 messageDelete,
-                message: filteredMessage,
                 modLogsID,
                 EmbedBuilder: new EmbedBuilder().setColor(main).setTitle('****Message log****')
                     .setDescription(`
-Message by <@!${messageDelete.author.id}>
-Message deleted in <#${messageDelete.channel.id}> 
-||${filteredMessage}||
-Message ID: ${messageDelete.id}`),
+            Message by <@!${messageDelete.author.id}>
+            Message deleted in <#${messageDelete.channel.id}> 
+            ||${filteredMessage}||
+            Message ID: ${messageDelete.id}`),
             });
+            const newTimeoutId = setTimeout(() => {
+                queueTimeouts.delete(messageDelete.guild.id);
+            }, 5000);
+            queueTimeouts.set(messageDelete.guild.id, newTimeoutId);
         } else {
             if (!decryptedData[messageDelete.guild.id]) return;
-            let modLogsID = decryptedData[messageDelete.guild.id].channel;
+            const modLogsID = decryptedData[messageDelete.guild.id].channel;
             const text = messageDelete.content;
-            let filteredMessage = text
+            const filteredMessage = text
                 .replace(creditCardRegex, '[personal info]')
                 .replace(phoneNumberRegex, '[redacted]');
+            let queue = queues.get(messageDelete.guild.id);
+            if (!queue) {
+                queue = async.queue(async (task) => {
+                    const { messageDelete, modLogsID, EmbedBuilder } = task;
+                    try {
+                        await messageDelete.guild.channels.cache
+                            .get(modLogsID)
+                            .send({ embeds: [EmbedBuilder] });
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }, 1);
+                queues.set(messageDelete.guild.id, queue);
+            }
+            const timeoutId = queueTimeouts.get(messageDelete.guild.id);
+            if (timeoutId) {
+                await delay(5000);
+                clearTimeout(timeoutId);
+            }
             queue.push({
-                message: filteredMessage,
                 messageDelete,
                 modLogsID,
                 EmbedBuilder: new EmbedBuilder().setColor(main).setTitle('****Message log****')
                     .setDescription(`
-Message by <@${messageDelete.author.id}>
-Message deleted in <#${messageDelete.channel.id}> 
-<Message is too long to show>
-Message ID: ${messageDelete.id}`),
+            Message by <@${messageDelete.author.id}>
+            Message deleted in <#${messageDelete.channel.id}> 
+            <Message is too long to show>
+            Message ID: ${messageDelete.id}`),
             });
+            const newTimeoutId = setTimeout(() => {
+                queueTimeouts.delete(messageDelete.guild.id);
+            }, 5000);
+            queueTimeouts.set(messageDelete.guild.id, newTimeoutId);
         }
     } catch (error) {
         if (decryptedData[messageDelete.guild.id]) {
