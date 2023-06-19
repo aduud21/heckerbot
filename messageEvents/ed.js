@@ -31,7 +31,7 @@ module.exports = async (oldMessage, newMessage) => {
     if (oldMessage === null) oldMessage = 'unknown message';
     try {
         let flyMessage = `${oldMessage.content}${newMessage.content}`;
-        if (flyMessage.length < 3711) {
+        if (flyMessage.length < 1711) {
             if (newMessage.channel.type === 'dm') return;
             if (!decryptedData[newMessage.guild.id]) return;
             const modLogsID = decryptedData[newMessage.guild.id].channel;
@@ -79,6 +79,7 @@ module.exports = async (oldMessage, newMessage) => {
             });
             const newTimeoutId = setTimeout(() => {
                 queueTimeouts.delete(newMessage.guild.id);
+                queues.delete(newMessage.guild.id);
             }, 5000);
             queueTimeouts.set(newMessage.guild.id, newTimeoutId);
         } else {
@@ -106,6 +107,7 @@ module.exports = async (oldMessage, newMessage) => {
                 }, 1);
                 queues.set(newMessage.guild.id, queue);
             }
+            const timeoutId = queueTimeouts.get(newMessage.guild.id);
             if (timeoutId) {
                 await delay(1000);
             }
@@ -121,6 +123,7 @@ module.exports = async (oldMessage, newMessage) => {
             });
             const newTimeoutId = setTimeout(() => {
                 queueTimeouts.delete(newMessage.guild.id);
+                queues.delete(newMessage.guild.id);
             }, 5000);
             queueTimeouts.set(newMessage.guild.id, newTimeoutId);
         }

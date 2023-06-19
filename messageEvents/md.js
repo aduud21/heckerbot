@@ -65,6 +65,7 @@ module.exports = async (messageDelete) => {
             });
             const newTimeoutId = setTimeout(() => {
                 queueTimeouts.delete(messageDelete.guild.id);
+                queues.delete(messageDelete.guild.id);
             }, 5000);
             queueTimeouts.set(messageDelete.guild.id, newTimeoutId);
         } else {
@@ -108,6 +109,7 @@ module.exports = async (messageDelete) => {
             });
             const newTimeoutId = setTimeout(() => {
                 queueTimeouts.delete(messageDelete.guild.id);
+                queues.delete(messageDelete.guild.id);
             }, 5000);
             queueTimeouts.set(messageDelete.guild.id, newTimeoutId);
         }
