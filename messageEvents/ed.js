@@ -62,7 +62,7 @@ module.exports = async (oldMessage, newMessage) => {
             }
             const timeoutId = queueTimeouts.get(newMessage.guild.id);
             if (timeoutId) {
-                await delay(3000);
+                await delay(1000);
             }
             queue.push({
                 newMessage,
@@ -107,7 +107,7 @@ module.exports = async (oldMessage, newMessage) => {
                 queues.set(newMessage.guild.id, queue);
             }
             if (timeoutId) {
-                await delay(3000);
+                await delay(1000);
             }
             queue.push({
                 newMessage,
