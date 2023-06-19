@@ -1,1 +1,0 @@
-[5:20:50 AM] {"timeToReset":4322,"limit":2,"method":"GET","hash":"41f9cd5d28af77da04563bcb1d67fdfd","url":"https://discord.com/api/v10/gateway/bot","route":"/gateway/bot","majorParameter":"global","global":false}
