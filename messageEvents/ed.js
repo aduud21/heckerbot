@@ -47,6 +47,7 @@ module.exports = async (oldMessage, newMessage) => {
                 queue = async.queue(async (task) => {
                     const { newMessage, modLogsID, EmbedBuilder } = task;
                     try {
+                        await delay(2000);
                         await newMessage.guild.channels.cache
                             .get(modLogsID)
                             .send({ embeds: [EmbedBuilder] });
@@ -58,7 +59,7 @@ module.exports = async (oldMessage, newMessage) => {
             }
             const timeoutId = queueTimeouts.get(newMessage.guild.id);
             if (timeoutId) {
-                await delay(5000);
+                await delay(3000);
             }
             queue.push({
                 newMessage,
@@ -89,6 +90,7 @@ module.exports = async (oldMessage, newMessage) => {
                 queue = async.queue(async (task) => {
                     const { newMessage, modLogsID, EmbedBuilder } = task;
                     try {
+                        await delay(2000);
                         await newMessage.guild.channels.cache
                             .get(modLogsID)
                             .send({ embeds: [EmbedBuilder] });
@@ -99,7 +101,7 @@ module.exports = async (oldMessage, newMessage) => {
                 queues.set(newMessage.guild.id, queue);
             }
             if (timeoutId) {
-                await delay(5000);
+                await delay(3000);
             }
             queue.push({
                 newMessage,

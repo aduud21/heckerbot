@@ -36,6 +36,7 @@ module.exports = async (messageDelete) => {
                 queue = async.queue(async (task) => {
                     const { messageDelete, modLogsID, EmbedBuilder } = task;
                     try {
+                        await delay(2000);
                         await messageDelete.guild.channels.cache
                             .get(modLogsID)
                             .send({ embeds: [EmbedBuilder] });
@@ -47,7 +48,7 @@ module.exports = async (messageDelete) => {
             }
             const timeoutId = queueTimeouts.get(messageDelete.guild.id);
             if (timeoutId) {
-                await delay(5000);
+                await delay(3000);
             }
             queue.push({
                 messageDelete,
@@ -75,6 +76,7 @@ module.exports = async (messageDelete) => {
                 queue = async.queue(async (task) => {
                     const { messageDelete, modLogsID, EmbedBuilder } = task;
                     try {
+                        await delay(2000);
                         await messageDelete.guild.channels.cache
                             .get(modLogsID)
                             .send({ embeds: [EmbedBuilder] });
@@ -86,7 +88,7 @@ module.exports = async (messageDelete) => {
             }
             const timeoutId = queueTimeouts.get(messageDelete.guild.id);
             if (timeoutId) {
-                await delay(5000);
+                await delay(3000);
             }
             queue.push({
                 messageDelete,
