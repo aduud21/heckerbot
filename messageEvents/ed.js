@@ -31,7 +31,7 @@ module.exports = async (oldMessage, newMessage) => {
     if (oldMessage === null) oldMessage = 'unknown message';
     try {
         let flyMessage = `${oldMessage.content}${newMessage.content}`;
-        if (flyMessage.length < 1711) {
+        if (flyMessage.length < 3711) {
             if (newMessage.channel.type === 'dm') return;
             if (!decryptedData[newMessage.guild.id]) return;
             const modLogsID = decryptedData[newMessage.guild.id].channel;
