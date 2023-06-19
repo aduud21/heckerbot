@@ -1,5 +1,3 @@
-# This Doc (README.md) is currently W.I.P, i've recently added something which i will very soon tell how to do it
-
 [![Made with Replit Badge](https://replit.com/badge?caption=Made%20with%20Replit)](https://replit.com/github/aduud21/heckerbot)
 
 # if you plan on watching this repo, i suggest you put Releases only, There may be often new Releases
@@ -63,16 +61,10 @@ Make sure your bot has Message Content Intent enabled else you'll get a error.
 
 This bot runs on replit (hosted there) so you could run it there if you wish.
 
-NOTE: IF THERES A ERROR IN YOUR CODE OR SUCH, PLEASE REVIEW YOURSELF AND IF YOU SEE ANY throw new error PAY ATTENTION TO THAT AND SEE THE REASON, MOST COMMON ERROR AS OF 2023/3/5:
-
-```js
-throw new Error('key must be at least ' + MIN_KEY_LENGTH + ' characters long');
-    ^
-
-Error: key must be at least 16 characters long
-```
+NOTE: IF THERES A ERROR IN YOUR CODE OR SUCH, PLEASE REVIEW YOURSELF AND IF YOU SEE ANY throw new error PAY ATTENTION TO THAT AND SEE THE REASON
 
 ## How to run the bot on replit
+Secrets are environment variables (on replit you can create secrets by using it's bulit-in gui)
 
 You'll need your bot token.
 
@@ -86,34 +78,11 @@ npm install
 
 Create a secret named TOKEN and value as the token of your bot.
 
-Create a secret named DONOTSHARETHIS and the value should be something long (should be more than 126-256 characters, 16 is minimum), this will be used for encrypting the token and decrypting too and as well encrypting the modlogs (channel ID/Server ID).
+MongoDB:
+1. You'll need a [MongoDB](https://mongodb.com/) database set up. Make sure you have 0.0.0.0 whitelisted in the IP addresses so it will work with Replit or such
+2. Create a secret called mongodb and put your database's connection URI in there. It should look something like this: mongodb+srv://username:password@cluster0.clusters.mongodb.net/?retryWrites=true&w=majority
 
-For additional security, this bot encrypts the token and decrypts the token when needed so for that:
-In index.js add the following code to the top (line 1):
-
-```js
-const CryptoJS = require("crypto-js");
-const key = process.env.DONOTSHARETHIS;
-const tokenENV = process.env.TOKEN;
-const encryptedData = CryptoJS.AES.encrypt(tokenENV, key).toString();
-console.log(encryptedData);
-// The code below should ONLY be ran once
-const fs = require('fs');
- file = {}
- const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(file), key).toString();
-        fs.writeFile('./database/realmodlogs.txt', ciphertext, (err) => {
-            if (err) {
-                console.log(err);
-                return;
-            }
-        });
-return;
-```
-(To avoid issues with database encryption, the code above will write to the database to make it only {} and encrypted)
-
-Check the output (via console),
-then copy what it encrypted,
-Head back to secrets and replace your token with the encrypted one,
+Don't use the example I provided, put your own, it won't work. If you don't have a MongoDB, you can create on at MongoDB.
 
 Not done yet, for some slashcommands, go in guildEvents folder then guildCreate file and modify clientUSERID (line 2) to your bot's userID/APPLICATION ID.
 
