@@ -56,7 +56,7 @@ module.exports = async (interaction, client) => {
 
                 interaction
                     .editReply(
-                        `**${outputLink}** has been flagged as **${rank}** by google safe browsing, Exercise caution when visiting websites as the checklink command may not detect all threats or accurately determine website safety. i rely on data from [anti-fish api](<https://anti-fish.bitflow.dev/>) and [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>), which may not capture the latest or emerging threats. Use your best judgment when browsing unfamiliar websites!
+                        `**${outputLink}** has been flagged as **${rank}** by google safe browsing. Data is provided by [anti-fish api](<https://anti-fish.bitflow.dev/>) and [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>)
 `
                     )
                     .catch(() => {});
@@ -73,14 +73,14 @@ module.exports = async (interaction, client) => {
                         if (a.match) {
                             interaction
                                 .editReply(
-                                    `**${outputLink}** has been flagged as **dangerous** by antifish, Exercise caution when visiting websites as the checklink command may not detect all threats or accurately determine website safety. i rely on data from [anti-fish api](<https://anti-fish.bitflow.dev/>) and [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>), which may not capture the latest or emerging threats. Use your best judgment when browsing unfamiliar websites!
+                                    `**${outputLink}** has been flagged as **dangerous** by antifish. Data is provided by [anti-fish api](<https://anti-fish.bitflow.dev/>) and [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>)
 ` // https://anti-fish.bitflow.dev/
                                 )
                                 .catch(() => {});
                         } else {
                             interaction
                                 .editReply(
-                                    `**${outputLink}** is safe OR too new to be flagged, Exercise caution when visiting websites as the checklink command may not detect all threats or accurately determine website safety. i rely on data from [anti-fish api](<https://anti-fish.bitflow.dev/>) and [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>), which may not capture the latest or emerging threats. Use your best judgment when browsing unfamiliar websites!
+                                    `**${outputLink}** is safe OR too new to be flagged. Data is provided by [anti-fish api](<https://anti-fish.bitflow.dev/>) and [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>)
 ` // https://anti-fish.bitflow.dev/
                                 )
                                 .catch(() => {});
@@ -90,7 +90,7 @@ module.exports = async (interaction, client) => {
                         if (e.response && e.response.status === 404) {
                             interaction
                                 .editReply(
-                                    `**${outputLink}** is safe OR too new to be flagged, Exercise caution when visiting websites as the checklink command may not detect all threats or accurately determine website safety. i rely on data from [anti-fish api](<https://anti-fish.bitflow.dev/>) and [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>), which may not capture the latest or emerging threats. Use your best judgment when browsing unfamiliar websites!
+                                    `**${outputLink}** is safe OR too new to be flagged. Data is provided by [anti-fish api](<https://anti-fish.bitflow.dev/>) and [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>)
 `
                                 )
                                 .catch(() => {});
