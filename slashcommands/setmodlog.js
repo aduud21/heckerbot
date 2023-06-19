@@ -3,8 +3,12 @@ const CryptoJS = require('crypto-js');
 const key = process.env.DONOTSHARETHIS;
 const interactionServerCooldowns = new Map();
 const interactionServerCooldownsPreventRL = new Map();
-const MAX_MODLOGS_PER_SERVER = 1; // Maximum number of modlogs allowed per server
-
+const mongoose = require('mongoose');
+const Modlog = require('../models/modlog');
+mongoose.connect(process.env.mongodb, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
 module.exports = async (interaction, client) => {
     const commandName = interaction.commandName;
     const serverId = interaction.guild.id;
@@ -26,13 +30,6 @@ module.exports = async (interaction, client) => {
                     .catch(() => {});
                 return;
             }
-        }
-        const currentModlogs = interactionServerCooldowns.size;
-        if (currentModlogs >= MAX_MODLOGS_PER_SERVER) {
-            interaction
-                .reply(`The maximum number of modlogs has already been set for this server.`)
-                .catch(() => {});
-            return;
         }
 
         const cooldownTimeRL = 5000;
@@ -59,32 +56,9 @@ module.exports = async (interaction, client) => {
 
                 if (!channel) {
                     try {
-                        interaction.reply(
-                            `${client.fail} YOU cannot setmodlogs for a other server in this server.`
-                        );
-                    } catch (error) {
-                        console.error('Error replying to interaction:', error);
-                    }
-                    return;
-                }
-                let file = {};
-                try {
-                    const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8');
-                    const plaintext = CryptoJS.AES.decrypt(ciphertext, key).toString(
-                        CryptoJS.enc.Utf8
-                    );
-                    file = JSON.parse(plaintext);
-                } catch (err) {
-                    console.log(err);
-                }
-                if (
-                    file[interaction.guild.id] &&
-                    file[interaction.guild.id].channel == channel.id
-                ) {
-                    try {
                         interaction
                             .reply(
-                                `${client.fail} YOU cannot setmodlogs for a channel that has already been selected for it`
+                                `${client.fail} You cannot set modlogs for another server in this server.`
                             )
                             .catch(() => {});
                     } catch (error) {
@@ -92,20 +66,24 @@ module.exports = async (interaction, client) => {
                     }
                     return;
                 }
-                file[interaction.guild.id] = {
-                    channel: channel.id,
-                };
-                const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(file), key).toString();
-                fs.writeFile('./database/realmodlogs.txt', ciphertext, (err) => {
-                    if (err) {
-                        console.log(err);
-                        return;
-                    }
-                });
+                await interaction.reply({ content: 'Loading...' }).catch(() => {});
+                const existingModlog = await Modlog.findOne({ serverID: serverId }).catch(() => {});
+
+                if (existingModlog) {
+                    existingModlog.channelID = channelId;
+                    await existingModlog.save().catch(() => {});
+                } else {
+                    const newModlog = new Modlog({
+                        serverID: serverId,
+                        channelID: channelId,
+                    });
+                    await newModlog.save().catch(() => {});
+                }
+
                 try {
                     interaction
-                        .reply(
-                            `${client.success} Modlogs have been set to <#${channel.id}>. Please wait about 10 seconds for it to take effect...`
+                        .editReply(
+                            `${client.success} Modlogs have been set to <#${channelId}>. Please wait about 10 seconds for it to take effect...`
                         )
                         .catch(() => {});
                 } catch (err) {}

@@ -1,24 +1,31 @@
 const { EmbedBuilder } = require('discord.js');
 const { main } = require('../config/colors.json');
-const CryptoJS = require('crypto-js');
-const fs = require('fs');
 const async = require('async');
-const key = process.env.DONOTSHARETHIS;
+const mongoose = require('mongoose');
+const Modlog = require('../models/modlog');
+mongoose.connect(process.env.mongodb, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
 const creditCardRegex = /\b(?:\d{4}[ -]?){3}\d{4}\b/g;
 const phoneNumberRegex = /(\+\d{1,2}\s?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b/g;
-let decryptedData;
 const queues = new Map();
 const queueTimeouts = new Map();
 function delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
-function loadDecryptedData() {
-    const ciphertext = fs.readFileSync('./database/realmodlogs.txt', 'utf8');
-    const bytes = CryptoJS.AES.decrypt(ciphertext, key);
-    decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+let modlogDocuments = [];
+
+async function fetchModlogDocuments() {
+    try {
+        modlogDocuments = await Modlog.find();
+    } catch (error) {
+        console.log('Error fetching modlog documents:', error);
+    }
 }
-loadDecryptedData();
-setInterval(loadDecryptedData, 10 * 1000);
+
+fetchModlogDocuments();
+setInterval(fetchModlogDocuments, 10000);
 module.exports = async (oldMessage, newMessage) => {
     if (!oldMessage.content) return;
     if (!newMessage.content) return;
@@ -31,10 +38,13 @@ module.exports = async (oldMessage, newMessage) => {
     if (oldMessage === null) oldMessage = 'unknown message';
     try {
         let flyMessage = `${oldMessage.content}${newMessage.content}`;
-        if (flyMessage.length < 3711) {
+        if (flyMessage.length < 200) {
             if (newMessage.channel.type === 'dm') return;
-            if (!decryptedData[newMessage.guild.id]) return;
-            const modLogsID = decryptedData[newMessage.guild.id].channel;
+            const existingModlog = modlogDocuments.find(
+                (modlog) => modlog.serverID === newMessage.guild.id
+            );
+            if (!existingModlog) return;
+            const modLogsID = existingModlog.channelID;
             const text = newMessage.content;
             const filteredMessage = text
                 .replace(creditCardRegex, '[personal info]')
@@ -52,7 +62,7 @@ module.exports = async (oldMessage, newMessage) => {
                             .get(modLogsID)
                             .send({ embeds: [EmbedBuilder] });
                     } catch (error) {
-                        delete decryptedData[newMessage.guild.id];
+                        await Modlog.deleteOne({ serverID: newMessage.guild.id });
                         console.log(
                             `Kinda Optimized space: Somebody put modlogs for a channel then deleted that channel or the bot no longer has access to the channel ${error}`
                         );
@@ -83,8 +93,9 @@ module.exports = async (oldMessage, newMessage) => {
             }, 5000);
             queueTimeouts.set(newMessage.guild.id, newTimeoutId);
         } else {
-            if (!decryptedData[newMessage.guild.id]) return;
-            const modLogsID = decryptedData[newMessage.guild.id].channel;
+            const existingModlog = await Modlog.findOne({ serverID: newMessage.guild.id });
+            if (!existingModlog) return;
+            const modLogsID = existingModlog.channelID;
             const text = newMessage.content;
             const filteredMessage = text
                 .replace(creditCardRegex, '[personal info]')
@@ -99,7 +110,7 @@ module.exports = async (oldMessage, newMessage) => {
                             .get(modLogsID)
                             .send({ embeds: [EmbedBuilder] });
                     } catch (error) {
-                        delete decryptedData[newMessage.guild.id];
+                        await Modlog.deleteOne({ serverID: newMessage.guild.id });
                         console.log(
                             `Kinda Optimized space: Somebody put modlogs for a channel then deleted that channel or the bot no longer has access to the channel ${error}`
                         );
@@ -128,11 +139,6 @@ module.exports = async (oldMessage, newMessage) => {
             queueTimeouts.set(newMessage.guild.id, newTimeoutId);
         }
     } catch (error) {
-        if (decryptedData[newMessage.guild.id]) {
-            delete decryptedData[newMessage.guild.id];
-            console.log(
-                `Kinda Optimized space: Somebody put modlogs for a channel then deleted that channel or the bot no longer has access to the channel ${error}`
-            );
-        }
+        console.log(`error: ${error}`);
     }
 };
