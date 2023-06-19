@@ -82,7 +82,7 @@ MongoDB:
 1. You'll need a [MongoDB](https://mongodb.com/) database set up. Make sure you have 0.0.0.0 whitelisted in the IP addresses so it will work with Replit or such
 2. Create a secret called mongodb and put your database's connection URI in there. It should look something like this: mongodb+srv://username:password@cluster0.clusters.mongodb.net/?retryWrites=true&w=majority
 
-Don't use the example I provided, put your own, it won't work. If you don't have a MongoDB, you can create on at MongoDB.
+Don't use the example I provided, put your own, it won't work. If you don't have a MongoDB, you can create on at [MongoDB](https://mongodb.com/).
 
 Not done yet, for some slashcommands, go in guildEvents folder then guildCreate file and modify clientUSERID (line 2) to your bot's userID/APPLICATION ID.
 
