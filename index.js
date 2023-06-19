@@ -1,4 +1,3 @@
-return;
 // This bot is designed (made) to run on replit
 // This bot is designed (made) to run on replit
 // This bot is designed (made) to run on replit
