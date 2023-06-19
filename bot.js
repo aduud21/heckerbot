@@ -18,11 +18,9 @@
 // Do not delete the client.login since its required for the bot to work, Make sure to read 'README.md'
 // Dont share your bot token (it's pretty much the password for it)
 console.log('⏳-> [LOGINDATA] Checking data...');
-let key = process.env.DONOTSHARETHIS;
 const interactionCooldownsRL = new Map();
 const interactionCooldownsRLPrevent = new Map();
 const cooldownTimeRL = 5000;
-const CryptoJS = require('crypto-js');
 const { ClusterClient, getInfo } = require('discord-hybrid-sharding');
 const { GatewayIntentBits, Partials, Client, REST, Routes, Events } = require('discord.js');
 const client = new Client({
@@ -36,13 +34,10 @@ const client = new Client({
     ],
     partials: [Partials.Message, Partials.Reaction, Partials.Channel],
 });
-const encryptedData = process.env.TOKEN;
-const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, key);
-const decryptedToken = decryptedBytes.toString(CryptoJS.enc.Utf8);
 // DO NOT REMOVE THE LINE BELOW!
 client.cluster = new ClusterClient(client); // initialize the Client, so we access the .broadcastEval()
-client.login(decryptedToken);
-const rest = new REST({ version: '10' }).setToken(decryptedToken);
+client.login(process.env.TOKEN);
+const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 // e
 console.log('⌛-> [LOGINDATA] Data found, program will try to use it!');
 client.rest.on('rateLimited', (data) => {

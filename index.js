@@ -1,3 +1,4 @@
+return;
 // This bot is designed (made) to run on replit
 // This bot is designed (made) to run on replit
 // This bot is designed (made) to run on replit
@@ -33,8 +34,6 @@ https://github.com/aduud21/heckerbot#how-to-run-the-bot-on-replit
 // AUTO UPDATE/REMOVE VULNERABILITIES
 // yea
 const { ClusterManager, HeartbeatManager } = require('discord-hybrid-sharding');
-let key = process.env.DONOTSHARETHIS;
-const CryptoJS = require('crypto-js');
 try {
     console.log(`Node version: ${process.version}`);
     console.log(
@@ -54,9 +53,6 @@ if (!process.env.TOKEN) {
     return;
 }
 // PLEASE DO NOT DELETE THE LICENSE FILE, and do not claim you made this bot
-const encryptedToken = process.env.TOKEN;
-const decryptedBytes = CryptoJS.AES.decrypt(encryptedToken, key);
-const decryptedToken = decryptedBytes.toString(CryptoJS.enc.Utf8);
 const manager = new ClusterManager(`./bot.js`, {
     totalShards: 'auto', // or 'auto'
     totalClusters: 'auto', // or 'auto'
@@ -64,7 +60,7 @@ const manager = new ClusterManager(`./bot.js`, {
     shardsPerClusters: 2,
     // totalClusters: 7,
     mode: 'process', // you can also choose "worker"
-    token: decryptedToken,
+    token: process.env.TOKEN,
 });
 manager.on('clusterCreate', (cluster) => console.log(`Launched Cluster ${cluster.id}`));
 manager.spawn({ timeout: -1 });

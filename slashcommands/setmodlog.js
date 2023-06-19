@@ -1,6 +1,4 @@
 const fs = require('fs');
-const CryptoJS = require('crypto-js');
-const key = process.env.DONOTSHARETHIS;
 const interactionServerCooldowns = new Map();
 const interactionServerCooldownsPreventRL = new Map();
 const mongoose = require('mongoose');
