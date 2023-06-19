@@ -1,3 +1,5 @@
+# This Doc (README.md) is currently W.I.P, i've recently added something which i will very soon tell how to do it
+
 [![Made with Replit Badge](https://replit.com/badge?caption=Made%20with%20Replit)](https://replit.com/github/aduud21/heckerbot)
 
 # if you plan on watching this repo, i suggest you put Releases only, There may be often new Releases
