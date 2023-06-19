@@ -48,7 +48,6 @@ module.exports = async (messageDelete) => {
             const timeoutId = queueTimeouts.get(messageDelete.guild.id);
             if (timeoutId) {
                 await delay(5000);
-                clearTimeout(timeoutId);
             }
             queue.push({
                 messageDelete,
@@ -88,7 +87,6 @@ module.exports = async (messageDelete) => {
             const timeoutId = queueTimeouts.get(messageDelete.guild.id);
             if (timeoutId) {
                 await delay(5000);
-                clearTimeout(timeoutId);
             }
             queue.push({
                 messageDelete,
