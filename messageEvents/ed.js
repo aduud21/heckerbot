@@ -52,7 +52,10 @@ module.exports = async (oldMessage, newMessage) => {
                             .get(modLogsID)
                             .send({ embeds: [EmbedBuilder] });
                     } catch (error) {
-                        console.log(error);
+                        delete decryptedData[newMessage.guild.id];
+                        console.log(
+                            `Kinda Optimized space: Somebody put modlogs for a channel then deleted that channel or the bot no longer has access to the channel ${error}`
+                        );
                     }
                 }, 1);
                 queues.set(newMessage.guild.id, queue);
@@ -95,7 +98,10 @@ module.exports = async (oldMessage, newMessage) => {
                             .get(modLogsID)
                             .send({ embeds: [EmbedBuilder] });
                     } catch (error) {
-                        console.log(error);
+                        delete decryptedData[newMessage.guild.id];
+                        console.log(
+                            `Kinda Optimized space: Somebody put modlogs for a channel then deleted that channel or the bot no longer has access to the channel ${error}`
+                        );
                     }
                 }, 1);
                 queues.set(newMessage.guild.id, queue);
