@@ -1,4 +1,3 @@
-const fs = require('fs');
 const interactionServerCooldowns = new Map();
 const interactionServerCooldownsPreventRL = new Map();
 const mongoose = require('mongoose');
