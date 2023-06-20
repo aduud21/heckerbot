@@ -45,8 +45,8 @@ module.exports = async (interaction) => {
     }
     try {
         const question = await getValidQuestion();
-        const correctAnswer = question.correct_answer.catch(() => {});
-        const decodedAnswer = he.decode(correctAnswer).catch(() => {});
+        const correctAnswer = question.correct_answer;
+        const decodedAnswer = he.decode(correctAnswer);
         let answers = [decodedAnswer];
 
         if (answers[0] === 'True') {
