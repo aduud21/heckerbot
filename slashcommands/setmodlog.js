@@ -45,11 +45,11 @@ module.exports = async (interaction, client) => {
     if (commandName === 'setmodlog') {
         try {
             try {
-                const input = interaction.options._hoistedOptions[0].value;
+                const input = interaction.options._hoistedOptions[0].value.catch(() => {});
                 const onlyN = input.match(/\d+/)[0];
 
                 const channelId = onlyN;
-                const channel = interaction.guild.channels.cache.get(channelId);
+                const channel = interaction.guild.channels.cache.get(channelId).catch(() => {});
 
                 if (!channel) {
                     try {

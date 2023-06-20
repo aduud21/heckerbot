@@ -18,7 +18,7 @@ async function getRandomQuestion() {
         const response = await axios.get(randomUrl);
         return response.data.results[0];
     } catch (error) {
-        throw new Error('Failed to fetch a random question');
+        console.error('Failed to fetch a random question');
     }
 }
 async function getValidQuestion() {
@@ -41,12 +41,12 @@ async function getValidQuestion() {
 module.exports = async (interaction) => {
     const commandName = interaction.commandName;
     if (commandName === 'quiz') {
-        await interaction.reply({ content: 'Loading...' });
+        await interaction.reply({ content: 'Loading...' }).catch(() => {});
     }
     try {
         const question = await getValidQuestion();
-        const correctAnswer = question.correct_answer;
-        const decodedAnswer = he.decode(correctAnswer);
+        const correctAnswer = question.correct_answer.catch(() => {});
+        const decodedAnswer = he.decode(correctAnswer).catch(() => {});
         let answers = [decodedAnswer];
 
         if (answers[0] === 'True') {
@@ -58,7 +58,7 @@ module.exports = async (interaction) => {
 Random Question:
 ${decodedString} \n\nThink about the answer, then click this => ||${answers}|| to view the correct answer. This data is provided by [opentdb](<https://opentdb.com/>)`;
         if (commandName === 'quiz') {
-            interaction.editReply({ content: content });
+            interaction.editReply({ content: content }).catch(() => {});
         }
     } catch (error) {
         console.error(error);
