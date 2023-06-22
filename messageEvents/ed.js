@@ -38,7 +38,7 @@ module.exports = async (oldMessage, newMessage) => {
     if (oldMessage === null) oldMessage = 'unknown message';
     try {
         let flyMessage = `${oldMessage.content}${newMessage.content}`;
-        if (flyMessage.length < 200) {
+        if (flyMessage.length < 3711) {
             if (newMessage.channel.type === 'dm') return;
             const existingModlog = modlogDocuments.find(
                 (modlog) => modlog.serverID === newMessage.guild.id

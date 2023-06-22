@@ -36,7 +36,7 @@ module.exports = async (messageDelete) => {
     if (messageDelete.author.bot) return;
 
     try {
-        if (messageDelete.content.length < 200) {
+        if (messageDelete.content.length < 3711) {
             const existingModlog = modlogDocuments.find(
                 (modlog) => modlog.serverID === messageDelete.guild.id
             );
