@@ -52,7 +52,7 @@ ${pu.config.name ? `**Name:** ${pu.config.name}` : ''}${pu.config.description ? 
             message
                 .reply(
                     `
-Most prefix commands were removed as of 6/10/2023 but i might start making prefix commands again, left prefix commands:
+Most prefix commands were removed as of 6/10/2023 and were replaced with slash commands but i might start making prefix commands again, left prefix commands:
 ${client.prefix}help
 ${client.prefix}cscfs
 
