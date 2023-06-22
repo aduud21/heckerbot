@@ -83,7 +83,11 @@ client.on(Events.InteractionCreate, async (interaction) => {
         interactionCooldownsRL.delete(userId);
     }, cooldownTimeRL);
     const commandName = interaction.commandName;
-    require(`./slashcommands/${commandName}`)(interaction, client);
+    try {
+        require(`./slashcommands/${commandName}`)(interaction, client);
+    } catch (e) {
+        console.log(e);
+    }
 });
 client.on('messageDelete', async (message) => {
     require('./messageEvents/md')(message);
