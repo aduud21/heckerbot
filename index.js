@@ -30,8 +30,6 @@ https://github.com/aduud21/heckerbot#how-to-run-the-bot-on-replit
 https://github.com/aduud21/heckerbot#how-to-run-the-bot-on-replit
 https://github.com/aduud21/heckerbot#how-to-run-the-bot-on-replit
 */
-// AUTO UPDATE/REMOVE VULNERABILITIES
-// yea
 const { ClusterManager, HeartbeatManager } = require('discord-hybrid-sharding');
 try {
     console.log(`Node version: ${process.version}`);
