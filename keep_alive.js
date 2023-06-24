@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const helmet = require('helmet');
-const port = Math.floor(Math.random() * (9000 - 2000 + 1)) + 2000;
+const port = Math.floor(Math.random() * (9000 - 4000 + 1)) + 4000;
 app.use(helmet());
 app.get('/', (req, res) => res.redirect('https://discord.gg/YSEB7PnHVV'));
 app.listen(port, '0.0.0.0', () =>

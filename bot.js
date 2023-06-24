@@ -21,6 +21,7 @@ console.log('⏳-> [LOGINDATA] Checking data...');
 const interactionCooldownsRL = new Map();
 const interactionCooldownsRLPrevent = new Map();
 const debugModeEnabled = true;
+const isHostedOnReplit = true; // Please change this depending where you host it, if it is replit then set it to true else set it to false, Hosting this platforms that are not replit can pose security vulnerabilitys
 const cooldownTimeRL = 5000;
 const { ClusterClient, getInfo } = require('discord-hybrid-sharding');
 const { GatewayIntentBits, Partials, Client, REST, Routes, Events } = require('discord.js');
@@ -100,7 +101,9 @@ if (debugModeEnabled) {
         console.log('[' + currentTime + '] Client encountered a rate limit:', data);
     });
 }
-require('./keep_alive');
+if (isHostedOnReplit) {
+    require('./keep_alive');
+}
 require('./utils/defines')(client);
 require('./utils/handlers/events')(client);
 require('./prefixcommand')(client);
