@@ -59,7 +59,7 @@ This bot runs on node.js. You will need at least node 17.
 
 Make sure your bot has Message Content Intent enabled else you'll get a error.
 
-This bot runs on replit (hosted there) so you could run it there if you wish.
+This bot runs on replit (hosted there) and it is recommended to run it there.
 
 NOTE: IF THERES A ERROR IN YOUR CODE OR SUCH, PLEASE REVIEW YOURSELF AND IF YOU SEE ANY throw new error PAY ATTENTION TO THAT AND SEE THE REASON
 
