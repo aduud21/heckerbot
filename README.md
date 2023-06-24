@@ -12,7 +12,6 @@
 [![stars - heckerbot](https://img.shields.io/github/stars/aduud21/heckerbot?style=social)](https://github.com/aduud21/heckerbot)
 [![forks - heckerbot](https://img.shields.io/github/forks/aduud21/heckerbot?style=social)](https://github.com/aduud21/heckerbot)
 [![Discord Support Server](https://img.shields.io/badge/Discord_Support_Server-black?logo=discord)](https://discord.gg/YSEB7PnHVV)
-[![CodeFactor](https://www.codefactor.io/repository/github/aduud21/heckerbot/badge)](https://www.codefactor.io/repository/github/aduud21/heckerbot)
 
 **_This project is hosted on replit (https://replit.com/@AGuyThatLikesFurrys/Hecker-Discord-bots), The code of this bot is on replit and github (https://github.com/aduud21/heckerbot)._**
 
