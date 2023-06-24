@@ -20,7 +20,7 @@
 console.log('⏳-> [LOGINDATA] Checking data...');
 const interactionCooldownsRL = new Map();
 const interactionCooldownsRLPrevent = new Map();
-const debugModeEnabled = true
+const debugModeEnabled = true;
 const cooldownTimeRL = 5000;
 const { ClusterClient, getInfo } = require('discord-hybrid-sharding');
 const { GatewayIntentBits, Partials, Client, REST, Routes, Events } = require('discord.js');
@@ -42,63 +42,63 @@ const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 // e
 console.log('⌛-> [LOGINDATA] Data found, program will try to use it!');
 // THIS PART OF THE CODE IS TEMP, IT IS MADE FOR DEBUGGING
-if (debugModeEnabled){
-const fs = require('fs');
-const options = {
-    timeZone: 'America/Mexico_City',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-};
-const logError = (data) => {
-    const currentTime = new Date().toLocaleString('en-US', options);
-    console.error('[' + currentTime + '] Client encountered an error:', data);
-    fs.appendFile(
-        './errorlogTEMP.txt',
-        '[' + currentTime + '] ' + JSON.stringify(data) + '\n',
-        'utf8',
-        (err) => {
-            if (err) {
-                console.error('An error occurred while writing to the file:', err);
-            } else {
-                console.log('Content has been written to the file successfully.');
-            }
-        }
-    );
-};
-process.on('uncaughtException', (err) => {
-    logError('Uncaught Exception: ' + err.stack);
-});
-process.on('unhandledRejection', (reason) => {
-    logError('Unhandled Rejection: ' + reason);
-});
-process.on('exit', (code) => {
-    const currentTime = new Date().toLocaleString('en-US', options);
-    console.log('[' + currentTime + '] Process exited with code:', code);
-    fs.appendFile(
-        './errorlogTEMP.txt',
-        '[' + currentTime + '] Process exited with code: ' + code + '\n',
-        'utf8',
-        (err) => {
-            if (err) {
-                console.error('An error occurred while writing to the file:', err);
-            } else {
-                console.log('Content has been written to the file successfully.');
-            }
-        }
-    );
-});
-  // below (ratelimit log) should always be enabled but alright
-client.rest.on('rateLimited', (data) => {
+if (debugModeEnabled) {
+    const fs = require('fs');
     const options = {
         timeZone: 'America/Mexico_City',
         hour: 'numeric',
         minute: 'numeric',
         second: 'numeric',
-    }; // this is almost my timezone
-    const currentTime = new Date().toLocaleString('en-US', options);
-    console.log('[' + currentTime + '] Client encountered a rate limit:', data);
-});
+    };
+    const logError = (data) => {
+        const currentTime = new Date().toLocaleString('en-US', options);
+        console.error('[' + currentTime + '] Client encountered an error:', data);
+        fs.appendFile(
+            './errorlogTEMP.txt',
+            '[' + currentTime + '] ' + JSON.stringify(data) + '\n',
+            'utf8',
+            (err) => {
+                if (err) {
+                    console.error('An error occurred while writing to the file:', err);
+                } else {
+                    console.log('Content has been written to the file successfully.');
+                }
+            }
+        );
+    };
+    process.on('uncaughtException', (err) => {
+        logError('Uncaught Exception: ' + err.stack);
+    });
+    process.on('unhandledRejection', (reason) => {
+        logError('Unhandled Rejection: ' + reason);
+    });
+    process.on('exit', (code) => {
+        const currentTime = new Date().toLocaleString('en-US', options);
+        console.log('[' + currentTime + '] Process exited with code:', code);
+        fs.appendFile(
+            './errorlogTEMP.txt',
+            '[' + currentTime + '] Process exited with code: ' + code + '\n',
+            'utf8',
+            (err) => {
+                if (err) {
+                    console.error('An error occurred while writing to the file:', err);
+                } else {
+                    console.log('Content has been written to the file successfully.');
+                }
+            }
+        );
+    });
+    // below (ratelimit log) should always be enabled but alright
+    client.rest.on('rateLimited', (data) => {
+        const options = {
+            timeZone: 'America/Mexico_City',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+        }; // this is almost my timezone
+        const currentTime = new Date().toLocaleString('en-US', options);
+        console.log('[' + currentTime + '] Client encountered a rate limit:', data);
+    });
 }
 require('./keep_alive');
 require('./utils/defines')(client);
