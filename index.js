@@ -1,3 +1,5 @@
+const isHostedOnReplit = true; // Please change this depending where you host it, if it is replit then set it to true else set it to false, Hosting this platforms that are not replit can pose security vulnerabilitys
+const ReplitWebViewURL = `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co`; // if it is hosted on replit, what is webview of it (it should automatically detect tho)? (This is needed for pinging, Pinging and UptimeRobot or such services is required for bot to run at OK uptime if hosted on replit)
 // This bot is designed (made) to run on replit
 // This bot is designed (made) to run on replit
 // This bot is designed (made) to run on replit
@@ -68,3 +70,18 @@ manager.extend(
     })
 );
 // make sure to read README.md file
+if (isHostedOnReplit) {
+    console.log('Hosted on replit');
+    require('./keep_alive');
+    const Monitor = require('ping-monitor');
+    const monitor = new Monitor({
+        website: ReplitWebViewURL,
+        title: 'NAME',
+        interval: 2,
+    });
+    monitor.on('up', (res) => console.log(`${res.website} its on.`));
+    monitor.on('down', (res) => console.log(`${res.website} it has died - ${res.statusMessage}`));
+    monitor.on('stop', (website) => console.log(`${website} has stopped.`));
+    monitor.on('error', (error) => console.log(error));
+    console.log('Hosted on replit settings done');
+}
