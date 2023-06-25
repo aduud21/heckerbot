@@ -11,7 +11,7 @@ module.exports = async (interaction, client) => {
         interaction
             .reply(
                 `
-Bot uptime:
+Client uptime (Shard${interaction.guild.shardId}):
 Days: ${days} 
 Hours: ${hours} 
 Minutes: ${minutes} 
