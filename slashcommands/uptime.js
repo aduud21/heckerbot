@@ -16,6 +16,8 @@ Days: ${days}
 Hours: ${hours} 
 Minutes: ${minutes} 
 Seconds: ${seconds}
+
+||Restarts are made to be fast incase if it happens||
 `
             )
             .catch(() => {});
