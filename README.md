@@ -121,7 +121,7 @@ Search "Webview" or "Web" then click on it
 
 ## Not done yet, for some slashcommands, go in guildEvents folder then guildCreate file and modify clientUSERID (line 2) to your bot's userID/APPLICATION ID.
 
-After doing this, in events folder (ready.js) you can turn off/on start_up_message (by default it is on), if you want start up messages then:
+After doing this, in events folder (ready.js) you can turn off/on start_up_message (by default it is off), if you want start up messages then:
 
 Replace 957439649142407248 with the channel you want it to send (channel id)
 
