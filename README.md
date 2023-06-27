@@ -13,8 +13,6 @@
 [![forks - heckerbot](https://img.shields.io/github/forks/aduud21/heckerbot?style=social)](https://github.com/aduud21/heckerbot)
 [![Discord Support Server](https://img.shields.io/badge/Discord_Support_Server-black?logo=discord)](https://discord.gg/YSEB7PnHVV)
 
-**_This project is hosted on replit (https://replit.com/@AGuyThatLikesFurrys/Hecker-Discord-bots), The code of this bot is on replit and github (https://github.com/aduud21/heckerbot)._**
-
 **</> MutilpleBot, On Discord.js V14 as of 5/16/2023 </>**
 
 **_<!>Copyright Notice<!>:_**
@@ -50,7 +48,7 @@ _Notes:_
 2. if you want to join the support server: https://discord.gg/GbjgmffUKj
 
 \***_Creator:
-https://youtube.com/c/adudu21 or adudu21 (on roblox and some other places too), on replit i am AGuyThatLikesFurrys (my username on replit is a joke), My discord UserID is 710227418492960778_**
+https://youtube.com/c/adudu21 or adudu21 (on roblox and some other places too), My discord UserID is 710227418492960778_**
 
 # Installation
 
