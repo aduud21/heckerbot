@@ -7,7 +7,11 @@ module.exports = async (client, message, rest, Routes) => {
     if (!prefixRegex.test(message.content)) return;
     const [, prefix] = message.content.match(prefixRegex);
     if (!message.content.startsWith(prefix)) return;
-    if (message.author.bot) return;
+    // The code below is for testing replit's uptime (force shutdown repls) after some time of inactively, This test started as of 6/29/2023, this will allow a ping bot to ping the bot via using certain commands.
+    if (message.author.bot) {
+        if (message.author.id !== '1103833717975294072') return;
+    }
+    //Clear code
     let args = message.content.slice(prefix.length).trim().split(/ +/g);
     const cmm = args.shift().toLocaleLowerCase();
     let command = client.commands.get(cmm) || client.commands.get(client.aliases.get(cmm));
