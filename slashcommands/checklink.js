@@ -15,13 +15,16 @@ module.exports = async (interaction, client) => {
     const commandName = interaction.commandName;
     if (commandName == 'checklink') {
         let datareal = `${interaction.options._hoistedOptions[0].value}`;
-        const regex =
-            /^(?!.*[\\#])((?:[A-Za-z\d-]{0,61}[A-Za-z\d]\.)+[A-Za-z\d][A-Za-z\d-]{0,61}[A-Za-z\d])$/;
+        const regex = /(?:[A-z0-9](?:[A-z0-9-]{0,61}[A-z0-9])?\.)+[A-z0-9][A-z0-9-]{0,61}[A-z0-9]/;
         const match = datareal.match(regex);
         if (!match) {
             interaction
                 .reply({ content: 'Incorrect link. Please enter a valid link!' })
                 .catch(() => {});
+            return;
+        }
+        if (datareal.length > 255) {
+            interaction.reply({ content: 'Link too long! Character limit: 255' }).catch(() => {});
             return;
         }
 

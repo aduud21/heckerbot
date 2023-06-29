@@ -1,5 +1,5 @@
 const { prefix: mainPrefix, owners } = require('./config/bot.json');
-const TEST_ACTIVE = true;
+const TEST_ACTIVE = true; //Please set this value to false for any user that is not adudu21 (aduud21)
 const UserPreventRL = new Map(); // get userids for cooldown, should be above module.exports = async (client)
 module.exports = async (client, message, rest, Routes) => {
     if (message.channel.type === 'dm') return;
@@ -10,6 +10,7 @@ module.exports = async (client, message, rest, Routes) => {
     if (!message.content.startsWith(prefix)) return;
     // The code below is for testing replit's uptime (force shutdown repls) after some time of inactively, This test started as of 6/29/2023, this will allow a ping bot to ping the bot via using certain commands.
     //As of 3:02AM in 6/29/2023 i see that REPLIT may have a auto-detecter for such things or simply the ping bot response is too short and counts the repl as being active
+    //i have further added extra things to ping bot for this test 3:51AM
     if (message.author.bot) {
         if (TEST_ACTIVE) {
             if (message.author.id !== '1103833717975294072') return;
