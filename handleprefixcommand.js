@@ -9,7 +9,7 @@ module.exports = async (client, message, rest, Routes) => {
     const [, prefix] = message.content.match(prefixRegex);
     if (!message.content.startsWith(prefix)) return;
     // The code below is for testing replit's uptime (force shutdown repls) after some time of inactively, This test started as of 6/29/2023, this will allow a ping bot to ping the bot via using certain commands.
-    //As of 3:02AM in 6/29/2023 i see that REPLIT has a auto-detecter for such things
+    //As of 3:02AM in 6/29/2023 i see that REPLIT may have a auto-detecter for such things or simply the ping bot response is too short and counts the repl as being active
     if (message.author.bot) {
         if (TEST_ACTIVE) {
             if (message.author.id !== '1103833717975294072') return;
