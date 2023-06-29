@@ -1,4 +1,5 @@
 const { prefix: mainPrefix, owners } = require('./config/bot.json');
+const TEST_ACTIVE = true;
 const UserPreventRL = new Map(); // get userids for cooldown, should be above module.exports = async (client)
 module.exports = async (client, message, rest, Routes) => {
     if (message.channel.type === 'dm') return;
@@ -8,8 +9,13 @@ module.exports = async (client, message, rest, Routes) => {
     const [, prefix] = message.content.match(prefixRegex);
     if (!message.content.startsWith(prefix)) return;
     // The code below is for testing replit's uptime (force shutdown repls) after some time of inactively, This test started as of 6/29/2023, this will allow a ping bot to ping the bot via using certain commands.
+    //As of 3:02AM in 6/29/2023 i see that REPLIT has a auto-detecter for such things
     if (message.author.bot) {
-        if (message.author.id !== '1103833717975294072') return;
+        if (TEST_ACTIVE) {
+            if (message.author.id !== '1103833717975294072') return;
+        } else {
+            if (message.author.bot) return;
+        }
     }
     //Clear code
     let args = message.content.slice(prefix.length).trim().split(/ +/g);
