@@ -37,12 +37,14 @@ module.exports = async (interaction) => {
                 const responseData = JSON.parse(data);
                 if (response.statusCode === 200) {
                     if (responseData.robloxID) {
-                        interaction.editReply('User is verified with Bloxlink').catch(() => {});
+                        interaction.editReply('User is verified with Bloxlink (200)').catch(() => {});
                         return;
                     } else {
                         interaction.editReply('User is not verified with Bloxlink').catch(() => {});
                         return;
                     }
+                } else if (response.statusCode === 404) {
+                    interaction.editReply('User is not verified with Bloxlink (404)').catch(() => {});
                 } else {
                     interaction
                         .editReply('An error occurred while processing the command.')
