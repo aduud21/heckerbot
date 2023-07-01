@@ -1,7 +1,7 @@
 {
     "name": "heckerbot",
     "version": "1.0.0",
-    "description": "A bot which has many use cases",
+    "description": "A bot which has some use cases",
     "main": "index.js",
     "scripts": {
         "format": "prettier --write ."
