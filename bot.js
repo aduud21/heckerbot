@@ -41,7 +41,7 @@ client.login(process.env.TOKEN);
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 // e
 console.log('⌛-> [LOGINDATA] Data found, program will try to use it!');
-// THIS PART OF THE CODE IS TEMP, IT IS MADE FOR DEBUGGING
+// THIS PART OF THE CODE IS FOR DEBUGGING
 if (debugModeEnabled) {
     const options = {
         timeZone: 'America/Mexico_City',
