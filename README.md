@@ -117,7 +117,7 @@ Search "Webview" or "Web" then click on it
 ![image](https://github.com/aduud21/heckerbot/assets/74877817/92ebf5f7-2bf7-4d1f-a4a6-5ddadbf16910)
 
 
-## Not done yet, for some slashcommands, go in guildEvents folder then guildCreate file and modify clientUSERID (line 2) to your bot's userID/APPLICATION ID.
+## Not done yet, for slashcommands, go in refreshslashcommand file and modify clientUSERID (line 2) to your bot's userID/APPLICATION ID.
 
 After doing this, in events folder (ready.js) you can turn off/on start_up_message (by default it is off), if you want start up messages then:
 
@@ -157,3 +157,7 @@ i did step 15 but did not save my API key!
 if you have read all of this and understood (for example you not gonna claim you made this bot), Thank you, Have a great day!
 
 Email: contact-adudu21@proton.me
+
+if you have two slash commands named the exact same, run this (via runcode) to remove the duplicate:
+```js
+const { GatewayIntentBits, Partials, Client } = require('discord.js'); const client = new Client({   intents: [     GatewayIntentBits.Guilds,     GatewayIntentBits.GuildMessages,     GatewayIntentBits.MessageContent,     GatewayIntentBits.GuildMessageReactions,   ],   partials: [Partials.Message, Partials.Reaction, Partials.Channel], });  client.login(process.env.TOKEN);  client.on('ready', async () => {   try {     client.guilds.cache.forEach(async (guild) => {       try {         const commands = await guild.commands.fetch();         const commandIDs = commands.map((command) => command.id);         console.log(`Command IDs in guild ${guild.id}: ${commandIDs.join(', ')}`);         await Promise.all(commandIDs.map((commandID) => guild.commands.delete(commandID)));         console.log(`Deleted ${commandIDs.length} commands in guild ${guild.id}`);       } catch (error) {         console.error(`Failed to delete commands in guild ${guild.id}:`);         console.error(error);       }     });     console.log('All commands deleted in all guilds');   } catch (error) {     console.error('Failed to fetch guilds:');     console.error(error);   } });```

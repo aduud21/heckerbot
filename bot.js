@@ -117,7 +117,7 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
 // adudu21 was here, something: https://replit.com/@AGuyThatLikesFurrys/Hecker-Discord-bot
 
 client.on('guildCreate', async (guild) => {
-    require('./guildEvents/guildCreate')(client, guild, rest, Routes);
+    require('./guildEvents/guildCreate')(client, guild);
 });
 // this is pretty helpful for space
 client.on('guildDelete', (guild) => {
@@ -127,3 +127,6 @@ client.on('guildDelete', (guild) => {
 client.on('messageCreate', async (message) => {
     require('./handleprefixcommand')(client, message, rest, Routes);
 });
+
+//Slash commands
+require('./refreshslashcommand')(client, rest, Routes);
