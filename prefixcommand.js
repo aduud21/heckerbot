@@ -15,7 +15,13 @@ module.exports = async (client, message, rest, Routes) => {
 
         for (const file of jsFiles) {
             const filePath = join(folderPath, file);
-            const pullCmd = require(`${filePath}`);
+
+            if (!filePath.startsWith('/')) {
+                console.log('❌  -> Skipping non-local module: ' + filePath);
+                continue;
+            }
+
+            const pullCmd = require(filePath);
             client.commands.set(pullCmd.config.name, pullCmd);
 
             console.log('✅ -> File: ' + pullCmd.config.name + ' successfully loaded');
