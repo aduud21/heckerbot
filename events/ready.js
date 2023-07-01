@@ -3,10 +3,6 @@ const { ActivityType } = require('discord.js');
 console.log(
     '⏳ -> [LOGIN] Trying to login with provided token, if this takes longer than 5 minutes it might be cause you provided a invaild token'
 );
-const fs = require('fs');
-if (!fs.existsSync('./LICENSE')) {
-    return;
-}
 module.exports = async (client) => {
     const activityText = `servers | Cluster${client.cluster.id}`;
     console.log(`☑️ -> [LOGIN] Logged into token as user ${client.user.tag}`);
