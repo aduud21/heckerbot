@@ -38,11 +38,11 @@ module.exports = async (interaction) => {
                 if (response.statusCode === 200) {
                     if (responseData.robloxID) {
                         interaction.editReply('User is verified with Bloxlink').catch(() => {});
+                        return;
                     } else {
                         interaction.editReply('User is not verified with Bloxlink').catch(() => {});
+                        return;
                     }
-                } else if (response.statusCode === 404) {
-                    interaction.editReply('User not found').catch(() => {});
                 } else {
                     interaction
                         .editReply('An error occurred while processing the command.')
@@ -50,7 +50,6 @@ module.exports = async (interaction) => {
                 }
             });
         });
-
         req.on('error', (error) => {
             console.log(`An error occurred: ${error}`);
             interaction
