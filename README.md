@@ -52,7 +52,7 @@ https://youtube.com/c/adudu21 or adudu21 (on roblox and some other places too), 
 
 # Installation
 
-This bot runs on node.js. You will need at least node 17.
+This bot runs on node.js. You will need at least node 16.18.1
 
 Make sure your bot has Message Content Intent enabled else you'll get a error.
 
