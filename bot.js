@@ -74,6 +74,7 @@ require('./utils/handlers/events')(client);
 require('./prefixcommand')(client);
 client.on(Events.InteractionCreate, async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
+    if (!interaction.inGuild()) return;
     const userId = interaction.member.user.id;
     if (interactionCooldownsRL.has(userId)) {
         const remainingCooldownRL = interactionCooldownsRL.get(userId) - Date.now();
@@ -128,5 +129,5 @@ client.on('messageCreate', async (message) => {
     require('./handleprefixcommand')(client, message, rest, Routes);
 });
 
-//Slash commands
+//Slash commands (Register)
 require('./refreshslashcommand')(client, rest, Routes);

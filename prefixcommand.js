@@ -8,9 +8,7 @@ module.exports = async (client, message, rest, Routes) => {
 
         const jsFiles = files.filter((file) => file.endsWith('.js'));
         if (jsFiles.length <= 0) {
-            return console.log(
-                'No prefix commands were found, please add some or remove handlers folder in utils'
-            );
+            return console.log('No prefix commands were found, please add some!');
         }
 
         for (const file of jsFiles) {

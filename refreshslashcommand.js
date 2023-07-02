@@ -8,9 +8,7 @@ module.exports = async (client, rest, Routes) => {
 
         const jsFiles = files.filter((file) => file.endsWith('.js'));
         if (jsFiles.length <= 0) {
-            return console.log(
-                'No slash commands were found. Please add some command files to the "slashcommands" folder.'
-            );
+            return console.log('No slash commands were found. Please add some!');
         }
 
         const commands = [
@@ -20,7 +18,7 @@ module.exports = async (client, rest, Routes) => {
                 options: [
                     {
                         name: 'dcuserid',
-                        description: 'Their discord UserID',
+                        description: 'Mention user or their discord userID',
                         type: 3,
                         required: true,
                     },
