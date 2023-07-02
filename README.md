@@ -160,4 +160,44 @@ Email: contact-adudu21@proton.me
 
 if you have two slash commands named the exact same, run this (via runcode) to remove the duplicate:
 ```js
-const { GatewayIntentBits, Partials, Client } = require('discord.js'); const client = new Client({   intents: [     GatewayIntentBits.Guilds,     GatewayIntentBits.GuildMessages,     GatewayIntentBits.MessageContent,     GatewayIntentBits.GuildMessageReactions,   ],   partials: [Partials.Message, Partials.Reaction, Partials.Channel], });  client.login(process.env.TOKEN);  client.on('ready', async () => {   try {     client.guilds.cache.forEach(async (guild) => {       try {         const commands = await guild.commands.fetch();         const commandIDs = commands.map((command) => command.id);         console.log(`Command IDs in guild ${guild.id}: ${commandIDs.join(', ')}`);         await Promise.all(commandIDs.map((commandID) => guild.commands.delete(commandID)));         console.log(`Deleted ${commandIDs.length} commands in guild ${guild.id}`);       } catch (error) {         console.error(`Failed to delete commands in guild ${guild.id}:`);         console.error(error);       }     });     console.log('All commands deleted in all guilds');   } catch (error) {     console.error('Failed to fetch guilds:');     console.error(error);   } });```
+const { GatewayIntentBits, Partials, Client } = require('discord.js');
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMessageReactions,
+  ],
+  partials: [Partials.Message, Partials.Reaction, Partials.Channel],
+});
+
+client.login(process.env.TOKEN);
+
+client.on('ready', async () => {
+  try {
+    const guilds = client.guilds.cache;
+    const totalGuilds = guilds.size;
+    let deletedGuilds = 0;
+
+    for (const guild of guilds.values()) {
+      try {
+        const commands = await guild.commands.fetch();
+        const commandIDs = commands.map((command) => command.id);
+        console.log(`Command IDs in guild ${guild.id}: ${commandIDs.join(', ')}`);
+        await Promise.all(commandIDs.map((commandID) => guild.commands.delete(commandID)));
+        console.log(`Deleted ${commandIDs.length} commands in guild ${guild.id}`);
+        deletedGuilds++;
+        console.log(`Deleted commands in ${deletedGuilds} out of ${totalGuilds} guilds`);
+      } catch (error) {
+        console.error(`Failed to delete commands in guild ${guild.id}:`);
+        console.error(error);
+      }
+    }
+
+    console.log(`Total deleted commands: ${deletedGuilds}`);
+  } catch (error) {
+    console.error('Failed to fetch guilds:');
+    console.error(error);
+  }
+});
+```
