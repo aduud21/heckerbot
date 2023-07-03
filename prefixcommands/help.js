@@ -54,7 +54,6 @@ ${pu.config.name ? `**Name:** ${pu.config.name}` : ''}${pu.config.description ? 
                     `
 Most prefix commands were removed as of 6/10/2023 and were replaced with slash commands but i might start making prefix commands again, left prefix commands:
 ${client.prefix}help
-${client.prefix}cscfs
 
 To gain information on a certain prefix command please do ${client.prefix}help [prefix command name here]
 ||obviously replace [prefix command name here] with the name of the prefix command||
