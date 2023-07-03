@@ -23,6 +23,7 @@ module.exports = async (client, rest, Routes) => {
                         required: true,
                     },
                 ],
+                dm_permission: false,
             },
             {
                 name: 'bloxlinkcheck',
@@ -35,11 +36,13 @@ module.exports = async (client, rest, Routes) => {
                         required: true,
                     },
                 ],
+                dm_permission: false,
             },
             {
                 name: 'coinflip',
                 description: 'Flip a coin. Can be Head or tails',
                 options: [], // No options for this command
+                dm_permission: false,
             },
             {
                 name: 'checklink',
@@ -52,16 +55,19 @@ module.exports = async (client, rest, Routes) => {
                         required: true,
                     },
                 ],
+                dm_permission: false,
             },
             {
                 name: 'code',
                 description: "View the bot's source code",
                 options: [], // No options for this command
+                dm_permission: false,
             },
             {
                 name: 'information',
                 description: 'View information about this discord bot',
                 options: [], // No options for this command
+                dm_permission: false,
             },
             {
                 name: 'deldata',
@@ -69,11 +75,13 @@ module.exports = async (client, rest, Routes) => {
                     'Clear all the data that bot has collected from your server. May prevent using setmodlog.',
                 options: [], // No options for this command
                 default_member_permissions: '0',
+                dm_permission: false,
             },
             {
                 name: 'membercount',
                 description: 'View total membercount of this server',
                 options: [], // No options for this command
+                dm_permission: false,
             },
             {
                 name: 'setmodlog',
@@ -88,21 +96,25 @@ module.exports = async (client, rest, Routes) => {
                     },
                 ],
                 default_member_permissions: '0',
+                dm_permission: false,
             },
             {
                 name: 'quiz',
                 description: 'Some random questions',
                 options: [], // No options for this command
+                dm_permission: false,
             },
             {
                 name: 'rps',
                 description: 'This command will randomly pick from Rock Paper Scissors',
                 options: [], // No options for this command
+                dm_permission: false,
             },
             {
                 name: 'uptime',
                 description: "View the bot's uptime",
                 options: [], // No options for this command
+                dm_permission: false,
             },
         ];
 
