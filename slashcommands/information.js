@@ -1,5 +1,5 @@
 const { owners, support } = require('../config/bot.json');
-module.exports = async (interaction) => {
+module.exports = async (interaction, client) => {
     const commandName = interaction.commandName;
     if (commandName == 'information') {
         interaction
@@ -8,6 +8,7 @@ module.exports = async (interaction) => {
 Owner(s) UserID(s): ${owners}
 Support server: ${support}
 ShardId: ${interaction.guild.shardId}
+Latency: ${Math.round(client.ws.ping)}ms
 `
             )
             .catch(() => {});
