@@ -201,3 +201,11 @@ client.on('ready', async () => {
   }
 });
 ```
+To delete a specific global command:
+```js
+const { GatewayIntentBits, Partials, Client, REST, Routes, Events } = require('discord.js'); 
+const client = new Client({ intents: [ GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMessageReactions, ], partials: [Partials.Message, Partials.Reaction, Partials.Channel], }); 
+client.login(process.env.TOKEN);
+const rest = new REST({ version: '10' }).setToken(process.env.TOKEN); 
+client.on('ready', async () => { try { await rest.delete(Routes.applicationCommand('clientid', 'commandid')); console.log('Successfully deleted application command'); } catch (error) { console.error('Failed to delete application command'); console.error(error); } });
+```
