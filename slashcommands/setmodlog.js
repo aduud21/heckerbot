@@ -63,6 +63,16 @@ module.exports = async (interaction, client) => {
                     }
                     return;
                 }
+                if (channel.type !== ChannelType.GuildText) {
+                    try {
+                        interaction
+                            .reply(`${client.fail} Please mention a vaild text channel.`)
+                            .catch(() => {});
+                    } catch (error) {
+                        console.error('Error replying to interaction:', error);
+                    }
+                    return;
+                }
                 await interaction.reply({ content: 'Loading...' }).catch(() => {});
                 const existingModlog = await Modlog.findOne({ serverID: serverId }).catch(() => {});
 
