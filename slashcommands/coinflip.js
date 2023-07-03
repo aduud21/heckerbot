@@ -9,7 +9,7 @@ module.exports = async (interaction) => {
         interaction
             .reply(
                 `
-${item.question}
+🪙 ${item.question} 🪙
 `
             )
             .catch(() => {});
