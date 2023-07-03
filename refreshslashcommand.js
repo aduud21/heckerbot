@@ -13,6 +13,18 @@ module.exports = async (client, rest, Routes) => {
 
         const commands = [
             {
+                name: 'number',
+                description: 'Picks a number from 1 to [your choice]',
+                options: [
+                    {
+                        name: 'number',
+                        description: 'Pick a number from 1 to [your choice]',
+                        type: 10,
+                        required: true,
+                    },
+                ],
+            },
+            {
                 name: 'bloxlinkcheck',
                 description: 'Check if a user is verified with bloxlink',
                 options: [
