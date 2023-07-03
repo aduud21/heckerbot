@@ -23,7 +23,7 @@ const interactionCooldownsRLPrevent = new Map();
 const debugModeEnabled = true;
 const cooldownTimeRL = 5000;
 const { ClusterClient, getInfo } = require('discord-hybrid-sharding');
-const { GatewayIntentBits, Partials, Client, REST, Routes, Events } = require('discord.js');
+const { GatewayIntentBits, Partials, Client, Routes, Events } = require('discord.js');
 const client = new Client({
     shards: getInfo().SHARD_LIST, // An array of shards that will get spawned
     shardCount: getInfo().TOTAL_SHARDS, // Total number of shards
@@ -38,7 +38,6 @@ const client = new Client({
 // DO NOT REMOVE THE LINE BELOW!
 client.cluster = new ClusterClient(client); // initialize the Client, so we access the .broadcastEval()
 client.login(process.env.TOKEN);
-const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 // e
 console.log('⌛-> [LOGINDATA] Data found, program will try to use it!');
 // THIS PART OF THE CODE IS FOR DEBUGGING
@@ -123,6 +122,3 @@ client.on('guildCreate', async (guild) => {
 client.on('guildDelete', (guild) => {
     require('./guildEvents/guildDelete')(client, guild);
 });
-
-//Slash commands (Register)
-require('./refreshslashcommand')(client, rest, Routes);
