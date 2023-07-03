@@ -4,9 +4,9 @@ module.exports = async (client, guild) => {
         await owner.send(`
 Thanks for adding ${client.user.username}!
 _${client.user.username} has been added to ${guild.name} (Server ID: ${guild.id})_
-Slash commands should work! Prefix commands are supported but not fully: mb!help.
+Slash commands should work!
 **❓Need support?**
-Join our support server: https://discord.com/invite/GbjgmffUKj
+Join my support server: https://discord.com/invite/GbjgmffUKj
 
 ||The bot is currently on discord.js V14||`);
     } catch (error) {

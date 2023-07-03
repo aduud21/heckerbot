@@ -71,7 +71,6 @@ if (debugModeEnabled) {
 }
 require('./utils/defines')(client);
 require('./utils/handlers/events')(client);
-require('./prefixcommand')(client);
 client.on(Events.InteractionCreate, async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
     if (!interaction.inGuild()) return;
@@ -123,10 +122,6 @@ client.on('guildCreate', async (guild) => {
 // this is pretty helpful for space
 client.on('guildDelete', (guild) => {
     require('./guildEvents/guildDelete')(client, guild);
-});
-
-client.on('messageCreate', async (message) => {
-    require('./handleprefixcommand')(client, message, rest, Routes);
 });
 
 //Slash commands (Register)
