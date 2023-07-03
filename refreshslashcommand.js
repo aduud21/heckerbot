@@ -71,7 +71,7 @@ module.exports = async (client, rest, Routes) => {
                     {
                         name: 'channel',
                         description: `Mention a text channel`,
-                        type: 3,
+                        type: 7,
                         required: true,
                     },
                 ],
