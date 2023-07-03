@@ -17,9 +17,9 @@ module.exports = async (client, rest, Routes) => {
                 description: 'Check if a user is verified with bloxlink',
                 options: [
                     {
-                        name: 'dcuserid',
-                        description: 'Mention user or their discord userID',
-                        type: 3,
+                        name: 'usertocheck',
+                        description: 'Mention a user',
+                        type: 6,
                         required: true,
                     },
                 ],
