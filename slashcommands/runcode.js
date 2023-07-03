@@ -1,3 +1,4 @@
+// This command has been deprecated, it will stay however slash commands will not automatically be made for this
 const { owners } = require('../config/bot.json');
 module.exports = async (interaction) => {
     const commandName = interaction.commandName;
