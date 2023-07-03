@@ -1,0 +1,10 @@
+[
+    {
+        "question": "Heads",
+        "answers": ["yes", "no"]
+    },
+    {
+        "question": "Tails",
+        "answers": ["yes", "no"]
+    }
+]

@@ -25,6 +25,11 @@ module.exports = async (client, rest, Routes) => {
                 ],
             },
             {
+                name: 'coinflip',
+                description: 'Flip a coin. Can be Head or tails',
+                options: [], // No options for this command
+            },
+            {
                 name: 'checklink',
                 description: "Check a link if it's possibly malicious (May be incorrect)",
                 options: [
