@@ -1,4 +1,5 @@
 const interactionServerCooldowns = new Map();
+const { ChannelType } = require('discord.js');
 const interactionServerCooldownsPreventRL = new Map();
 const mongoose = require('mongoose');
 const Modlog = require('../models/modlog');
