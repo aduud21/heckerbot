@@ -1,17 +1,8 @@
 const create_global_command = true; // Set this to true to add/edit global commands, if this is disabled, no global commands will be added or edited
 const clientUSERID = '947733660432490506'; // Enter the ApplicationID (formally the clientID of your bot) here else it will NOT create commands
-const { readdir } = require('fs/promises');
-const { join } = require('path');
 module.exports = async (client, rest, Routes) => {
     if (create_global_command) {
         try {
-            const folderPath = join(__dirname, 'slashcommands');
-            const files = await readdir(folderPath);
-
-            const jsFiles = files.filter((file) => file.endsWith('.js'));
-            if (jsFiles.length <= 0) {
-                return console.log('No slash commands were found. Please add some!');
-            }
             console.log(
                 'To create new commands, please go to refreshslashcommand.js and change the data (it must be in json format)'
             );

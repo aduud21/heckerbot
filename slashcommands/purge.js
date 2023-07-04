@@ -1,5 +1,5 @@
 const interactionServerCooldownsPreventRL = new Map();
-module.exports = async (interaction, client) => {
+module.exports = async (interaction) => {
     const commandName = interaction.commandName;
 
     if (commandName === 'purge') {
@@ -25,14 +25,14 @@ module.exports = async (interaction, client) => {
 
         if (numMessagesToDelete > 100) {
             interaction
-                .reply({ content: 'You cannot delete more than 100 messages' })
+                .reply({ content: '❌ -> You cannot delete more than 100 messages' })
                 .catch(() => {});
             return;
         }
 
         if (numMessagesToDelete < 1) {
             interaction
-                .reply({ content: 'You need to specify a number from 1-100' })
+                .reply({ content: '❌ -> You need to specify a number from 1-100' })
                 .catch(() => {});
             return;
         }

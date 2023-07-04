@@ -1,7 +1,7 @@
 module.exports = async (interaction) => {
     const commandName = interaction.commandName;
     if (commandName == 'coinflip') {
-        const gamereal = require('../utils/structure/exports/json/coin.json');
+        const gamereal = require('../utils/structure/json/coin.json');
         const item = gamereal[Math.floor(Math.random() * gamereal.length)];
         const filter = (response) => {
             return item.answers();

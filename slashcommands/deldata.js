@@ -8,7 +8,7 @@ mongoose.connect(process.env.mongodb, {
     useUnifiedTopology: true,
 });
 
-module.exports = async (interaction, client) => {
+module.exports = async (interaction) => {
     const commandName = interaction.commandName;
 
     if (commandName === 'deldata') {
@@ -48,7 +48,7 @@ module.exports = async (interaction, client) => {
 
         try {
             let msg = await interaction
-                .reply(`${client.pending} -> Checking database (0%)`)
+                .reply(`⏳ -> Checking database (0%)`)
                 .catch(() => {});
 
             const existingModlog = await Modlog.findOne({ serverID: interaction.guild.id }).catch(
@@ -58,7 +58,7 @@ module.exports = async (interaction, client) => {
             if (!existingModlog) {
                 interaction
                     .editReply(
-                        `${client.fail} -> The bot hasn't collected any data about your server`
+                        `❌ -> The bot hasn't collected any data about your server`
                     )
                     .catch(() => {});
                 return;
@@ -67,7 +67,7 @@ module.exports = async (interaction, client) => {
 
             interaction
                 .editReply(
-                    `${client.success} -> Deleted all the data that the bot has collected from your server. If you do not like the bot please tell me why VIA the support server`
+                    `✅ -> Deleted all the data that the bot has collected from your server. If you do not like the bot please tell me why VIA the support server`
                 )
                 .catch(() => {});
         } catch (err) {

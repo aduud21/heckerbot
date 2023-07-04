@@ -21,6 +21,7 @@ console.log('⏳-> [LOGINDATA] Checking data...');
 const interactionCooldownsRL = new Map();
 const interactionCooldownsRLPrevent = new Map();
 const debugModeEnabled = true;
+const debugModeEnabledForRatelimit = false;
 const cooldownTimeRL = 5000;
 const { ClusterClient, getInfo } = require('discord-hybrid-sharding');
 const { GatewayIntentBits, Partials, Client, Routes, Events } = require('discord.js');
@@ -40,7 +41,7 @@ client.cluster = new ClusterClient(client); // initialize the Client, so we acce
 client.login(process.env.TOKEN);
 // e
 console.log('⌛-> [LOGINDATA] Data found, program will try to use it!');
-// THIS PART OF THE CODE IS FOR DEBUGGING
+// THIS PART OF THE CODE IS FOR DEBUGGING (MY TIMEZONE)
 if (debugModeEnabled) {
     const options = {
         timeZone: 'America/Mexico_City',
@@ -62,13 +63,14 @@ if (debugModeEnabled) {
         const currentTime = new Date().toLocaleString('en-US', options);
         console.log('[' + currentTime + '] Process exited with code:', code);
     });
+    if (debugModeEnabledForRatelimit){
     const rateLimitLog = (data) => {
         const currentTime = new Date().toLocaleString('en-US', options);
         console.log('[' + currentTime + '] Client encountered a rate limit:', data);
     };
     client.rest.on('rateLimited', rateLimitLog);
+    }
 }
-require('./utils/defines')(client);
 require('./utils/handlers/events')(client);
 client.on(Events.InteractionCreate, async (interaction) => {
     if (!interaction.isChatInputCommand()) return;

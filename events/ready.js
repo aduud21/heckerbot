@@ -6,7 +6,7 @@ console.log(
 module.exports = async (client) => {
     const activityText = `servers | Cluster${client.cluster.id}`;
     console.log(`☑️ -> [LOGIN] Logged into token as user ${client.user.tag}`);
-    client.user.setActivity(activityText, { type: ActivityType.Listening });
+    client.user.setActivity(activityText, { type: ActivityType.Watching });
     try {
         if (start_up_message) {
             const channel = client.channels.cache.get('957439649142407248');

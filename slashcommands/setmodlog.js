@@ -7,7 +7,7 @@ mongoose.connect(process.env.mongodb, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
-module.exports = async (interaction, client) => {
+module.exports = async (interaction) => {
     const commandName = interaction.commandName;
     const serverId = interaction.guild.id;
 
@@ -56,7 +56,7 @@ module.exports = async (interaction, client) => {
                     try {
                         interaction
                             .reply(
-                                `${client.fail} -> You cannot set modlogs for another server in this server.`
+                                `❌ -> You cannot set modlogs for another server in this server.`
                             )
                             .catch(() => {});
                     } catch (error) {
@@ -67,7 +67,7 @@ module.exports = async (interaction, client) => {
                 if (channel.type !== ChannelType.GuildText) {
                     try {
                         interaction
-                            .reply(`${client.fail} -> Please mention a vaild text channel.`)
+                            .reply(`❌ -> Please mention a vaild text channel.`)
                             .catch(() => {});
                     } catch (error) {
                         console.error('Error replying to interaction:', error);
@@ -75,7 +75,7 @@ module.exports = async (interaction, client) => {
                     return;
                 }
                 await interaction
-                    .reply({ content: `${client.pending} -> Loading...` })
+                    .reply({ content: `⏳ -> Loading...` })
                     .catch(() => {});
                 const existingModlog = await Modlog.findOne({ serverID: serverId }).catch(() => {});
 
@@ -93,7 +93,7 @@ module.exports = async (interaction, client) => {
                 try {
                     interaction
                         .editReply(
-                            `${client.success} -> Modlogs have been set to <#${channelId}>. Please wait about 10 seconds for it to take effect...`
+                            `✅ -> Modlogs have been set to <#${channelId}>. Please wait about 10 seconds for it to take effect...`
                         )
                         .catch(() => {});
                 } catch (err) {}
