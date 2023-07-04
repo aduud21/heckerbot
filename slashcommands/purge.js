@@ -1,5 +1,5 @@
-const interactionServerCooldownsPreventRL = new Map();
 const { PermissionsBitField } = require('discord.js');
+const interactionServerCooldownsPreventRL = new Map();
 module.exports = async (interaction) => {
     const commandName = interaction.commandName;
 
@@ -39,21 +39,33 @@ module.exports = async (interaction) => {
         }
 
         try {
+            const botMember = interaction.guild.members.cache.get(interaction.client.user.id);
             if (
-                !interaction.guild.members.me.permissions.has(
-                    PermissionsBitField.Flags.ManageMessages
-                )
+                !botMember
+                    .permissionsIn(interaction.channel)
+                    .has([PermissionsBitField.Flags.ViewChannel]) ||
+                !botMember
+                    .permissionsIn(interaction.channel)
+                    .has([PermissionsBitField.Flags.SendMessages]) ||
+                !botMember
+                    .permissionsIn(interaction.channel)
+                    .has([PermissionsBitField.Flags.ManageMessages])
             ) {
                 interaction.reply({
-                    content: `i do not have Manage Messages permission`,
+                    content: `❌ -> I need these permissions for this channel to work with this command:
+- i need to be able to Send Messages in the channel you picked
+- i need to be able to Manage Messages in the channel you picked
+- i need to be able to View Channel you picked`,
                 });
                 return;
             }
+
             interaction.channel.bulkDelete(numMessagesToDelete, {
                 reason: `${interaction.member.user.id} commanded the bot to run bulkDelete`,
             });
+
             interaction.reply({
-                content: `Successfully told discord to delete ${numMessagesToDelete} messages`,
+                content: `Successfully told Discord to delete ${numMessagesToDelete} messages`,
             });
         } catch (err) {
             console.error(`Error bulk delete: ${err}`);

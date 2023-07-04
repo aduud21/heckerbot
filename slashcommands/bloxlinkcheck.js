@@ -2,14 +2,15 @@ const https = require('https');
 
 module.exports = async (interaction) => {
     const commandName = interaction.commandName;
-
-    interaction
-        .reply({
-            content:
-                'Bloxlink API changed today (6/30/2023) which requires all developers using Bloxlink to create a new global API key. Please wait while the developers of this bot insert the new global API key (when they get it).',
-        })
-        .catch(() => {});
-    return;
+    if (!process.env.bloxlinkAPIKEY) {
+        interaction
+            .reply({
+                content:
+                    'No API key is specified, The developer(s) of this bot must add the API key for this command to work.',
+            })
+            .catch(() => {});
+        return;
+    }
     await interaction.reply({ content: `⏳ -> Checking...` }).catch(() => {});
 
     try {

@@ -1,5 +1,5 @@
 const interactionServerCooldowns = new Map();
-const { ChannelType } = require('discord.js');
+const { ChannelType, PermissionsBitField } = require('discord.js');
 const interactionServerCooldownsPreventRL = new Map();
 const mongoose = require('mongoose');
 const Modlog = require('../models/modlog');
@@ -54,11 +54,7 @@ module.exports = async (interaction) => {
 
                 if (!channel) {
                     try {
-                        interaction
-                            .reply(
-                                `❌ -> You cannot set modlogs for another server in this server.`
-                            )
-                            .catch(() => {});
+                        interaction.reply(`❌ -> Channel not found.`).catch(() => {});
                     } catch (error) {
                         console.error('Error replying to interaction:', error);
                     }
@@ -72,6 +68,28 @@ module.exports = async (interaction) => {
                     } catch (error) {
                         console.error('Error replying to interaction:', error);
                     }
+                    return;
+                }
+                const botMember = interaction.guild.members.cache.get(interaction.client.user.id);
+                if (
+                    !botMember
+                        .permissionsIn(channel)
+                        .has([PermissionsBitField.Flags.ViewChannel]) ||
+                    !botMember
+                        .permissionsIn(channel)
+                        .has([PermissionsBitField.Flags.SendMessages]) ||
+                    !botMember
+                        .permissionsIn(channel)
+                        .has([PermissionsBitField.Flags.ManageMessages]) ||
+                    !botMember.permissionsIn(channel).has([PermissionsBitField.Flags.EmbedLinks])
+                ) {
+                    interaction.reply({
+                        content: `❌ -> I need these permissions for the channel selected to work with this command:
+- i need to be able to Send Messages in the channel you picked
+- i need to be able to Manage Messages in the channel you picked
+- i need to be able to Embed Links in the channel you picked you picked
+- i need to be able to View Channel you picked`,
+                    });
                     return;
                 }
                 await interaction.reply({ content: `⏳ -> Loading...` }).catch(() => {});
