@@ -56,7 +56,7 @@ module.exports = async (client, rest, Routes) => {
                 {
                     name: 'purge',
                     description:
-                        'Run this command in a text channel to delete up to 100 messages. Server Command cooldown: 3 seconds.',
+                        'Run this command in a text channel to delete up to 100 messages. Server Command cooldown: 5 seconds.',
                     options: [
                         {
                             name: 'messages-to-delete',
