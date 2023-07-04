@@ -17,7 +17,7 @@ module.exports = async (interaction) => {
                 .reply(
                     `Please wait ${
                         remainingCooldownRL + cooldownTimeRL
-                    }ms to use a command again, this cooldown is to prevent special abuse.`
+                    }ms to use this command again, this cooldown is to prevent special abuse.`
                 )
                 .catch(() => {});
             setTimeout(() => {
