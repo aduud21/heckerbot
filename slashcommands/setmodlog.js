@@ -89,7 +89,7 @@ module.exports = async (interaction) => {
 - i need to be able to Manage Messages in the channel you picked
 - i need to be able to Embed Links in the channel you picked you picked
 - i need to be able to View Channel you picked`,
-                    });
+                    }).catch(() => {});
                     return;
                 }
                 await interaction.reply({ content: `⏳ -> Loading...` }).catch(() => {});
