@@ -39,11 +39,15 @@ module.exports = async (interaction) => {
         }
 
         try {
-            if (!interaction.guild.members.me.permissions.has(PermissionsBitField.Flags.ManageMessages)){
-               interaction.reply({
-                content: `i do not have Manage Messages permission`,
-            });
-              return;
+            if (
+                !interaction.guild.members.me.permissions.has(
+                    PermissionsBitField.Flags.ManageMessages
+                )
+            ) {
+                interaction.reply({
+                    content: `i do not have Manage Messages permission`,
+                });
+                return;
             }
             interaction.channel.bulkDelete(numMessagesToDelete, {
                 reason: `${interaction.member.user.id} commanded the bot to run bulkDelete`,

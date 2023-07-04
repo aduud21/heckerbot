@@ -77,13 +77,13 @@ if (isHostedOnReplit) {
 }
 // SLASH commands (global) should only be created once (if i put it in bot.js, it will repeat it multiple times too fast) so this is what this does
 if (create_global_command) {
-const { GatewayIntentBits, Partials, Client, REST, Routes } = require('discord.js');
-const client = new Client({
-    intents: [GatewayIntentBits.Guilds],
-    partials: [Partials.Message, Partials.Reaction, Partials.Channel],
-});
-client.login(process.env.TOKEN);
-const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
-//Slash commands (Register)
-require('./refreshslashcommand')(client, rest, Routes);
+    const { GatewayIntentBits, Partials, Client, REST, Routes } = require('discord.js');
+    const client = new Client({
+        intents: [GatewayIntentBits.Guilds],
+        partials: [Partials.Message, Partials.Reaction, Partials.Channel],
+    });
+    client.login(process.env.TOKEN);
+    const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
+    //Slash commands (Register)
+    require('./refreshslashcommand')(client, rest, Routes);
 }
