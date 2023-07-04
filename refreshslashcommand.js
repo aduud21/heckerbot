@@ -1,7 +1,6 @@
-const create_global_command = true; // Set this to true to add/edit global commands, if this is disabled, no global commands will be added or edited
+//Ensure you have create_global_command set to true in index.js if you want this to work, Only set it to true it when you want to add/edit global command
 const clientUSERID = '947733660432490506'; // Enter the ApplicationID (formally the clientID of your bot) here else it will NOT create commands
 module.exports = async (client, rest, Routes) => {
-    if (create_global_command) {
         try {
             console.log(
                 'To create new commands, please go to refreshslashcommand.js and change the data (it must be in json format)'
@@ -145,5 +144,4 @@ module.exports = async (client, rest, Routes) => {
             console.error('[ERROR] Failed to read command files.');
             console.error(error);
         }
-    }
 };

@@ -1,4 +1,5 @@
 const isHostedOnReplit = true; // Please change this depending where you host it, if it is replit then set it to true else set it to false, Hosting this platforms that are not replit can pose security vulnerabilitys
+const create_global_command = false; // Set this to true to add/edit global commands, if this is disabled, no global commands will be added or edited, Keeping this enabled (true) will consume more RAM
 // This bot is designed (made) to run on replit
 // This bot is designed (made) to run on replit
 // This bot is designed (made) to run on replit
@@ -75,6 +76,7 @@ if (isHostedOnReplit) {
     console.log('✅ Successfully required keep_alive');
 }
 // SLASH commands (global) should only be created once (if i put it in bot.js, it will repeat it multiple times too fast) so this is what this does
+if (create_global_command) {
 const { GatewayIntentBits, Partials, Client, REST, Routes } = require('discord.js');
 const client = new Client({
     intents: [GatewayIntentBits.Guilds],
@@ -84,3 +86,4 @@ client.login(process.env.TOKEN);
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 //Slash commands (Register)
 require('./refreshslashcommand')(client, rest, Routes);
+}
