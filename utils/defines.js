@@ -1,4 +1,3 @@
-const { Collection } = require('discord.js');
 module.exports = async (client) => {
     client.color = require('../config/colors.json').main;
     client.cooldown = new Set();
