@@ -1,5 +1,4 @@
 const axios = require('axios');
-const API_KEY = process.env.api;
 const rankThreatLevel = (threatTypes) => {
     if (threatTypes.length === 0) {
         return 'This message is not supposed to be here lol';
@@ -36,24 +35,29 @@ module.exports = async (interaction, client) => {
                 .replace(/^https:\/\//, '')
                 .replace(/http:\/\/|https:\/\//gi, '');
             const response = await axios
-                .post(`https://safebrowsing.googleapis.com/v4/threatMatches:find?key=${API_KEY}`, {
-                    client: {
-                        clientId: `Discord bot ${client.user.username}`,
-                        clientVersion: '0.0.1',
-                    },
-                    threatInfo: {
-                        threatTypes: [
-                            'MALWARE',
-                            'SOCIAL_ENGINEERING',
-                            'UNWANTED_SOFTWARE',
-                            'POTENTIALLY_HARMFUL_APPLICATION',
-                            'THREAT_TYPE_UNSPECIFIED',
-                        ],
-                        platformTypes: ['ANY_PLATFORM'],
-                        threatEntryTypes: ['URL'],
-                        threatEntries: [{ url: `${interaction.options._hoistedOptions[0].value}` }],
-                    },
-                })
+                .post(
+                    `https://safebrowsing.googleapis.com/v4/threatMatches:find?key=${process.env.api}`,
+                    {
+                        client: {
+                            clientId: `Discord bot ${client.user.username}`,
+                            clientVersion: '0.0.1',
+                        },
+                        threatInfo: {
+                            threatTypes: [
+                                'MALWARE',
+                                'SOCIAL_ENGINEERING',
+                                'UNWANTED_SOFTWARE',
+                                'POTENTIALLY_HARMFUL_APPLICATION',
+                                'THREAT_TYPE_UNSPECIFIED',
+                            ],
+                            platformTypes: ['ANY_PLATFORM'],
+                            threatEntryTypes: ['URL'],
+                            threatEntries: [
+                                { url: `${interaction.options._hoistedOptions[0].value}` },
+                            ],
+                        },
+                    }
+                )
                 .catch(() => {});
             if (response.data && response.data.matches && response.data.matches.length > 0) {
                 const threatTypes = response.data.matches.map((match) => match.threatType);

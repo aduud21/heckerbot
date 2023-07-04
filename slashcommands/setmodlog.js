@@ -78,18 +78,16 @@ module.exports = async (interaction) => {
                     !botMember
                         .permissionsIn(channel)
                         .has([PermissionsBitField.Flags.SendMessages]) ||
-                    !botMember
-                        .permissionsIn(channel)
-                        .has([PermissionsBitField.Flags.ManageMessages]) ||
                     !botMember.permissionsIn(channel).has([PermissionsBitField.Flags.EmbedLinks])
                 ) {
-                    interaction.reply({
-                        content: `❌ -> I need these permissions for the channel selected to work with this command:
+                    interaction
+                        .reply({
+                            content: `❌ -> I need these permissions for the channel selected to work with this command:
 - i need to be able to Send Messages in the channel you picked
-- i need to be able to Manage Messages in the channel you picked
 - i need to be able to Embed Links in the channel you picked you picked
 - i need to be able to View Channel you picked`,
-                    }).catch(() => {});
+                        })
+                        .catch(() => {});
                     return;
                 }
                 await interaction.reply({ content: `⏳ -> Loading...` }).catch(() => {});

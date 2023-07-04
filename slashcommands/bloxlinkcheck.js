@@ -1,6 +1,35 @@
 const https = require('https');
-
+const interactionCooldownsRL = new Map();
+const interactionCooldownsRLPrevent = new Map();
+const cooldownTimeRL = 12500;
 module.exports = async (interaction) => {
+    const userId = interaction.member.user.id;
+
+    if (interactionCooldownsRL.has(userId)) {
+        const remainingCooldownRL = interactionCooldownsRL.get(userId) - Date.now();
+        const remainingCooldownRLPrevent = interactionCooldownsRLPrevent.get(userId) - Date.now();
+        if (remainingCooldownRLPrevent > 0) {
+            return;
+        }
+        if (remainingCooldownRL > 0) {
+            interactionCooldownsRLPrevent.set(userId, Date.now() + cooldownTimeRL);
+            interaction
+                .reply(
+                    `Please wait ${
+                        remainingCooldownRL + cooldownTimeRL
+                    }ms to use a command again, this cooldown is to prevent special abuse.`
+                )
+                .catch(() => {});
+            setTimeout(() => {
+                interactionCooldownsRLPrevent.delete(userId);
+            }, cooldownTimeRL);
+            return;
+        }
+    }
+    interactionCooldownsRL.set(userId, Date.now() + cooldownTimeRL);
+    setTimeout(() => {
+        interactionCooldownsRL.delete(userId);
+    }, cooldownTimeRL);
     const commandName = interaction.commandName;
     if (!process.env.bloxlinkAPIKEY) {
         interaction
@@ -52,7 +81,7 @@ module.exports = async (interaction) => {
                         .catch(() => {});
                 } else {
                     interaction
-                        .editReply('An error occurred while processing the command.')
+                        .editReply('An error occurred while processing the command (429?).')
                         .catch(() => {});
                 }
             });
