@@ -17,7 +17,7 @@ Hours: ${hours}
 Minutes: ${minutes} 
 Seconds: ${seconds}
 
-||Restarts are made to be very fast, Restarts may occasionally happen because of updates or resources||
+||Restarts are made to be fast, Restarts may occasionally happen because of updates or resources||
 `
             )
             .catch(() => {});

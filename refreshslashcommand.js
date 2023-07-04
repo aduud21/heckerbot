@@ -63,6 +63,21 @@ module.exports = async (client, rest, Routes) => {
                     dm_permission: false,
                 },
                 {
+                    name: 'purge',
+                    description:
+                        'Run this command in a text channel to delete up to 100 messages. Server Command cooldown: 3 seconds.',
+                    options: [
+                        {
+                            name: 'messages-to-delete',
+                            description: `How many messages should be deleted, limit: 100`,
+                            type: 10,
+                            required: true,
+                        },
+                    ],
+                    default_member_permissions: '0',
+                    dm_permission: false,
+                },
+                {
                     name: 'code',
                     description: "View the bot's source code",
                     options: [], // No options for this command
