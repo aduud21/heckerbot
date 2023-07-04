@@ -21,7 +21,7 @@ console.log('⏳-> [LOGINDATA] Checking data...');
 const interactionCooldownsRL = new Map();
 const interactionCooldownsRLPrevent = new Map();
 const debugModeEnabled = true;
-const debugModeEnabledForRatelimit = false;
+const debugModeEnabledForRatelimit = true;
 const cooldownTimeRL = 5000;
 const { ClusterClient, getInfo } = require('discord-hybrid-sharding');
 const { GatewayIntentBits, Partials, Client, Routes, Events } = require('discord.js');
