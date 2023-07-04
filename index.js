@@ -77,12 +77,7 @@ if (isHostedOnReplit) {
 // SLASH commands (global) should only be created once (if i put it in bot.js, it will repeat it multiple times too fast) so this is what this does
 const { GatewayIntentBits, Partials, Client, REST, Routes } = require('discord.js');
 const client = new Client({
-    intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent,
-        GatewayIntentBits.GuildMessageReactions,
-    ],
+    intents: [GatewayIntentBits.Guilds],
     partials: [Partials.Message, Partials.Reaction, Partials.Channel],
 });
 client.login(process.env.TOKEN);

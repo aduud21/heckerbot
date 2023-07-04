@@ -55,7 +55,7 @@ module.exports = async (interaction, client) => {
                     try {
                         interaction
                             .reply(
-                                `${client.fail} You cannot set modlogs for another server in this server.`
+                                `${client.fail} -> You cannot set modlogs for another server in this server.`
                             )
                             .catch(() => {});
                     } catch (error) {
@@ -66,14 +66,16 @@ module.exports = async (interaction, client) => {
                 if (channel.type !== ChannelType.GuildText) {
                     try {
                         interaction
-                            .reply(`${client.fail} Please mention a vaild text channel.`)
+                            .reply(`${client.fail} -> Please mention a vaild text channel.`)
                             .catch(() => {});
                     } catch (error) {
                         console.error('Error replying to interaction:', error);
                     }
                     return;
                 }
-                await interaction.reply({ content: 'Loading...' }).catch(() => {});
+                await interaction
+                    .reply({ content: `${client.pending} -> Loading...` })
+                    .catch(() => {});
                 const existingModlog = await Modlog.findOne({ serverID: serverId }).catch(() => {});
 
                 if (existingModlog) {
@@ -90,7 +92,7 @@ module.exports = async (interaction, client) => {
                 try {
                     interaction
                         .editReply(
-                            `${client.success} Modlogs have been set to <#${channelId}>. Please wait about 10 seconds for it to take effect...`
+                            `${client.success} -> Modlogs have been set to <#${channelId}>. Please wait about 10 seconds for it to take effect...`
                         )
                         .catch(() => {});
                 } catch (err) {}

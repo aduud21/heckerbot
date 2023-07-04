@@ -41,7 +41,7 @@ async function getValidQuestion() {
 module.exports = async (interaction) => {
     const commandName = interaction.commandName;
     if (commandName === 'quiz') {
-        await interaction.reply({ content: 'Loading...' }).catch(() => {});
+        await interaction.reply({ content: '⏳ -> Loading...' }).catch(() => {});
     }
     try {
         const question = await getValidQuestion();

@@ -1,4 +1,4 @@
-const create_global_command = true; // Set this to true to add/edit global commands, if this is disabled, no new global commands will be added
+const create_global_command = true; // Set this to true to add/edit global commands, if this is disabled, no global commands will be added or edited
 const clientUSERID = '947733660432490506'; // Enter the ApplicationID (formally the clientID of your bot) here else it will NOT create commands
 const { readdir } = require('fs/promises');
 const { join } = require('path');
@@ -12,7 +12,10 @@ module.exports = async (client, rest, Routes) => {
             if (jsFiles.length <= 0) {
                 return console.log('No slash commands were found. Please add some!');
             }
-
+            console.log(
+                'To create new commands, please go to refreshslashcommand.js and change the data (it must be in json format)'
+            );
+            //Check out https://discord.com/developers/docs/interactions/application-commands
             const commands = [
                 {
                     name: 'number',
@@ -108,13 +111,13 @@ module.exports = async (client, rest, Routes) => {
                 },
                 {
                     name: 'rps',
-                    description: 'This command will randomly pick from Rock Paper Scissors',
+                    description: 'Randomly pick from Rock. Paper or Scissors',
                     options: [], // No options for this command
                     dm_permission: false,
                 },
                 {
                     name: 'uptime',
-                    description: "View the bot's uptime",
+                    description: 'View the current bot client uptime',
                     options: [], // No options for this command
                     dm_permission: false,
                 },

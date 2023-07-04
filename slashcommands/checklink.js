@@ -19,16 +19,18 @@ module.exports = async (interaction, client) => {
         const match = datareal.match(regex);
         if (!match) {
             interaction
-                .reply({ content: 'Incorrect link. Please enter a valid link!' })
+                .reply({ content: `${client.fail} -> Incorrect link. Please enter a valid link!` })
                 .catch(() => {});
             return;
         }
         if (datareal.length > 255) {
-            interaction.reply({ content: 'Link too long! Character limit: 255' }).catch(() => {});
+            interaction
+                .reply({ content: `${client.fail} -> Link too long! Character limit: 255` })
+                .catch(() => {});
             return;
         }
 
-        await interaction.reply({ content: 'Checking...' }).catch(() => {});
+        await interaction.reply({ content: `${client.pending} -> Checking...` }).catch(() => {});
         try {
             const outputLink = interaction.options._hoistedOptions[0].value
                 .replace(/^https:\/\//, '')

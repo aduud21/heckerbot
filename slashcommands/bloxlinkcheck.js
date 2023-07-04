@@ -10,7 +10,7 @@ module.exports = async (interaction) => {
         })
         .catch(() => {});
     return;
-    await interaction.reply({ content: 'Checking...' }).catch(() => {});
+    await interaction.reply({ content: `⏳ -> Checking...` }).catch(() => {});
 
     try {
         const usersofusersxd = interaction.options._hoistedOptions[0].value.replace(/[<@>]/g, '');
