@@ -47,9 +47,7 @@ module.exports = async (interaction) => {
         }, cooldownTime);
 
         try {
-            let msg = await interaction
-                .reply(`⏳ -> Checking database (0%)`)
-                .catch(() => {});
+            let msg = await interaction.reply(`⏳ -> Checking database (0%)`).catch(() => {});
 
             const existingModlog = await Modlog.findOne({ serverID: interaction.guild.id }).catch(
                 () => {}
@@ -57,9 +55,7 @@ module.exports = async (interaction) => {
 
             if (!existingModlog) {
                 interaction
-                    .editReply(
-                        `❌ -> The bot hasn't collected any data about your server`
-                    )
+                    .editReply(`❌ -> The bot hasn't collected any data about your server`)
                     .catch(() => {});
                 return;
             }

@@ -74,9 +74,7 @@ module.exports = async (interaction) => {
                     }
                     return;
                 }
-                await interaction
-                    .reply({ content: `⏳ -> Loading...` })
-                    .catch(() => {});
+                await interaction.reply({ content: `⏳ -> Loading...` }).catch(() => {});
                 const existingModlog = await Modlog.findOne({ serverID: serverId }).catch(() => {});
 
                 if (existingModlog) {

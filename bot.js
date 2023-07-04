@@ -63,12 +63,12 @@ if (debugModeEnabled) {
         const currentTime = new Date().toLocaleString('en-US', options);
         console.log('[' + currentTime + '] Process exited with code:', code);
     });
-    if (debugModeEnabledForRatelimit){
-    const rateLimitLog = (data) => {
-        const currentTime = new Date().toLocaleString('en-US', options);
-        console.log('[' + currentTime + '] Client encountered a rate limit:', data);
-    };
-    client.rest.on('rateLimited', rateLimitLog);
+    if (debugModeEnabledForRatelimit) {
+        const rateLimitLog = (data) => {
+            const currentTime = new Date().toLocaleString('en-US', options);
+            console.log('[' + currentTime + '] Client encountered a rate limit:', data);
+        };
+        client.rest.on('rateLimited', rateLimitLog);
     }
 }
 require('./utils/handlers/events')(client);
