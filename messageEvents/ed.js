@@ -1,3 +1,4 @@
+let MONGOFailedattempts = 0;
 const { EmbedBuilder } = require('discord.js');
 const { main } = require('../config/colors.json');
 const async = require('async');
@@ -30,6 +31,18 @@ module.exports = async (oldMessage, newMessage) => {
     if (!oldMessage.content) return;
     if (!newMessage.content) return;
     if (newMessage.content === oldMessage.content) return;
+    if (newMessage.channel.type === 'dm') return;
+    if (newMessage.author.bot) return;
+    while (modlogDocuments.length === 0 && MONGOFailedattempts < 4) {
+        console.log('Failed Checking for MongoDB (ed.js). Trying again in 5 seconds...');
+        await delay(5000);
+        MONGOFailedattempts++;
+    }
+
+    if (modlogDocuments.length === 0) {
+        console.log('Failed to fetch modlog documents after 3 attempts (ed.js)');
+        return;
+    }
     try {
         if (newMessage.author.bot) {
             return;
@@ -39,7 +52,6 @@ module.exports = async (oldMessage, newMessage) => {
     try {
         let flyMessage = `${oldMessage.content}${newMessage.content}`;
         if (flyMessage.length < 3711) {
-            if (newMessage.channel.type === 'dm') return;
             const existingModlog = modlogDocuments.find(
                 (modlog) => modlog.serverID === newMessage.guild.id
             );
