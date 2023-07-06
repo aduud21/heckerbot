@@ -37,9 +37,9 @@ module.exports = async (interaction) => {
                 .catch(() => {});
             return;
         }
-
         try {
             const botMember = interaction.guild.members.cache.get(interaction.client.user.id);
+            const userMember = interaction.guild.members.cache.get(interaction.member.user.id);
             if (
                 !botMember
                     .permissionsIn(interaction.channel)
@@ -56,6 +56,25 @@ module.exports = async (interaction) => {
 - i need to be able to Send Messages in the channel you picked
 - i need to be able to Manage Messages in the channel you picked
 - i need to be able to View Channel you picked`,
+                });
+                return;
+            }
+            if (
+                !userMember
+                    .permissionsIn(interaction.channel)
+                    .has([PermissionsBitField.Flags.ViewChannel]) ||
+                !userMember
+                    .permissionsIn(interaction.channel)
+                    .has([PermissionsBitField.Flags.SendMessages]) ||
+                !userMember
+                    .permissionsIn(interaction.channel)
+                    .has([PermissionsBitField.Flags.ManageMessages])
+            ) {
+                interaction.reply({
+                    content: `❌ -> You need these permissions for this channel to work with this command:
+- You need to be able to Send Messages in the channel you picked
+- You need to be able to Manage Messages in the channel you picked
+- You need to be able to View Channel you picked`,
                 });
                 return;
             }

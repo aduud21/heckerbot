@@ -64,7 +64,7 @@ module.exports = async (client, rest, Routes) => {
                         required: true,
                     },
                 ],
-                default_member_permissions: '0',
+                default_member_permissions: '8192',
                 dm_permission: false,
             },
             {
