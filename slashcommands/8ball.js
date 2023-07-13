@@ -7,9 +7,9 @@ module.exports = async (interaction) => {
             return item.answers();
         };
         const usersofusersxd = interaction.options._hoistedOptions[0].value;
-        if (usersofusersxd.length > 1973) {
+        if (usersofusersxd.length > 1972) {
             interaction
-                .reply('You cannot have over 1973 characters (Response too long)')
+                .reply('You cannot have over 1972 characters (Response too long)')
                 .catch(() => {});
             return;
         }
