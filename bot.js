@@ -105,7 +105,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
     try {
         require(`./slashcommands/${commandName}`)(interaction, client);
     } catch (e) {
-        console.log(e);
+        console.log(`Command ${commandName} had a error, Does it exist in files? ${e}`);
     }
 });
 client.on('messageDelete', async (message) => {
