@@ -1,13 +1,17 @@
 const axios = require('axios');
 const rankThreatLevel = (threatTypes) => {
     if (threatTypes.length === 0) {
-        return 'This message is not supposed to be here lol';
-    } else if (threatTypes.length <= 2) {
-        return 'possibly malicious';
-    } else if (threatTypes.length <= 4) {
-        return 'likely malicious';
+        return 'null';
+    } else if (threatTypes.length === 7) {
+        return 'MALWARE';
+    } else if (threatTypes.length === 18) {
+        return 'SOCIAL_ENGINEERING';
+    } else if (threatTypes.length === 17) {
+        return 'UNWANTED_SOFTWARE';
+    } else if (threatTypes.length === 31) {
+        return 'POTENTIALLY_HARMFUL_APPLICATION';
     } else {
-        return 'very likely malicious';
+        return 'safe';
     }
 };
 module.exports = async (interaction, client) => {
