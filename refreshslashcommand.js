@@ -8,6 +8,19 @@ module.exports = async (client, rest, Routes) => {
         //Check out https://discord.com/developers/docs/interactions/application-commands
         const commands = [
             {
+                name: '8ball',
+                description: 'The Magic 8ball! every answer is random',
+                options: [
+                    {
+                        name: 'question-to-ask',
+                        description: 'What shall you ask?',
+                        type: 3,
+                        required: true,
+                    },
+                ],
+                dm_permission: false,
+            },
+            {
                 name: 'number',
                 description: 'Picks a number from 1 to [your choice]',
                 options: [
