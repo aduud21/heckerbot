@@ -35,14 +35,14 @@ module.exports = async (messageDelete) => {
     if (!messageDelete.content) return;
     if (messageDelete.channel.type === 'dm') return;
     if (messageDelete.author.bot) return;
-    while (modlogDocuments.length === 0 && MONGOFailedattempts < 4) {
+    while (modlogDocuments.length === 0 && MONGOFailedattempts < 6) {
         console.log('Failed Checking for MongoDB (md.js). Trying again in 5 seconds...');
         await delay(5000);
         MONGOFailedattempts++;
     }
 
     if (modlogDocuments.length === 0) {
-        console.log('Failed to fetch modlog documents after 3 attempts. (md.js)');
+        console.log('Failed to fetch modlog documents after 5 attempts. (md.js)');
         return;
     }
     try {
