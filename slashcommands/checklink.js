@@ -32,7 +32,14 @@ module.exports = async (interaction, client) => {
                 .catch(() => {});
             return;
         }
-
+        if (!process.env.api) {
+            interaction
+                .reply({
+                    content: `❌ -> The environment file (process.env.api) was not found and as a result, this command will NOT work.`,
+                })
+                .catch(() => {});
+            return;
+        }
         await interaction.reply({ content: `⏳ -> Checking...` }).catch(() => {});
         try {
             const outputLink = interaction.options._hoistedOptions[0].value
