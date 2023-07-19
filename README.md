@@ -84,13 +84,13 @@ Don't use the example I provided, put your own, it won't work. If you don't have
 ## UptimeRobot:
 (This is a modified guide of [devspen 24/7 hosting replit](https://github.com/DevSpen/24-7_hosting_replit#uptimerobot) to work with the latest changes of replit)
 
-i will be using [UptimeRobot](https://uptimerobot.com/) as the monitoring system.
+i will be using [UptimeRobot](https://uptimerobot.com/?rid=49445ef400752a) as the monitoring system.
 
 1. Copy the URL of the website that shows when you run the repl. If you are on mobile, this will be on the "Output" tab; on Desktop, you'll see it in the upper right corner of your screen:
   
 ![image](https://github.com/aduud21/heckerbot/assets/74877817/196f358e-41cd-4df9-a996-e027bbf895ac)
 
-2. Go to [UptimeRobot](https://uptimerobot.com/) and create a new account:
+2. Go to [UptimeRobot](https://uptimerobot.com/?rid=49445ef400752a) and create a new account:
 
 ![image](https://github.com/aduud21/heckerbot/assets/74877817/7902cd0d-69a4-44ed-a4b3-01feddacb653)
 
