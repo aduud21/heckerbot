@@ -109,7 +109,7 @@ module.exports = async (client, rest, Routes) => {
             {
                 name: 'setmodlog',
                 description:
-                    'Set a logging channel for deleted/edited messages. Server Command cooldown: 15 seconds.',
+                    'Set a logging channel for deleted/edited messages. disclaimer: it may not log some messages.',
                 options: [
                     {
                         name: 'channel',

@@ -118,7 +118,10 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
 // adudu21 was here, something: https://replit.com/@AGuyThatLikesFurrys/Hecker-Discord-bot
 
 client.on('guildCreate', async (guild) => {
-    require('./guildEvents/guildCreate')(client, guild);
+    let sendMessageToOwner = false; // Should the BOT send a message to the owner og the guild it is invited to?
+    if (sendMessageToOwner) {
+        require('./guildEvents/guildCreate')(client, guild);
+    }
 });
 // this is pretty helpful for space
 client.on('guildDelete', (guild) => {
