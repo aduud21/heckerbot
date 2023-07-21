@@ -24,7 +24,7 @@ const debugModeEnabled = true;
 const debugModeEnabledForRatelimit = true;
 const cooldownTimeRL = 5000;
 const { ClusterClient, getInfo } = require('discord-hybrid-sharding');
-const { GatewayIntentBits, Partials, Client, Routes, Events } = require('discord.js');
+const { GatewayIntentBits, ActivityType, Partials, Client, Routes, Events } = require('discord.js');
 const client = new Client({
     shards: getInfo().SHARD_LIST, // An array of shards that will get spawned
     shardCount: getInfo().TOTAL_SHARDS, // Total number of shards
@@ -40,7 +40,9 @@ const client = new Client({
 client.cluster = new ClusterClient(client); // initialize the Client, so we access the .broadcastEval()
 client.login(process.env.TOKEN);
 // e
-console.log('⌛-> [LOGINDATA] Data found, program will try to use it!');
+console.log(
+    '⏳ -> [LOGIN] Trying to login with the provided token. If this takes longer than 5 minutes, it might be because you provided an invalid token.'
+);
 // THIS PART OF THE CODE IS FOR DEBUGGING (MY TIMEZONE)
 if (debugModeEnabled) {
     const options = {
@@ -71,7 +73,16 @@ if (debugModeEnabled) {
         client.rest.on('rateLimited', rateLimitLog);
     }
 }
-require('./utils/handlers/events')(client);
+client.once(Events.ClientReady, () => {
+    const activityText = `servers | Cluster${client.cluster.id}`;
+    console.log('⏳ -> [LOGIN] Fetching user tag');
+    if (client.user) {
+        console.log(`☑️ -> [LOGIN] Logged into token as user ${client.user.tag}`);
+        client.user.setActivity(activityText, { type: ActivityType.Watching });
+    } else {
+        console.log('❌ -> Client user object is null. Failed to login with the provided token.');
+    }
+});
 client.on(Events.InteractionCreate, async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
     if (!interaction.inGuild()) return;
@@ -114,8 +125,6 @@ client.on('messageDelete', async (message) => {
 client.on('messageUpdate', async (oldMessage, newMessage) => {
     require('./messageEvents/ed')(oldMessage, newMessage);
 });
-
-// adudu21 was here, something: https://replit.com/@AGuyThatLikesFurrys/Hecker-Discord-bot
 
 client.on('guildCreate', async (guild) => {
     let sendMessageToOwner = false; // Should the BOT send a message to the owner og the guild it is invited to?
