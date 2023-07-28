@@ -133,12 +133,6 @@ module.exports = async (client, rest, Routes) => {
                 options: [], // No options for this command
                 dm_permission: false,
             },
-            {
-                name: 'uptime',
-                description: 'View the current bot client uptime',
-                options: [], // No options for this command
-                dm_permission: false,
-            },
         ];
 
         console.log(`Started refreshing ${commands.length} application (/) commands.`);
