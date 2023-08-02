@@ -1,10 +1,6 @@
-[![Made with Replit Badge](https://replit.com/badge?caption=Made%20with%20Replit)](https://replit.com/github/aduud21/heckerbot)
-
 # if you plan on watching this repo, i suggest you put Releases only, There may be often new Releases
 
 ## As of 5/4/2023, i needed to rename the bot to MutilpleBot so i can try to verify the discord bot, Orignal name is Hecker!
-
-[Website for this discord bot](https://hecker-discord-bot-website.aguythatlikesfurrys.repl.co)
 
 [![GitHub release](https://img.shields.io/github/release/aduud21/heckerbot?include_prereleases=&sort=semver)](https://github.com/aduud21/heckerbot/releases/)
 [![issues - heckerbot](https://img.shields.io/github/issues/aduud21/heckerbot)](https://github.com/aduud21/heckerbot/issues)
@@ -25,14 +21,14 @@ When you use this for a discord bot, make a terms of service and privacy policy 
 
 You may use these links as a template:
 
-https://bit.ly/heckerTermsOfService
+https://docs.google.com/document/d/1f3yKJK7fkyihu_vIx5z62T3-40oR5Mo9zjaTUYWcFG0/view
 
-https://bit.ly/heckerbotPrivacypolicy
+https://docs.google.com/document/d/11ZH5vHB__avP1COLx9rSIxytjnIDdHvLYSCOaUUJnwY/view
 
 information about discord intents:
 https://gist.github.com/advaith1/e69bcc1cdd6d0087322734451f15aa2f
 
-_Tiny Note: Please atleast do some modifications and make sure its not too simular (by too simular, don't just add a comment to one line of the code or such_, ex:
+_Tiny Note: Please atleast do some modifications and make sure its not too simular (by too simular, don't just add a comment to one line of the code or such, ex:
 
 ```js
 //this does this
@@ -46,9 +42,6 @@ _Notes:_
 
 1. Bot is not made to work 100% if you just fork/copy the bot and may require you quite a good amount of modifications for it to fully for you
 2. if you want to join the support server: https://discord.gg/GbjgmffUKj
-
-\***_Creator:
-https://youtube.com/c/adudu21 or adudu21 (on roblox and some other places too), My discord UserID is 710227418492960778_**
 
 # Installation
 
@@ -116,17 +109,6 @@ Search "Webview" or "Web" then click on it
 
 ![image](https://github.com/aduud21/heckerbot/assets/74877817/92ebf5f7-2bf7-4d1f-a4a6-5ddadbf16910)
 
-
-## Not done yet, for slashcommands, go in refreshslashcommand file and modify clientUSERID (line 2) to your bot's userID/APPLICATION ID.
-
-After doing this, in events folder (ready.js) you can turn off/on start_up_message (by default it is off), if you want start up messages then:
-
-Replace 957439649142407248 with the channel you want it to send (channel id)
-
-```js
-client.channels.cache.get("957439649142407248");
-```
-
 ## For checklink slash command, you must create a secret named api and the value of your safe browsing api key
 
 1. Go to https://console.cloud.google.com and create a account if you have not
@@ -158,7 +140,7 @@ if you have read all of this and understood (for example you not gonna claim you
 
 Email: contact-adudu21@proton.me
 
-if you have two slash commands named the exact same, run this (via runcode) to remove the duplicate:
+if you have two slash commands named the exact same, run this (via runcode) to remove the duplicate?:
 ```js
 const { GatewayIntentBits, Partials, Client } = require('discord.js');
 const client = new Client({
@@ -201,7 +183,7 @@ client.on('ready', async () => {
   }
 });
 ```
-To delete a specific global command:
+To delete a specific global command?:
 ```js
 const { GatewayIntentBits, Partials, Client, REST, Routes, Events } = require('discord.js'); 
 const client = new Client({ intents: [ GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMessageReactions, ], partials: [Partials.Message, Partials.Reaction, Partials.Channel], }); 
