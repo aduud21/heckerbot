@@ -74,41 +74,6 @@ Create a secret named TOKEN and value as the token of your bot.
 
 Don't use the example I provided, put your own, it won't work. If you don't have a MongoDB, you can create on at [MongoDB](https://mongodb.com/).
 
-## UptimeRobot:
-(This is a modified guide of [devspen 24/7 hosting replit](https://github.com/DevSpen/24-7_hosting_replit#uptimerobot) to work with the latest changes of replit)
-
-i will be using [UptimeRobot](https://uptimerobot.com/?rid=49445ef400752a) as the monitoring system.
-
-1. Copy the URL of the website that shows when you run the repl. If you are on mobile, this will be on the "Output" tab; on Desktop, you'll see it in the upper right corner of your screen:
-  
-![image](https://github.com/aduud21/heckerbot/assets/74877817/196f358e-41cd-4df9-a996-e027bbf895ac)
-
-2. Go to [UptimeRobot](https://uptimerobot.com/?rid=49445ef400752a) and create a new account:
-
-![image](https://github.com/aduud21/heckerbot/assets/74877817/7902cd0d-69a4-44ed-a4b3-01feddacb653)
-
-![image](https://github.com/aduud21/heckerbot/assets/74877817/fc1d205f-0902-45ac-a53b-aa1e61caaff2)
-
-3. After clicking the link in your email, it should take you to the dashboard. Here, you can create a new monitor:
-
-![image](https://github.com/aduud21/heckerbot/assets/74877817/86e34381-624a-452a-afd8-720100602aa5)
-
-5. Select these settings, then save (you'll need to double click the "Create Monitor" button):
-
-![image](https://github.com/aduud21/heckerbot/assets/74877817/9d75012d-18da-4d96-a265-7f1f2ffacfb4)
-
-"https://replname.yourusername.repl.co" should be replaced with the URL we copied from our repl earlier.
-
-Can't find the website that shows when you run the repl?
-
-Click the +
-
-![image](https://github.com/aduud21/heckerbot/assets/74877817/f795de55-300f-404b-a47a-40fcfdcb1311)
-
-Search "Webview" or "Web" then click on it
-
-![image](https://github.com/aduud21/heckerbot/assets/74877817/92ebf5f7-2bf7-4d1f-a4a6-5ddadbf16910)
-
 ## For checklink slash command, you must create a secret named api and the value of your safe browsing api key
 
 1. Go to https://console.cloud.google.com and create a account if you have not
