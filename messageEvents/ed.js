@@ -10,8 +10,6 @@ mongoose.connect(process.env.mongodb, {
 });
 const creditCardRegex = /\b(?:\d{4}[ -]?){3}\d{4}\b/g;
 const phoneNumberRegex = /(\+\d{1,2}\s?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b/g;
-const queues = new Map();
-const queueTimeouts = new Map();
 function delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -64,46 +62,34 @@ module.exports = async (oldMessage, newMessage) => {
             let filteredMessageold = oldMessage.content
                 .replace(creditCardRegex, '[personal info]')
                 .replace(phoneNumberRegex, '[redacted]');
-            let queue = queues.get(newMessage.guild.id);
-            if (!queue) {
-                queue = async.queue(async (task) => {
-                    const { newMessage, modLogsID, EmbedBuilder } = task;
-                    try {
-                        await delay(2000);
-                        await newMessage.guild.channels.cache
+            queue = async.queue(async (task) => {
+                const { newMessage, modLogsID, EmbedBuilder } = task;
+                try {
+                    setTimeout(async () => {
+                        await messageDelete.guild.channels.cache
                             .get(modLogsID)
                             .send({ embeds: [EmbedBuilder] });
-                    } catch (error) {
-                        await Modlog.deleteOne({ serverID: newMessage.guild.id });
-                        console.log(
-                            `Kinda Optimized space: Somebody put modlogs for a channel then deleted that channel or the bot no longer has access to the channel ${error}`
-                        );
-                    }
-                }, 1);
-                queues.set(newMessage.guild.id, queue);
-            }
-            const timeoutId = queueTimeouts.get(newMessage.guild.id);
-            if (timeoutId) {
-                await delay(1000);
-            }
+                    }, 5000);
+                } catch (error) {
+                    await Modlog.deleteOne({ serverID: newMessage.guild.id });
+                    console.log(
+                        `Kinda Optimized space: Somebody put modlogs for a channel then deleted that channel or the bot no longer has access to the channel ${error}`
+                    );
+                }
+            }, 1);
             queue.push({
                 newMessage,
                 modLogsID,
                 EmbedBuilder: new EmbedBuilder().setColor(main).setTitle('****Message log****')
                     .setDescription(`
-            Message by <@!${newMessage.author.id}>
-            Message edited in <#${newMessage.channel.id}> 
+            By <@${newMessage.author.id}>
+            Edited in <#${newMessage.channel.id}> 
             Before: 
             ||${filteredMessageold}||
             After: 
             ||${filteredMessage}||
             Message ID: ${newMessage.id}`),
             });
-            const newTimeoutId = setTimeout(() => {
-                queueTimeouts.delete(newMessage.guild.id);
-                queues.delete(newMessage.guild.id);
-            }, 5000);
-            queueTimeouts.set(newMessage.guild.id, newTimeoutId);
         } else {
             const existingModlog = await Modlog.findOne({ serverID: newMessage.guild.id });
             if (!existingModlog) return;
@@ -112,43 +98,31 @@ module.exports = async (oldMessage, newMessage) => {
             const filteredMessage = text
                 .replace(creditCardRegex, '[personal info]')
                 .replace(phoneNumberRegex, '[redacted]');
-            let queue = queues.get(newMessage.guild.id);
-            if (!queue) {
-                queue = async.queue(async (task) => {
-                    const { newMessage, modLogsID, EmbedBuilder } = task;
-                    try {
-                        await delay(2000);
-                        await newMessage.guild.channels.cache
+            queue = async.queue(async (task) => {
+                const { newMessage, modLogsID, EmbedBuilder } = task;
+                try {
+                    setTimeout(async () => {
+                        await messageDelete.guild.channels.cache
                             .get(modLogsID)
                             .send({ embeds: [EmbedBuilder] });
-                    } catch (error) {
-                        await Modlog.deleteOne({ serverID: newMessage.guild.id });
-                        console.log(
-                            `Kinda Optimized space: Somebody put modlogs for a channel then deleted that channel or the bot no longer has access to the channel ${error}`
-                        );
-                    }
-                }, 1);
-                queues.set(newMessage.guild.id, queue);
-            }
-            const timeoutId = queueTimeouts.get(newMessage.guild.id);
-            if (timeoutId) {
-                await delay(1000);
-            }
+                    }, 5000);
+                } catch (error) {
+                    await Modlog.deleteOne({ serverID: newMessage.guild.id });
+                    console.log(
+                        `Kinda Optimized space: Somebody put modlogs for a channel then deleted that channel or the bot no longer has access to the channel ${error}`
+                    );
+                }
+            }, 1);
             queue.push({
                 newMessage,
                 modLogsID,
                 EmbedBuilder: new EmbedBuilder().setColor(main).setTitle('****Message log****')
                     .setDescription(`
-            Message by <@!${newMessage.author.id}>
-            Message edited in <#${newMessage.channel.id}> 
+            By <@${newMessage.author.id}>
+            Edited in <#${newMessage.channel.id}> 
             <Message is too long to show>
             Message ID: ${newMessage.id}`),
             });
-            const newTimeoutId = setTimeout(() => {
-                queueTimeouts.delete(newMessage.guild.id);
-                queues.delete(newMessage.guild.id);
-            }, 5000);
-            queueTimeouts.set(newMessage.guild.id, newTimeoutId);
         }
     } catch (error) {
         console.log(`error: ${error}`);
