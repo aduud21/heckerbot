@@ -66,7 +66,7 @@ module.exports = async (oldMessage, newMessage) => {
                 const { newMessage, modLogsID, EmbedBuilder } = task;
                 try {
                     setTimeout(async () => {
-                        await messageDelete.guild.channels.cache
+                        await newMessage.guild.channels.cache
                             .get(modLogsID)
                             .send({ embeds: [EmbedBuilder] });
                     }, 5000);
@@ -102,7 +102,7 @@ module.exports = async (oldMessage, newMessage) => {
                 const { newMessage, modLogsID, EmbedBuilder } = task;
                 try {
                     setTimeout(async () => {
-                        await messageDelete.guild.channels.cache
+                        await newMessage.guild.channels.cache
                             .get(modLogsID)
                             .send({ embeds: [EmbedBuilder] });
                     }, 5000);
