@@ -65,11 +65,14 @@ module.exports = async (oldMessage, newMessage) => {
             queue = async.queue(async (task) => {
                 const { newMessage, modLogsID, EmbedBuilder } = task;
                 try {
-                    setTimeout(async () => {
-                        await newMessage.guild.channels.cache
-                            .get(modLogsID)
-                            .send({ embeds: [EmbedBuilder] });
-                    }, 5000);
+                    await new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            resolve();
+                        }, 5000);
+                    });
+                    await newMessage.guild.channels.cache
+                        .get(modLogsID)
+                        .send({ embeds: [EmbedBuilder] });
                 } catch (error) {
                     await Modlog.deleteOne({ serverID: newMessage.guild.id });
                     console.log(
@@ -101,11 +104,14 @@ module.exports = async (oldMessage, newMessage) => {
             queue = async.queue(async (task) => {
                 const { newMessage, modLogsID, EmbedBuilder } = task;
                 try {
-                    setTimeout(async () => {
-                        await newMessage.guild.channels.cache
-                            .get(modLogsID)
-                            .send({ embeds: [EmbedBuilder] });
-                    }, 5000);
+                    await new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            resolve();
+                        }, 5000);
+                    });
+                    await newMessage.guild.channels.cache
+                        .get(modLogsID)
+                        .send({ embeds: [EmbedBuilder] });
                 } catch (error) {
                     await Modlog.deleteOne({ serverID: newMessage.guild.id });
                     console.log(
