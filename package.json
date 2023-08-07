@@ -16,10 +16,10 @@
         "express": "^4.18.2",
         "he": "^1.2.0",
         "helmet": "^7.0.0",
-        "mongoose": "^7.4.1"
+        "mongoose": "^7.4.2"
     },
     "devDependencies": {
-        "prettier": "^3.0.0"
+        "prettier": "^3.0.1"
     },
     "keywords": [
         "node.js",

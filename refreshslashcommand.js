@@ -49,7 +49,7 @@ module.exports = async (client, rest, Routes) => {
             {
                 name: 'coinflip',
                 description: 'Flip a coin. Can be Head or tails',
-                options: [], // No options for this command
+                options: [],
                 dm_permission: false,
             },
             {
@@ -83,27 +83,27 @@ module.exports = async (client, rest, Routes) => {
             {
                 name: 'code',
                 description: "View the bot's source code",
-                options: [], // No options for this command
+                options: [],
                 dm_permission: false,
             },
             {
                 name: 'information',
                 description: 'View information about this discord bot',
-                options: [], // No options for this command
+                options: [],
                 dm_permission: false,
             },
             {
                 name: 'deldata',
                 description:
                     'Clear all the data that bot has collected from your server. May prevent using setmodlog.',
-                options: [], // No options for this command
+                options: [],
                 default_member_permissions: '0',
                 dm_permission: false,
             },
             {
                 name: 'membercount',
                 description: 'View total membercount of this server',
-                options: [], // No options for this command
+                options: [],
                 dm_permission: false,
             },
             {
@@ -124,13 +124,13 @@ module.exports = async (client, rest, Routes) => {
             {
                 name: 'quiz',
                 description: 'Some random questions',
-                options: [], // No options for this command
+                options: [],
                 dm_permission: false,
             },
             {
                 name: 'rps',
                 description: 'Randomly pick from Rock. Paper or Scissors',
-                options: [], // No options for this command
+                options: [],
                 dm_permission: false,
             },
         ];

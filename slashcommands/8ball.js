@@ -1,7 +1,7 @@
 module.exports = async (interaction) => {
     const commandName = interaction.commandName;
     if (commandName == '8ball') {
-        const gamereal = require('../utils/structure/json/8ball.json');
+        const gamereal = require('../json/8ball.json');
         const item = gamereal[Math.floor(Math.random() * gamereal.length)];
         const filter = (response) => {
             return item.answers();
