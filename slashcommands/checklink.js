@@ -1,19 +1,4 @@
 const axios = require('axios');
-const rankThreatLevel = (threatTypes) => {
-    if (threatTypes.length === 0) {
-        return 'null';
-    } else if (threatTypes.length === 7) {
-        return 'MALWARE';
-    } else if (threatTypes.length === 18) {
-        return 'SOCIAL_ENGINEERING';
-    } else if (threatTypes.length === 17) {
-        return 'UNWANTED_SOFTWARE';
-    } else if (threatTypes.length === 31) {
-        return 'POTENTIALLY_HARMFUL_APPLICATION';
-    } else {
-        return 'safe';
-    }
-};
 module.exports = async (interaction, client) => {
     const commandName = interaction.commandName;
     if (commandName == 'checklink') {
@@ -35,7 +20,7 @@ module.exports = async (interaction, client) => {
         if (!process.env.api) {
             interaction
                 .reply({
-                    content: `❌ -> The environment file (process.env.api) was not found and as a result, this command will NOT work.`,
+                    content: `❌ -> The environment file (process.env.api) was not found and as a result, this command will NOT work as it is required for google safe browsing.`,
                 })
                 .catch(() => {});
             return;
@@ -51,7 +36,7 @@ module.exports = async (interaction, client) => {
                     {
                         client: {
                             clientId: `Discord bot ${client.user.username}`,
-                            clientVersion: '0.0.1',
+                            clientVersion: '1.0.0',
                         },
                         threatInfo: {
                             threatTypes: [
@@ -61,7 +46,7 @@ module.exports = async (interaction, client) => {
                                 'POTENTIALLY_HARMFUL_APPLICATION',
                                 'THREAT_TYPE_UNSPECIFIED',
                             ],
-                            platformTypes: ['ANY_PLATFORM'],
+                            platformTypes: ['ANY_PLATFORM', 'PLATFORM_TYPE_UNSPECIFIED'],
                             threatEntryTypes: ['URL'],
                             threatEntries: [
                                 { url: `${interaction.options._hoistedOptions[0].value}` },
@@ -72,11 +57,9 @@ module.exports = async (interaction, client) => {
                 .catch(() => {});
             if (response.data && response.data.matches && response.data.matches.length > 0) {
                 const threatTypes = response.data.matches.map((match) => match.threatType);
-                const rank = rankThreatLevel(threatTypes);
-
                 interaction
                     .editReply(
-                        `**${outputLink}** has been flagged as **${rank}** by google safe browsing. Data is provided by [anti-fish api](<https://anti-fish.bitflow.dev/>) and [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>)
+                        `**${outputLink}** has been flagged as **${threatTypes}** (Dangerous) by google safe browsing. Data is provided by [anti-fish api](<https://anti-fish.bitflow.dev/>) and [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>)
 `
                     )
                     .catch(() => {});
