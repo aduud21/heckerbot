@@ -1,19 +1,23 @@
-let MONGOFailedattempts = 0;
 const { EmbedBuilder } = require('discord.js');
 const { main } = require('../config/colors.json');
 const async = require('async');
 const mongoose = require('mongoose');
 const Modlog = require('../models/modlog');
+
 mongoose.connect(process.env.mongodb, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
+
 const creditCardRegex = /\b(?:\d{4}[ -]?){3}\d{4}\b/g;
 const phoneNumberRegex = /(\+\d{1,2}\s?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b/g;
+
+let modlogDocuments = [];
+let MONGOFailedAttempts = 0;
+
 function delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
-let modlogDocuments = [];
 
 async function fetchModlogDocuments() {
     try {
@@ -25,111 +29,103 @@ async function fetchModlogDocuments() {
 
 fetchModlogDocuments();
 setInterval(fetchModlogDocuments, 10000);
+
+const cooldowns = new Map();
+
+const queue = async.queue(async (task, callback) => {
+    const { newMessage, modLogsID, EmbedBuilder } = task;
+    try {
+        await newMessage.guild.channels.cache.get(modLogsID).send({ embeds: [EmbedBuilder] });
+    } catch (error) {
+        await Modlog.deleteOne({ serverID: newMessage.guild.id });
+        console.log(
+            `Kinda Optimized space: Somebody put modlogs for a channel then deleted that channel or the bot no longer has access to the channel ${error}`
+        );
+    }
+    callback();
+}, 1);
+
 module.exports = async (oldMessage, newMessage) => {
-    if (!oldMessage.content) return;
-    if (!newMessage.content) return;
-    if (newMessage.content === oldMessage.content) return;
-    if (newMessage.channel.type === 'dm') return;
-    if (newMessage.author.bot) return;
-    while (modlogDocuments.length === 0 && MONGOFailedattempts < 6) {
+    if (
+        !oldMessage.content ||
+        newMessage.content === oldMessage.content ||
+        !newMessage.content ||
+        newMessage.channel.type === 'dm' ||
+        newMessage.author.bot
+    ) {
+        return;
+    }
+
+    while (modlogDocuments.length === 0 && MONGOFailedAttempts < 6) {
         console.log('Failed Checking for MongoDB (ed.js). Trying again in 5 seconds...');
         await delay(5000);
-        MONGOFailedattempts++;
+        MONGOFailedAttempts++;
     }
 
     if (modlogDocuments.length === 0) {
         console.log('Failed to fetch modlog documents after 5 attempts (ed.js)');
         return;
     }
+
+    if (oldMessage === null) {
+        oldMessage = 'unknown message';
+    }
+
     try {
-        if (newMessage.author.bot) {
+        const existingModlog = modlogDocuments.find(
+            (modlog) => modlog.serverID === newMessage.guild.id
+        );
+
+        if (!existingModlog) {
             return;
         }
-    } catch {}
-    if (oldMessage === null) oldMessage = 'unknown message';
-    try {
-        let flyMessage = `${oldMessage.content}${newMessage.content}`;
-        if (flyMessage.length < 3711) {
-            const existingModlog = modlogDocuments.find(
-                (modlog) => modlog.serverID === newMessage.guild.id
-            );
-            if (!existingModlog) return;
-            const modLogsID = existingModlog.channelID;
-            const text = newMessage.content;
-            const filteredMessage = text
-                .replace(creditCardRegex, '[personal info]')
-                .replace(phoneNumberRegex, '[redacted]');
-            let filteredMessageold = oldMessage.content
-                .replace(creditCardRegex, '[personal info]')
-                .replace(phoneNumberRegex, '[redacted]');
-            queue = async.queue(async (task) => {
-                const { newMessage, modLogsID, EmbedBuilder } = task;
-                try {
-                    await new Promise((resolve, reject) => {
-                        setTimeout(() => {
-                            resolve();
-                        }, 5000);
-                    });
-                    await newMessage.guild.channels.cache
-                        .get(modLogsID)
-                        .send({ embeds: [EmbedBuilder] });
-                } catch (error) {
-                    await Modlog.deleteOne({ serverID: newMessage.guild.id });
-                    console.log(
-                        `Kinda Optimized space: Somebody put modlogs for a channel then deleted that channel or the bot no longer has access to the channel ${error}`
-                    );
-                }
-            }, 1);
-            queue.push({
-                newMessage,
-                modLogsID,
-                EmbedBuilder: new EmbedBuilder().setColor(main).setTitle('****Message log****')
-                    .setDescription(`
-            By <@${newMessage.author.id}>
-            Edited in <#${newMessage.channel.id}> 
-            Before: 
-            ||${filteredMessageold}||
-            After: 
-            ||${filteredMessage}||
-            Message ID: ${newMessage.id}`),
-            });
-        } else {
-            const existingModlog = await Modlog.findOne({ serverID: newMessage.guild.id });
-            if (!existingModlog) return;
-            const modLogsID = existingModlog.channelID;
-            const text = newMessage.content;
-            const filteredMessage = text
-                .replace(creditCardRegex, '[personal info]')
-                .replace(phoneNumberRegex, '[redacted]');
-            queue = async.queue(async (task) => {
-                const { newMessage, modLogsID, EmbedBuilder } = task;
-                try {
-                    await new Promise((resolve, reject) => {
-                        setTimeout(() => {
-                            resolve();
-                        }, 5000);
-                    });
-                    await newMessage.guild.channels.cache
-                        .get(modLogsID)
-                        .send({ embeds: [EmbedBuilder] });
-                } catch (error) {
-                    await Modlog.deleteOne({ serverID: newMessage.guild.id });
-                    console.log(
-                        `Kinda Optimized space: Somebody put modlogs for a channel then deleted that channel or the bot no longer has access to the channel ${error}`
-                    );
-                }
-            }, 1);
-            queue.push({
-                newMessage,
-                modLogsID,
-                EmbedBuilder: new EmbedBuilder().setColor(main).setTitle('****Message log****')
-                    .setDescription(`
-            By <@${newMessage.author.id}>
-            Edited in <#${newMessage.channel.id}> 
-            <Message is too long to show>
-            Message ID: ${newMessage.id}`),
-            });
+
+        const modLogsID = existingModlog.channelID;
+        const flyMessage = `${oldMessage.content}${newMessage.content}`;
+
+        const filteredMessageold = oldMessage.content
+            .replace(creditCardRegex, '[personal info]')
+            .replace(phoneNumberRegex, '[redacted]');
+        const filteredMessage = newMessage.content
+            .replace(creditCardRegex, '[personal info]')
+            .replace(phoneNumberRegex, '[redacted]');
+
+        if (cooldowns.has(newMessage.guild.id)) {
+            //avoid ratelimits, tried finding a way (if 1 message is added to queue, wait 3 seconds then send and if there is 2 messages then wait the total time needed for the 2 message to be sent and so on) but no solution
+            return;
         }
+
+        const EmbedBuilderInstance = new EmbedBuilder()
+            .setColor(main)
+            .setTitle('****Message log****');
+
+        if (flyMessage.length < 3711) {
+            EmbedBuilderInstance.setDescription(`
+By <@${newMessage.author.id}>
+Edited in <#${newMessage.channel.id}> 
+Before: 
+||${filteredMessageold}||
+After: 
+||${filteredMessage}||
+Message ID: ${newMessage.id}`);
+        } else {
+            EmbedBuilderInstance.setDescription(`
+By <@${newMessage.author.id}>
+Edited in <#${newMessage.channel.id}> 
+<Message is too long to show>
+Message ID: ${newMessage.id}`);
+        }
+
+        cooldowns.set(newMessage.guild.id, true);
+        setTimeout(() => {
+            cooldowns.delete(newMessage.guild.id);
+        }, 3000);
+
+        queue.push({
+            newMessage,
+            modLogsID,
+            EmbedBuilder: EmbedBuilderInstance,
+        });
     } catch (error) {
         console.log(`error: ${error}`);
     }
