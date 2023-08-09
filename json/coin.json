@@ -1,10 +1,8 @@
 [
     {
-        "question": "Heads",
-        "answers": ["yes", "no"]
+        "question": "Heads"
     },
     {
-        "question": "Tails",
-        "answers": ["yes", "no"]
+        "question": "Tails"
     }
 ]

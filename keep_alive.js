@@ -3,4 +3,4 @@ const app = express();
 const helmet = require('helmet');
 const port = 8080;
 app.use(helmet());
-app.listen(port, () => console.log(`✅ -> Keep alive currently active, listen on port: ${port}`));
+app.listen(port, () => console.log(`✅ -> Keep alive active, listen on port: ${port}`));

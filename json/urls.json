@@ -1,0 +1,14 @@
+[
+    "https://opentdb.com/api.php?amount=1&category=9&type=boolean",
+    "https://opentdb.com/api.php?amount=1&category=19&type=boolean",
+    "https://opentdb.com/api.php?amount=1&category=19",
+    "https://opentdb.com/api.php?amount=1&category=22&type=boolean",
+    "https://opentdb.com/api.php?amount=1&category=22",
+    "https://opentdb.com/api.php?amount=1&category=9",
+    "https://opentdb.com/api.php?amount=1&category=27",
+    "https://opentdb.com/api.php?amount=1&category=27&type=boolean",
+    "https://opentdb.com/api.php?amount=1&category=18",
+    "https://opentdb.com/api.php?amount=1&category=18&type=boolean",
+    "https://opentdb.com/api.php?amount=1&category=15&type=boolean",
+    "https://opentdb.com/api.php?amount=1&category=15"
+]

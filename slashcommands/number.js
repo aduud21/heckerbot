@@ -1,6 +1,4 @@
 module.exports = async (interaction) => {
-    const commandName = interaction.commandName;
-
     try {
         const usersofusersxd = interaction.options._hoistedOptions[0].value;
         if (usersofusersxd.length < 2000) {

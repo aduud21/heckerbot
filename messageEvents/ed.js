@@ -13,7 +13,6 @@ const creditCardRegex = /\b(?:\d{4}[ -]?){3}\d{4}\b/g;
 const phoneNumberRegex = /(\+\d{1,2}\s?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b/g;
 
 let modlogDocuments = [];
-let MONGOFailedAttempts = 0;
 
 function delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -56,15 +55,11 @@ module.exports = async (oldMessage, newMessage) => {
         return;
     }
 
-    while (modlogDocuments.length === 0 && MONGOFailedAttempts < 6) {
-        console.log('Failed Checking for MongoDB (ed.js). Trying again in 5 seconds...');
+    while (modlogDocuments.length === 0) {
+        console.log(
+            'modlogDocuments is 0 for MongoDB (ed.js). Trying again in 5 seconds... Possible memory leak if no modlogDocuments are found'
+        );
         await delay(5000);
-        MONGOFailedAttempts++;
-    }
-
-    if (modlogDocuments.length === 0) {
-        console.log('Failed to fetch modlog documents after 5 attempts (ed.js)');
-        return;
     }
 
     if (oldMessage === null) {

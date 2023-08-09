@@ -1,82 +1,62 @@
 [
     {
-        "question": "It is certain",
-        "answers": ["yes", "no"]
+        "question": "It is certain"
     },
     {
-        "question": "It is decidedly so",
-        "answers": ["yes", "no"]
+        "question": "It is decidedly so"
     },
     {
-        "question": "Without a doubt",
-        "answers": ["yes", "no"]
+        "question": "Without a doubt"
     },
     {
-        "question": "Yes definitely",
-        "answers": ["yes", "no"]
+        "question": "Yes definitely"
     },
     {
-        "question": "You may rely on it",
-        "answers": ["yes", "no"]
+        "question": "You may rely on it"
     },
     {
-        "question": "As I see it, yes",
-        "answers": ["yes", "no"]
+        "question": "As I see it, yes"
     },
     {
-        "question": "Most likely",
-        "answers": ["yes", "no"]
+        "question": "Most likely"
     },
     {
-        "question": "Outlook good",
-        "answers": ["yes", "no"]
+        "question": "Outlook good"
     },
     {
-        "question": "Yes",
-        "answers": ["yes", "no"]
+        "question": "Yes"
     },
     {
-        "question": "Signs point to yes",
-        "answers": ["yes", "no"]
+        "question": "Signs point to yes"
     },
     {
-        "question": "Reply hazy, try again",
-        "answers": ["yes", "no"]
+        "question": "Reply hazy, try again"
     },
     {
-        "question": "Ask again later",
-        "answers": ["yes", "no"]
+        "question": "Ask again later"
     },
     {
-        "question": "Better not tell you now",
-        "answers": ["yes", "no"]
+        "question": "Better not tell you now"
     },
     {
-        "question": "Cannot predict now",
-        "answers": ["yes", "no"]
+        "question": "Cannot predict now"
     },
     {
-        "question": "Concentrate and ask again",
-        "answers": ["yes", "no"]
+        "question": "Concentrate and ask again"
     },
     {
-        "question": "Don’t count on it",
-        "answers": ["yes", "no"]
+        "question": "Don’t count on it"
     },
     {
-        "question": "My reply is no",
-        "answers": ["yes", "no"]
+        "question": "My reply is no"
     },
     {
-        "question": "My sources say no",
-        "answers": ["yes", "no"]
+        "question": "My sources say no"
     },
     {
-        "question": "Outlook not so good",
-        "answers": ["yes", "no"]
+        "question": "Outlook not so good"
     },
     {
-        "question": "Very doubtful",
-        "answers": ["yes", "no"]
+        "question": "Very doubtful"
     }
 ]

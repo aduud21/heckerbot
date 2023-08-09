@@ -1,4 +1,4 @@
-const isHostedOnReplit = true; // Please change this depending where you host it, if it is replit then set it to true else set it to false, Hosting this platforms that are not replit can pose security vulnerabilitys
+const isHostedOnReplit = true; // Please change this depending where you host it, if the platform is like replit (which you need to use a webserver to keep it alive) then enable this
 const create_global_command = false; // Set this to true to add/edit global commands, if this is disabled, no global commands will be added or edited, Keeping this enabled (true) will consume more RAM
 // This bot is designed (made) to run on replit
 // Some mega important code for the bot or some useless json files are hidden, if you wish to see them Click Files then the three dots at the top then "Show Hidden Files"
@@ -19,25 +19,8 @@ IF YOU DONT USE SECRETS FOR THIS REPLIT LIKE YOU JUST PASTE IN YOUR TOKEN THEN A
 
 https://github.com/aduud21/heckerbot#how-to-run-the-bot-on-replit
 */
+console.log(`Node version: ${process.version}`);
 const { ClusterManager, HeartbeatManager } = require('discord-hybrid-sharding');
-try {
-    console.log(`Node version: ${process.version}`);
-    console.log(
-        `Make sure to run npm run format and npm audit fix if you haven't after a code change or smth`
-    );
-    /*
-catch basically catches any error that occurs when you use it correctly, can be very helpful
-*/
-} catch (error) {
-    console.log(`Startup ERROR: ${error}`);
-}
-// TOKEN CHECK
-if (!process.env.TOKEN) {
-    console.log(
-        'NO TOKEN FOUND, USE REPLIT SECRETS FOR THIS TO WORK AND IF YOU DONT USE REPLIT SECRETS AND HAVE THIS PROJECT ON REPLIT ITS A MASSIVE SECURITY PROBLEM FOR YOUR BOT'
-    );
-    return;
-}
 const manager = new ClusterManager(`./bot.js`, {
     totalShards: 'auto',
     totalClusters: 'auto',
@@ -54,9 +37,7 @@ manager.extend(
     })
 );
 if (isHostedOnReplit) {
-    console.log('Hosted on replit');
     require('./keep_alive');
-    console.log('✅ Successfully required keep_alive');
 }
 // SLASH commands (global) should only be created once (if i put it in bot.js, it will repeat it multiple times too fast) so this is what this does
 if (create_global_command) {

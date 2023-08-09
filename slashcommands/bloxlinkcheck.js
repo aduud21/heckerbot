@@ -30,7 +30,6 @@ module.exports = async (interaction) => {
     setTimeout(() => {
         interactionCooldownsRL.delete(userId);
     }, cooldownTimeRL);
-    const commandName = interaction.commandName;
     if (!process.env.bloxlinkAPIKEY) {
         interaction
             .reply({
@@ -55,10 +54,20 @@ module.exports = async (interaction) => {
         const options = {
             hostname: 'api.blox.link',
             path: `/v4/public/discord-to-roblox/${usersofusersxd}`,
-            headers: { Authorization: process.env.bloxlinkAPIKEY },
+            headers: {
+                Authorization: process.env.bloxlinkAPIKEY,
+                'User-Agent': `Discord bot`,
+                'X-AUserRequestedThis': true,
+                'Upgrade-Insecure-Requests': 1,
+                'Accept-Language': 'en-US,en;q=0.5',
+                Accept: 'text/html',
+            },
         };
 
         const req = https.get(options, (response) => {
+            if (!response.connection.encrypted) {
+                console.log('MAJOR SECURITY VUR FOUND: BLOXLINK CONNECTION IS NOT SECURE');
+            }
             let data = '';
             response.on('data', (chunk) => {
                 data += chunk;

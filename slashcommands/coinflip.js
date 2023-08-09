@@ -1,17 +1,13 @@
 module.exports = async (interaction) => {
-    const commandName = interaction.commandName;
-    if (commandName == 'coinflip') {
-        const gamereal = require('../json/coin.json');
-        const item = gamereal[Math.floor(Math.random() * gamereal.length)];
-        const filter = (response) => {
-            return item.answers();
-        };
-        interaction
-            .reply(
-                `
-🪙 ${item.question} 🪙
+    interaction
+        .reply(
+            `
+🪙 ${
+                require('../json/coin.json')[
+                    Math.floor(Math.random() * require('../json/coin.json').length)
+                ].question
+            } 🪙
 `
-            )
-            .catch(() => {});
-    }
+        )
+        .catch(() => {});
 };

@@ -46,9 +46,10 @@ module.exports = async (messageDelete) => {
         return;
 
     while (modlogDocuments.length === 0) {
-        console.log('Failed Checking for MongoDB (md.js). Trying again in 5 seconds...');
+        console.log(
+            'modlogDocuments is 0 for MongoDB (md.js). Trying again in 5 seconds... Possible memory leak if no modlogDocuments are found'
+        );
         await delay(5000);
-        await fetchModlogDocuments();
     }
 
     try {

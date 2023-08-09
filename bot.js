@@ -12,9 +12,7 @@
 |_____|___|_|                
 
 */
-// Do not delete the client.login since its required for the bot to work, Make sure to read 'README.md'
 // BOT TOKEN = PASSWORD OF BOT
-console.log('⏳-> [LOGINDATA] Checking data...');
 const interactionCooldownsRL = new Map();
 const interactionCooldownsRLPrevent = new Map();
 const debugModeEnabled = true;
@@ -35,9 +33,7 @@ const client = new Client({
 });
 client.cluster = new ClusterClient(client); // initialize the Client, so we access the .broadcastEval()
 client.login(process.env.TOKEN);
-console.log(
-    '⏳ -> [LOGIN] Trying to login with the provided token. If this takes longer than 5 minutes, it might be because you provided an invalid token.'
-);
+console.log('⏳ -> [LOGIN] Trying to login with the provided token.');
 if (debugModeEnabled) {
     const options = {
         timeZone: 'America/Mexico_City',
@@ -61,11 +57,12 @@ if (debugModeEnabled) {
     });
 }
 client.once(Events.ClientReady, () => {
-    const activityText = `servers | Cluster${client.cluster.id}`;
     console.log('⏳ -> [LOGIN] Fetching user tag');
     if (client.user) {
         console.log(`☑️ -> [LOGIN] Logged into token as user ${client.user.tag}`);
-        client.user.setActivity(activityText, { type: ActivityType.Watching });
+        client.user.setActivity(`servers | Cluster${client.cluster.id}`, {
+            type: ActivityType.Watching,
+        });
     } else {
         console.log('❌ -> Client user object is null. Failed to login with the provided token.');
     }
