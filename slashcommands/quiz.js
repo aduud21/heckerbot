@@ -44,7 +44,9 @@ async function getValidQuestion(interaction) {
             trys++;
 
             if (!new RegExp(badWordsPattern.source, 'i').test(question.question)) {
-                break;
+                if (!new RegExp(badWordsPattern.source, 'i').test(question.correct_answer)) {
+                    break;
+                }
             }
         } catch (error) {}
     }
