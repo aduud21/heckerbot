@@ -16,10 +16,11 @@
 const interactionCooldownsRL = new Map();
 const interactionCooldownsRLPrevent = new Map();
 const debugModeEnabled = true;
-let sendMessageToOwner = false; // Should bot message owner if it got invited to their server?
+const sendMessageToOwner = false; // Should bot message owner if it got invited to their server?
 const cooldownTimeRL = 5000;
 const { ClusterClient, getInfo } = require('discord-hybrid-sharding');
 const { GatewayIntentBits, ActivityType, Partials, Client, Routes, Events } = require('discord.js');
+const fs = require('fs');
 const client = new Client({
     shards: getInfo().SHARD_LIST,
     shardCount: getInfo().TOTAL_SHARDS,
@@ -27,9 +28,8 @@ const client = new Client({
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent,
-        GatewayIntentBits.GuildMessageReactions,
     ],
-    partials: [Partials.Message, Partials.Reaction, Partials.Channel],
+    partials: [Partials.Message, Partials.Channel],
 });
 client.cluster = new ClusterClient(client); // initialize the Client, so we access the .broadcastEval()
 client.login(process.env.TOKEN);
@@ -41,19 +41,23 @@ if (debugModeEnabled) {
         minute: 'numeric',
         second: 'numeric',
     };
-    const logError = (data) => {
+    const logMessage = (message) => {
         const currentTime = new Date().toLocaleString('en-US', options);
-        console.error('[' + currentTime + '] Client encountered an error:', data);
+        const logEntry = '[' + currentTime + '] ' + message + '\n';
+        fs.appendFileSync('error.txt', logEntry);
+        console.log(logEntry);
     };
     process.on('uncaughtException', (err) => {
-        logError('Uncaught Exception: ' + err.stack);
+        logMessage('Uncaught Exception: ' + err.stack);
     });
     process.on('unhandledRejection', (reason) => {
-        logError('Unhandled Rejection: ' + reason);
+        logMessage('Unhandled Rejection: ' + reason);
     });
     process.on('exit', (code) => {
-        const currentTime = new Date().toLocaleString('en-US', options);
-        console.log('[' + currentTime + '] Process exited with code:', code);
+        logMessage('Process exited with code: ' + code);
+    });
+    client.rest.on('rateLimited', (data) => {
+        logMessage('Ratelimited: ' + JSON.stringify(data));
     });
 }
 client.once(Events.ClientReady, () => {
@@ -70,15 +74,19 @@ client.once(Events.ClientReady, () => {
 client.on(Events.InteractionCreate, async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
     if (!interaction.inGuild()) return;
-    const userId = interaction.member.user.id;
-    if (interactionCooldownsRL.has(userId)) {
-        const remainingCooldownRL = interactionCooldownsRL.get(userId) - Date.now();
-        const remainingCooldownRLPrevent = interactionCooldownsRLPrevent.get(userId) - Date.now();
+    if (interactionCooldownsRL.has(interaction.member.user.id)) {
+        const remainingCooldownRL =
+            interactionCooldownsRL.get(interaction.member.user.id) - Date.now();
+        const remainingCooldownRLPrevent =
+            interactionCooldownsRLPrevent.get(interaction.member.user.id) - Date.now();
         if (remainingCooldownRLPrevent > 0) {
             return;
         }
         if (remainingCooldownRL > 0) {
-            interactionCooldownsRLPrevent.set(userId, Date.now() + cooldownTimeRL);
+            interactionCooldownsRLPrevent.set(
+                interaction.member.user.id,
+                Date.now() + cooldownTimeRL
+            );
             interaction
                 .reply(
                     `Please wait ${
@@ -87,20 +95,19 @@ client.on(Events.InteractionCreate, async (interaction) => {
                 )
                 .catch(() => {});
             setTimeout(() => {
-                interactionCooldownsRLPrevent.delete(userId);
+                interactionCooldownsRLPrevent.delete(interaction.member.user.id);
             }, cooldownTimeRL);
             return;
         }
     }
-    interactionCooldownsRL.set(userId, Date.now() + cooldownTimeRL);
+    interactionCooldownsRL.set(interaction.member.user.id, Date.now() + cooldownTimeRL);
     setTimeout(() => {
-        interactionCooldownsRL.delete(userId);
+        interactionCooldownsRL.delete(interaction.member.user.id);
     }, cooldownTimeRL);
-    const commandName = interaction.commandName;
     try {
-        require(`./slashcommands/${commandName}`)(interaction, client);
+        require(`./slashcommands/${interaction.commandName}`)(interaction, client);
     } catch (e) {
-        console.log(`Command ${commandName} had a error, Does it exist in files? ${e}`);
+        console.log(`Command ${interaction.commandName} had a error, Does it exist in files? ${e}`);
     }
 });
 client.on('messageDelete', async (message) => {

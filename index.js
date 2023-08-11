@@ -28,7 +28,7 @@ const manager = new ClusterManager(`./bot.js`, {
     mode: 'process',
     token: process.env.TOKEN,
 });
-manager.on('clusterCreate', (cluster) => console.log(`Launched Cluster ${cluster.id}`));
+manager.on('clusterCreate', (cluster) => console.log(`LC ${cluster.id}`));
 manager.spawn({ timeout: -1 });
 manager.extend(
     new HeartbeatManager({

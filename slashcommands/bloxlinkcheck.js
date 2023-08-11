@@ -3,16 +3,19 @@ const interactionCooldownsRL = new Map();
 const interactionCooldownsRLPrevent = new Map();
 const cooldownTimeRL = 12500;
 module.exports = async (interaction) => {
-    const userId = interaction.member.user.id;
-
-    if (interactionCooldownsRL.has(userId)) {
-        const remainingCooldownRL = interactionCooldownsRL.get(userId) - Date.now();
-        const remainingCooldownRLPrevent = interactionCooldownsRLPrevent.get(userId) - Date.now();
+    if (interactionCooldownsRL.has(interaction.member.user.id)) {
+        const remainingCooldownRL =
+            interactionCooldownsRL.get(interaction.member.user.id) - Date.now();
+        const remainingCooldownRLPrevent =
+            interactionCooldownsRLPrevent.get(interaction.member.user.id) - Date.now();
         if (remainingCooldownRLPrevent > 0) {
             return;
         }
         if (remainingCooldownRL > 0) {
-            interactionCooldownsRLPrevent.set(userId, Date.now() + cooldownTimeRL);
+            interactionCooldownsRLPrevent.set(
+                interaction.member.user.id,
+                Date.now() + cooldownTimeRL
+            );
             interaction
                 .reply(
                     `Please wait ${
@@ -21,14 +24,14 @@ module.exports = async (interaction) => {
                 )
                 .catch(() => {});
             setTimeout(() => {
-                interactionCooldownsRLPrevent.delete(userId);
+                interactionCooldownsRLPrevent.delete(interaction.member.user.id);
             }, cooldownTimeRL);
             return;
         }
     }
-    interactionCooldownsRL.set(userId, Date.now() + cooldownTimeRL);
+    interactionCooldownsRL.set(interaction.member.user.id, Date.now() + cooldownTimeRL);
     setTimeout(() => {
-        interactionCooldownsRL.delete(userId);
+        interactionCooldownsRL.delete(interaction.member.user.id);
     }, cooldownTimeRL);
     if (!process.env.bloxlinkAPIKEY) {
         interaction
@@ -42,18 +45,26 @@ module.exports = async (interaction) => {
     await interaction.reply({ content: `⏳ -> Checking...` }).catch(() => {});
 
     try {
-        const usersofusersxd = interaction.options._hoistedOptions[0].value.replace(/[<@>]/g, '');
-
-        if (!usersofusersxd.match(/^\d+$/g) && !usersofusersxd.match(/^<@!?(\d+)>$/g)) {
+        if (
+            !interaction.options._hoistedOptions[0].value.replace(/[<@>]/g, '').match(/^\d+$/g) &&
+            !interaction.options._hoistedOptions[0].value
+                .replace(/[<@>]/g, '')
+                .match(/^<@!?(\d+)>$/g)
+        ) {
             interaction
-                .editReply('Invalid input. Please provide a user mention or a userid.')
+                .editReply(
+                    'Invalid input. Please provide a user mention or a interaction.member.user.id.'
+                )
                 .catch(() => {});
             return;
         }
 
         const options = {
             hostname: 'api.blox.link',
-            path: `/v4/public/discord-to-roblox/${usersofusersxd}`,
+            path: `/v4/public/discord-to-roblox/${interaction.options._hoistedOptions[0].value.replace(
+                /[<@>]/g,
+                ''
+            )}`,
             headers: {
                 Authorization: process.env.bloxlinkAPIKEY,
                 'User-Agent': `Discord bot`,

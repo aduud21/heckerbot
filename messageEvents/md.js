@@ -11,10 +11,6 @@ mongoose.connect(process.env.mongodb, {
 
 let modlogDocuments = [];
 
-function delay(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 async function fetchModlogDocuments() {
     try {
         modlogDocuments = await Modlog.find();
@@ -49,7 +45,7 @@ module.exports = async (messageDelete) => {
         console.log(
             'modlogDocuments is 0 for MongoDB (md.js). Trying again in 5 seconds... Possible memory leak if no modlogDocuments are found'
         );
-        await delay(5000);
+        await new Promise((resolve) => setTimeout(resolve, 5000));
     }
 
     try {

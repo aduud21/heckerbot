@@ -14,10 +14,6 @@ const phoneNumberRegex = /(\+\d{1,2}\s?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b/g
 
 let modlogDocuments = [];
 
-function delay(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 async function fetchModlogDocuments() {
     try {
         modlogDocuments = await Modlog.find();
@@ -59,7 +55,7 @@ module.exports = async (oldMessage, newMessage) => {
         console.log(
             'modlogDocuments is 0 for MongoDB (ed.js). Trying again in 5 seconds... Possible memory leak if no modlogDocuments are found'
         );
-        await delay(5000);
+        await new Promise((resolve) => setTimeout(resolve, 5000));
     }
 
     if (oldMessage === null) {
