@@ -61,7 +61,6 @@ if (debugModeEnabled) {
     });
 }
 client.once(Events.ClientReady, () => {
-    console.log('⏳ -> [LOGIN] Fetching user tag');
     if (client.user) {
         console.log(`☑️ -> [LOGIN] Logged into token as user ${client.user.tag}`);
         client.user.setActivity(`servers | Cluster${client.cluster.id}`, {
