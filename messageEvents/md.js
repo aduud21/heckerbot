@@ -3,20 +3,15 @@ const { main } = require('../config/colors.json');
 const async = require('async');
 const mongoose = require('mongoose');
 const Modlog = require('../models/modlog');
-
+const getModlogDocuments = require('../models/modlogs.js');
 mongoose.connect(process.env.mongodb, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
-
 let modlogDocuments = [];
 
 async function fetchModlogDocuments() {
-    try {
-        modlogDocuments = await Modlog.find();
-    } catch (error) {
-        console.log('Error fetching modlog documents:', error);
-    }
+    modlogDocuments = getModlogDocuments();
 }
 
 fetchModlogDocuments();
@@ -42,12 +37,8 @@ module.exports = async (messageDelete) => {
         return;
 
     while (modlogDocuments.length === 0) {
-        console.log(
-            'modlogDocuments is 0 for MongoDB (md.js). Trying again in 5 seconds... Possible memory leak if no modlogDocuments are found'
-        );
         await new Promise((resolve) => setTimeout(resolve, 5000));
     }
-
     try {
         const existingModlog = modlogDocuments.find(
             (modlog) => modlog.serverID === messageDelete.guild.id

@@ -3,7 +3,7 @@ const { main } = require('../config/colors.json');
 const async = require('async');
 const mongoose = require('mongoose');
 const Modlog = require('../models/modlog');
-
+const getModlogDocuments = require('../models/modlogs.js');
 mongoose.connect(process.env.mongodb, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -15,11 +15,7 @@ const phoneNumberRegex = /(\+\d{1,2}\s?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b/g
 let modlogDocuments = [];
 
 async function fetchModlogDocuments() {
-    try {
-        modlogDocuments = await Modlog.find();
-    } catch (error) {
-        console.log('Error fetching modlog documents:', error);
-    }
+    modlogDocuments = getModlogDocuments();
 }
 
 fetchModlogDocuments();
@@ -52,16 +48,8 @@ module.exports = async (oldMessage, newMessage) => {
     }
 
     while (modlogDocuments.length === 0) {
-        console.log(
-            'modlogDocuments is 0 for MongoDB (ed.js). Trying again in 5 seconds... Possible memory leak if no modlogDocuments are found'
-        );
         await new Promise((resolve) => setTimeout(resolve, 5000));
     }
-
-    if (oldMessage === null) {
-        oldMessage = 'unknown message';
-    }
-
     try {
         const existingModlog = modlogDocuments.find(
             (modlog) => modlog.serverID === newMessage.guild.id

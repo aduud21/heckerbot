@@ -10,6 +10,7 @@ const mlSC = new mongoose.Schema(
         channelID: {
             type: String,
             required: true,
+            unique: true,
         },
     },
     {

@@ -9,12 +9,11 @@ mongoose.connect(process.env.mongodb, {
 });
 
 module.exports = async (interaction) => {
-    const serverId = interaction.guild.id;
-
     // Check if the server is on cooldown
-    if (interactionServerCooldowns.has(serverId)) {
-        const remainingCooldown = interactionServerCooldowns.get(serverId) - Date.now();
-        const remainingCooldownRL = interactionServerCooldownsPreventRL.get(serverId) - Date.now();
+    if (interactionServerCooldowns.has(interaction.guild.id)) {
+        const remainingCooldown = interactionServerCooldowns.get(interaction.guild.id) - Date.now();
+        const remainingCooldownRL =
+            interactionServerCooldownsPreventRL.get(interaction.guild.id) - Date.now();
 
         if (remainingCooldownRL > 0) {
             return;
@@ -31,15 +30,15 @@ module.exports = async (interaction) => {
     }
 
     const cooldownTimeRL = 5000;
-    interactionServerCooldownsPreventRL.set(serverId, Date.now() + cooldownTimeRL);
+    interactionServerCooldownsPreventRL.set(interaction.guild.id, Date.now() + cooldownTimeRL);
     setTimeout(() => {
-        interactionServerCooldownsPreventRL.delete(serverId);
+        interactionServerCooldownsPreventRL.delete(interaction.guild.id);
     }, cooldownTimeRL);
 
     const cooldownTime = 15000;
-    interactionServerCooldowns.set(serverId, Date.now() + cooldownTime);
+    interactionServerCooldowns.set(interaction.guild.id, Date.now() + cooldownTime);
     setTimeout(() => {
-        interactionServerCooldowns.delete(serverId);
+        interactionServerCooldowns.delete(interaction.guild.id);
     }, cooldownTime);
 
     try {
