@@ -3,7 +3,7 @@ module.exports = async (interaction) => {
     interaction
         .reply(
             `
-Source code on github: ${codelinkwithformat}                     
+Source code: ${codelinkwithformat}                     
 `
         )
         .catch(() => {});

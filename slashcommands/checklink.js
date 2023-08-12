@@ -10,18 +10,18 @@ module.exports = async (interaction, client) => {
             /^(?:(?:https?):\/\/)?(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+[A-Za-z0-9][A-Za-z0-9-]{0,61}[A-Za-z0-9](?:\/.*)?$/;
         const match = interaction.options._hoistedOptions[0].value.match(regex);
         if (!match) {
-            await interaction.reply({
+            interaction.reply({
                 content: '❌ -> Incorrect link. Please enter a valid link!',
             });
             return;
         }
 
         if (interaction.options._hoistedOptions[0].value.length > 255) {
-            await interaction.reply({ content: '❌ -> Link too long! Character limit: 255' });
+            interaction.reply({ content: '❌ -> Link too long! Character limit: 255' });
             return;
         }
         if (!process.env.api) {
-            await interaction.reply({
+            interaction.reply({
                 content:
                     '❌ -> The environment file (process.env.api) was not found. This command requires it for Google Safe Browsing.',
             });
@@ -34,7 +34,7 @@ module.exports = async (interaction, client) => {
             `https://safebrowsing.googleapis.com/v4/threatMatches:find?key=${process.env.api}`,
             {
                 client: {
-                    clientId: `Discord bot ${client.user.username}`,
+                    clientId: `Discord bot ${client.user.tag}`,
                     clientVersion: '1.0.0',
                 },
                 threatInfo: {
@@ -61,18 +61,30 @@ module.exports = async (interaction, client) => {
             interaction.editReply(
                 `**${outputLink}** has been flagged as **${threatTypes}** (Dangerous) by Google Safe Browsing. Data is provided by [anti-fish api](<https://anti-fish.bitflow.dev/>) and [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>)`
             );
+            return;
         } else {
-            const antiFishResponse = await axios.post(`https://anti-fish.bitflow.dev/check`, {
-                message: interaction.options._hoistedOptions[0].value,
-            });
+            const antiFishResponse = await axios.post(
+                `https://anti-fish.bitflow.dev/check`,
+                {
+                    message: interaction.options._hoistedOptions[0].value,
+                },
+                {
+                    headers: {
+                        'User-Agent': `Discord bot ${client.user.tag}`,
+                    },
+                }
+            );
+
             if (antiFishResponse.data.match) {
                 interaction.editReply(
                     `**${outputLink}** has been flagged as **dangerous** by Anti-Fish. Data is provided by [anti-fish api](<https://anti-fish.bitflow.dev/>) and [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>)`
                 );
+                return;
             } else {
                 interaction.editReply(
                     `**${outputLink}** is safe OR too new to be flagged. Data is provided by [anti-fish api](<https://anti-fish.bitflow.dev/>) and [Google Safe Browsing API V4](<https://developers.google.com/terms/api-services-user-data-policy>)`
                 );
+                return;
             }
         }
     } catch (e) {

@@ -1,8 +1,7 @@
 const interactionServerCooldowns = new Map();
-const interactionServerCooldownsPreventRL = new Map();
 const mongoose = require('mongoose');
 const Modlog = require('../models/modlog');
-
+const cooldownTime = 30000;
 mongoose.connect(process.env.mongodb, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -12,12 +11,6 @@ module.exports = async (interaction) => {
     // Check if the server is on cooldown
     if (interactionServerCooldowns.has(interaction.guild.id)) {
         const remainingCooldown = interactionServerCooldowns.get(interaction.guild.id) - Date.now();
-        const remainingCooldownRL =
-            interactionServerCooldownsPreventRL.get(interaction.guild.id) - Date.now();
-
-        if (remainingCooldownRL > 0) {
-            return;
-        }
 
         if (remainingCooldown > 0) {
             interaction
@@ -29,13 +22,6 @@ module.exports = async (interaction) => {
         }
     }
 
-    const cooldownTimeRL = 5000;
-    interactionServerCooldownsPreventRL.set(interaction.guild.id, Date.now() + cooldownTimeRL);
-    setTimeout(() => {
-        interactionServerCooldownsPreventRL.delete(interaction.guild.id);
-    }, cooldownTimeRL);
-
-    const cooldownTime = 15000;
     interactionServerCooldowns.set(interaction.guild.id, Date.now() + cooldownTime);
     setTimeout(() => {
         interactionServerCooldowns.delete(interaction.guild.id);

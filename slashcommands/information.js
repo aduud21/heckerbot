@@ -9,11 +9,12 @@ module.exports = async (interaction, client) => {
     let seconds = Math.floor(totaltime % 60);
     interaction
         .reply(
-            `Bot created: 2022/2/28
+            `
+${client.user.tag}
 Owner(s) UserID(s): ${owners}
 Support server: ${support}
 ShardId: ${interaction.guild.shardId}
-Latency: ${Math.round(client.ws.ping)}ms
+Ping: ${Math.round(client.ws.ping)}ms
 Uptime: ${days}d ${hours}h ${minutes}min ${seconds}s
 `
         )

@@ -68,10 +68,7 @@ module.exports = async (interaction) => {
             headers: {
                 Authorization: process.env.bloxlinkAPIKEY,
                 'User-Agent': `Discord bot`,
-                'X-AUserRequestedThis': true,
-                'Upgrade-Insecure-Requests': 1,
-                'Accept-Language': 'en-US,en;q=0.5',
-                Accept: 'text/html',
+                'Accept-Language': 'en-US',
             },
         };
 

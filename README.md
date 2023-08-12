@@ -17,7 +17,7 @@
 
 _Discord bot:_
 
-When you use this for a discord bot, make a terms of service and privacy policy if you plan in getting verified for your discord bot
+When you use this for a discord bot, make a terms of service and privacy policy if you plan in getting verified for your discord bot as well make good changes probably 
 
 You may use these links as a template:
 
@@ -58,7 +58,7 @@ Secrets are environment variables (on replit you can create secrets by using it'
 
 You'll need your bot token.
 
-[![Import this project to replit](https://replit.com/badge?caption=Import%20this%20project%20to%20Replit)](https://replit.com/github/aduud21/heckerbot) or download the latest github [![GitHub release](https://img.shields.io/github/release/aduud21/heckerbot?include_prereleases=&sort=semver)](https://github.com/aduud21/heckerbot/releases/) (github release is recommanded as it is likely more stable).
+[![Import this project to replit](https://replit.com/badge?caption=Import%20this%20project%20to%20Replit)](https://replit.com/github/aduud21/heckerbot) or download the latest github [![GitHub release](https://img.shields.io/github/release/aduud21/heckerbot?include_prereleases=&sort=semver)](https://github.com/aduud21/heckerbot/releases/) (github release is recommanded as it is likely more stable however if you want to be uptodate with the bot code, then import).
 
 Make sure to run
 

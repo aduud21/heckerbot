@@ -1,6 +1,6 @@
 const interactionServerCooldowns = new Map();
 const { ChannelType, PermissionsBitField } = require('discord.js');
-const interactionServerCooldownsPreventRL = new Map();
+const cooldownTime = 30000;
 const mongoose = require('mongoose');
 const Modlog = require('../models/modlog');
 mongoose.connect(process.env.mongodb, {
@@ -11,11 +11,6 @@ module.exports = async (interaction) => {
     // startcooldown
     if (interactionServerCooldowns.has(interaction.guild.id)) {
         const remainingCooldown = interactionServerCooldowns.get(interaction.guild.id) - Date.now();
-        const remainingCooldownRL =
-            interactionServerCooldownsPreventRL.get(interaction.guild.id) - Date.now();
-        if (remainingCooldownRL > 0) {
-            return;
-        }
         if (remainingCooldown > 0) {
             interaction
                 .reply(
@@ -26,13 +21,6 @@ module.exports = async (interaction) => {
         }
     }
 
-    const cooldownTimeRL = 5000;
-    interactionServerCooldownsPreventRL.set(interaction.guild.id, Date.now() + cooldownTimeRL);
-    setTimeout(() => {
-        interactionServerCooldownsPreventRL.delete(interaction.guild.id);
-    }, cooldownTimeRL);
-
-    const cooldownTime = 15000;
     interactionServerCooldowns.set(interaction.guild.id, Date.now() + cooldownTime);
     setTimeout(() => {
         interactionServerCooldowns.delete(interaction.guild.id);
@@ -55,7 +43,7 @@ module.exports = async (interaction) => {
             }
             if (channel.type !== ChannelType.GuildText) {
                 try {
-                    interaction.reply(`❌ -> Please mention a vaild text channel.`).catch(() => {});
+                    interaction.reply(`❌ -> Please mention a text channel.`).catch(() => {});
                 } catch (error) {
                     console.error('Error replying to interaction:', error);
                 }
@@ -69,7 +57,7 @@ module.exports = async (interaction) => {
             ) {
                 interaction
                     .reply({
-                        content: `❌ -> I need these permissions for the channel selected to work with this command:
+                        content: `❌ -> I need these permissions for the channel selected:
 - i need to be able to Send Messages in the channel you picked
 - i need to be able to Embed Links in the channel you picked you picked
 - i need to be able to View Channel you picked`,

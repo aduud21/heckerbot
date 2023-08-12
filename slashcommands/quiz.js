@@ -12,10 +12,7 @@ async function getRandomQuestion() {
         const response = await axios.get(randomUrl, {
             headers: {
                 'User-Agent': 'Discord bot',
-                'X-AUserRequestedThis': true,
-                'Upgrade-Insecure-Requests': 1,
-                'Accept-Language': 'en-US,en;q=0.5',
-                Accept: 'text/html',
+                'Accept-Language': 'en-US',
             },
         });
 
