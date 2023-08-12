@@ -1,7 +1,7 @@
 const interactionServerCooldowns = new Map();
 const mongoose = require('mongoose');
 const Modlog = require('../models/modlog');
-const cooldownTime = 30000;
+const cooldownTime = 15000;
 mongoose.connect(process.env.mongodb, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

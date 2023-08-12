@@ -1,6 +1,6 @@
 const interactionServerCooldowns = new Map();
 const { ChannelType, PermissionsBitField } = require('discord.js');
-const cooldownTime = 30000;
+const cooldownTime = 15000;
 const mongoose = require('mongoose');
 const Modlog = require('../models/modlog');
 mongoose.connect(process.env.mongodb, {
