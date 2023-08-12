@@ -20,6 +20,29 @@ IF YOU DONT USE SECRETS FOR THIS REPLIT LIKE YOU JUST PASTE IN YOUR TOKEN THEN A
 https://github.com/aduud21/heckerbot#how-to-run-the-bot-on-replit
 */
 console.log(`Node version: ${process.version}`);
+console.log('Starting up error logger');
+const options = {
+    timeZone: 'America/Mexico_City',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+};
+const logMessage = (message) => {
+    const currentTime = new Date().toLocaleString('en-US', options);
+    const logEntry = '[' + currentTime + '] ' + message + '\n';
+    fs.appendFileSync('error.txt', logEntry);
+    console.log(logEntry);
+};
+process.on('uncaughtException', (err) => {
+    logMessage('Uncaught Exception: ' + err.stack);
+});
+process.on('unhandledRejection', (reason) => {
+    logMessage('Unhandled Rejection: ' + reason);
+});
+process.on('exit', (code) => {
+    logMessage('Process exited with code: ' + code);
+});
+console.log('Error logger on');
 const { ClusterManager, HeartbeatManager } = require('discord-hybrid-sharding');
 const manager = new ClusterManager(`./bot.js`, {
     totalShards: 'auto',

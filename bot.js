@@ -33,7 +33,6 @@ const client = new Client({
 });
 client.cluster = new ClusterClient(client); // initialize the Client, so we access the .broadcastEval()
 client.login(process.env.TOKEN);
-console.log('⏳ -> [LOGIN] Trying to login with the provided token.');
 if (debugModeEnabled) {
     const options = {
         timeZone: 'America/Mexico_City',
@@ -41,28 +40,18 @@ if (debugModeEnabled) {
         minute: 'numeric',
         second: 'numeric',
     };
-    const logMessage = (message) => {
-        const currentTime = new Date().toLocaleString('en-US', options);
-        const logEntry = '[' + currentTime + '] ' + message + '\n';
-        fs.appendFileSync('error.txt', logEntry);
-        console.log(logEntry);
-    };
-    process.on('uncaughtException', (err) => {
-        logMessage('Uncaught Exception: ' + err.stack);
-    });
-    process.on('unhandledRejection', (reason) => {
-        logMessage('Unhandled Rejection: ' + reason);
-    });
-    process.on('exit', (code) => {
-        logMessage('Process exited with code: ' + code);
-    });
     client.rest.on('rateLimited', (data) => {
-        logMessage('Ratelimited: ' + JSON.stringify(data));
+        fs.appendFileSync(
+            'error.txt',
+            '[' + new Date().toLocaleString('en-US', options) + '] ' + JSON.stringify(data) + '\n'
+        );
+        console.log(
+            '[' + new Date().toLocaleString('en-US', options) + '] ' + JSON.stringify(data) + '\n'
+        );
     });
 }
 client.once(Events.ClientReady, () => {
     if (client.user) {
-        console.log(`☑️ -> [LOGIN] Logged into token as user ${client.user.tag}`);
         client.user.setActivity(`servers | Cluster${client.cluster.id}`, {
             type: ActivityType.Watching,
         });
