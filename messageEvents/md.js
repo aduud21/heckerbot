@@ -25,9 +25,6 @@ const queue = async.queue(async (task, callback) => {
         await messageDelete.guild.channels.cache.get(modLogsID).send({ embeds: [EmbedBuilder] });
     } catch (error) {
         await Modlog.deleteOne({ serverID: messageDelete.guild.id });
-        console.log(
-            `Kinda Optimized space: Somebody put modlogs for a channel then deleted that channel or the bot no longer has access to the channel ${error}`
-        );
     }
     callback();
 }, 1);
