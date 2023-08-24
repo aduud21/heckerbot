@@ -103,8 +103,6 @@ i did step 15 but did not save my API key!
 
 if you have read all of this and understood (for example you not gonna claim you made this bot), Thank you, Have a great day!
 
-Email: contact-adudu21@proton.me
-
 if you have two slash commands named the exact same, run this (via runcode) to remove the duplicate?:
 ```js
 const { GatewayIntentBits, Partials, Client } = require('discord.js');
