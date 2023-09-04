@@ -21,6 +21,7 @@ https://github.com/aduud21/heckerbot#how-to-run-the-bot-on-replit
 */
 console.log(`Node version: ${process.version}`);
 console.log('Starting up error logger');
+const fs = require('fs');
 const options = {
     timeZone: 'America/Mexico_City',
     hour: 'numeric',
