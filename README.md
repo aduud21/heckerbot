@@ -17,14 +17,6 @@
 
 _Discord bot:_
 
-When you use this for a discord bot, make a terms of service and privacy policy if you plan in getting verified for your discord bot as well make good changes probably 
-
-You may use these links as a template:
-
-https://docs.google.com/document/d/1f3yKJK7fkyihu_vIx5z62T3-40oR5Mo9zjaTUYWcFG0/view
-
-https://docs.google.com/document/d/11ZH5vHB__avP1COLx9rSIxytjnIDdHvLYSCOaUUJnwY/view
-
 information about discord intents:
 https://gist.github.com/advaith1/e69bcc1cdd6d0087322734451f15aa2f
 
