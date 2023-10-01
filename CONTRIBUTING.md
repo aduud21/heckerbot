@@ -23,6 +23,8 @@ This project is about a discord bot that I made
 ```js
 const look = require("thisisjustaexample");
 
+
+
 console.log("hi");
 ```
 
@@ -33,4 +35,3 @@ const lol = require("discord.js"), console.log("hi")
 
 ```
 
-## This discord bot uses Discord.js V13 As of January 25 2023
