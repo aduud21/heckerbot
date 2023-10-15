@@ -1,4 +1,4 @@
-node_modules
-breakpoints
+node_modules/
+breakpoints/
 *.breakpoints
 *.env
