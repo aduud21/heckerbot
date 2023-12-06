@@ -4,10 +4,7 @@ const async = require('async');
 const mongoose = require('mongoose');
 const Modlog = require('../models/modlog');
 const getModlogDocuments = require('../models/modlogs.js');
-mongoose.connect(process.env.mongodb, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+mongoose.connect(process.env.mongodb);
 let modlogDocuments = [];
 
 async function fetchModlogDocuments() {

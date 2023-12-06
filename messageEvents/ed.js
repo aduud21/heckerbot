@@ -4,10 +4,7 @@ const async = require('async');
 const mongoose = require('mongoose');
 const Modlog = require('../models/modlog');
 const getModlogDocuments = require('../models/modlogs.js');
-mongoose.connect(process.env.mongodb, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+mongoose.connect(process.env.mongodb);
 
 const creditCardRegex = /\b(?:\d{4}[ -]?){3}\d{4}\b/g;
 const phoneNumberRegex = /(\+\d{1,2}\s?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b/g;
