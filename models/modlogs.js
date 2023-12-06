@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 const Modlog = require('../models/modlog');
-mongoose.connect(process.env.mongodb, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+mongoose.connect(process.env.mongodb);
 
 let modlogDocuments = [];
 
