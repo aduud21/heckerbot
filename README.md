@@ -1,7 +1,7 @@
 # if you plan on watching this repo, i suggest you put Releases only, There may be often new Releases
 
 ## As of 5/4/2023, i needed to rename the bot to MutilpleBot so i can try to verify the discord bot, Orignal name is Hecker!
-
+### EOL (End of life) of MutilpleBot may happen at 2024/1/5
 [![GitHub release](https://img.shields.io/github/release/aduud21/heckerbot?include_prereleases=&sort=semver)](https://github.com/aduud21/heckerbot/releases/)
 [![issues - heckerbot](https://img.shields.io/github/issues/aduud21/heckerbot)](https://github.com/aduud21/heckerbot/issues)
 
@@ -64,7 +64,7 @@ Create a secret named TOKEN and value as the token of your bot.
 1. You'll need a [MongoDB](https://mongodb.com/) database set up. Make sure you have 0.0.0.0 whitelisted in the IP addresses so it will work with Replit or such
 2. Create a secret called mongodb and put your database's connection URI in there. It should look something like this: mongodb+srv://username:password@cluster0.clusters.mongodb.net/?retryWrites=true&w=majority
 
-Don't use the example I provided, put your own, it won't work. If you don't have a MongoDB, you can create on at [MongoDB](https://mongodb.com/).
+Don't use the example I provided, put your own, it won't work. If you don't have a MongoDB, you can create one at [MongoDB](https://mongodb.com/).
 
 ## For checklink slash command, you must create a secret named api and the value of your safe browsing api key
 
