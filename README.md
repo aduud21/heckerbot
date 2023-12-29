@@ -1,4 +1,6 @@
-# if you plan on watching this repo, i suggest you put Releases only, There may be often new Releases
+# The bot is no longer supported, it will be deleted soon and all github repos by me (aduud21) will be archived.
+
+## if you plan on watching this repo, i suggest you put Releases only, There may be often new Releases
 
 ## As of 5/4/2023, i needed to rename the bot to MutilpleBot so i can try to verify the discord bot, Orignal name is Hecker!
 ### EOL (End of life) of MutilpleBot may happen at 2024/1/5
